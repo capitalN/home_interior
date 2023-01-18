@@ -27,7 +27,7 @@ let cartButton = {backgroundColor:"black",
 let cartButton1 = {fontSize:"13px",  letterSpacing: "0.1px"}
 
 
-export const Cart = () => {
+const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
   const [ cartflag, setCartflag ] = useState({"one": false,"second":true, "three":true})
@@ -170,3 +170,5 @@ export const Cart = () => {
     </>
   );
 };
+
+export default Cart;
