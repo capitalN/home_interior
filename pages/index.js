@@ -1,7 +1,39 @@
-import { Heading } from "@chakra-ui/react";
+import FryDeals from "@/components/homeComponents/FryDeals";
+import MainCarousel from "@/components/homeComponents/MainCarousel";
+import ShopByRoom from "@/components/homeComponents/ShopByRoom";
+import {
+  Box,
+  Container,
+  Flex,
+  Grid,
+  Heading,
+  // Image,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function Home() {
+  const SHOP_BY_ROOM = [
+    {
+      name: "Shop Living Room",
+      img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_section4_web_04012023_1.jpg",
+    },
+    {
+      name: "Shop Bedroom",
+      img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_section4_web_04012023_2.jpg",
+    },
+    {
+      name: "Shop Dining Room",
+      img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_section4_web_04012023_3.jpg",
+    },
+    {
+      name: "Shop Study Room",
+      img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_section4_web_04012023_4.jpg",
+    },
+  ];
+
   return (
     <>
       <Head>
@@ -10,7 +42,37 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Heading>home</Heading>
+      <Container maxW={"8xl"}>
+        <Stack gap={5}>
+          <Heading>home</Heading>
+          <Flex gap={5}>
+            <MainCarousel />
+            <Image
+              src={
+                "https://ii2.pepperfry.com/media/wysiwyg/banners/RHS-WEB_2x_1301_16-jan.jpg"
+              }
+              width={0}
+              height={0}
+              sizes="100vw"
+              alt="image"
+              style={{ width: "22%", height: "auto" }}
+            />
+          </Flex>
+
+          <Image
+            src="https://ii3.pepperfry.com/media/wysiwyg/banners/2021_web_regBanner1x_2712.jpg"
+            width={0}
+            height={0}
+            sizes="100vw"
+            alt="image"
+            style={{ width: "auto", height: "auto" }}
+          />
+
+          <ShopByRoom />
+
+          <FryDeals />
+        </Stack>
+      </Container>
     </>
   );
 }
