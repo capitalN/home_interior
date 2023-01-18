@@ -17,12 +17,13 @@ import {
   FormErrorMessage
 } from "@chakra-ui/react";
 import React from "react";
+import {HiOutlineUser} from 'react-icons/hi'
 
 function SignupModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <HiOutlineUser size={25}onClick={onOpen}/>
 
       <Modal isOpen={isOpen} onClose={onClose} size={"2xl"}>
         <ModalOverlay />
