@@ -16,7 +16,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
-import style from "./cart.module.css"
+import style from "./Cart.module.css"
 
 
 let cartButton = {backgroundColor:"black",
