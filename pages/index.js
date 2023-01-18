@@ -1,3 +1,4 @@
+import LoginModal from "@/components/loginModal";
 import SignupModal from "@/components/signupModal";
 import { Heading } from "@chakra-ui/react";
 import Head from "next/head";
@@ -14,6 +15,7 @@ export default function Home() {
       </Head>
       <Heading>home</Heading>
       <SignupModal/>
+      <LoginModal/>
     </>
   );
 }
