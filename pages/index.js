@@ -1,6 +1,5 @@
 import { Heading } from "@chakra-ui/react";
 import Head from "next/head";
-import Cart from "@/components/Cart/cart";
 
 export default function Home() {
   return (
@@ -12,10 +11,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Heading>home</Heading>
-      <div>
-          <Cart/>
-      </div>
-      
+
     </>
   );
 }
