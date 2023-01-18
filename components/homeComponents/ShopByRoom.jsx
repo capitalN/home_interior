@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Grid, Heading, Stack, Text } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ShopByRoom() {
   const SHOP_BY_ROOM = [
@@ -29,17 +30,19 @@ export default function ShopByRoom() {
         gap="5"
       >
         {SHOP_BY_ROOM.map((el) => (
-          <Stack key={el.name}>
-            <Image
-              src={el.img}
-              alt={el.name}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: "auto", height: "auto" }}
-            />
-            <Text>{el.name}</Text>
-          </Stack>
+          <Link href={"#"} key={el.name}>
+            <Stack>
+              <Image
+                src={el.img}
+                alt={el.name}
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "auto", height: "auto" }}
+              />
+              <Text>{el.name}</Text>
+            </Stack>
+          </Link>
         ))}
       </Grid>
     </Stack>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Box, useBreakpointValue, Image } from "@chakra-ui/react";
+import { Box, useBreakpointValue } from "@chakra-ui/react";
 import Slider from "react-slick";
+import Link from "next/link";
+import Image from "next/image";
 
 const settings = {
   fade: true,
@@ -34,7 +36,6 @@ export default function mainCarousel() {
 
   return (
     <Box position={"relative"} width={"full"} overflow={"hidden"}>
-      {/* CSS files for react-slick */}
       <link
         rel="stylesheet"
         type="text/css"
@@ -47,16 +48,21 @@ export default function mainCarousel() {
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
       />
       {/* Slider */}
-      <Slider {...settings} ref={(slider) => setSlider(slider)}>
-        {cards.map((card, index) => (
-          <Image
-            key={index}
-            src={card.image}
-            display={"block"}
-            verticalAlign="bottom"
-          />
-        ))}
-      </Slider>
+      <Link href={"#"}>
+        <Slider {...settings} ref={(slider) => setSlider(slider)}>
+          {cards.map((card, index) => (
+            <Image
+              key={index}
+              src={card.image}
+              width={0}
+              height={0}
+              alt="carausel img"
+              sizes={"100vw"}
+              style={{width:"auto", height:"auto" , display:"block", verticalAlign:"bottom"}}
+            />
+          ))}
+        </Slider>
+      </Link>
     </Box>
   );
 }

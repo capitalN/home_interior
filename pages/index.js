@@ -10,12 +10,14 @@ import {
   Flex,
   Grid,
   Heading,
+  Hide,
   // Image,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const SHOP_BY_ROOM = [
@@ -50,27 +52,33 @@ export default function Home() {
           <Heading>home</Heading>
           <Flex gap={5}>
             <MainCarousel />
-            <Image
-              src={
-                "https://ii2.pepperfry.com/media/wysiwyg/banners/RHS-WEB_2x_1301_16-jan.jpg"
-              }
-              width={0}
-              height={0}
-              sizes="100vw"
-              alt="image"
-              style={{ width: "22%", height: "auto" }}
-            />
+            <Hide below="sm">
+              <Image
+                src={
+                  "https://ii2.pepperfry.com/media/wysiwyg/banners/RHS-WEB_2x_1301_16-jan.jpg"
+                }
+                width={0}
+                height={0}
+                sizes="100vw"
+                alt="image"
+                style={{ width: "22%", height: "auto", paddingBottom: "6px" }}
+              />
+            </Hide>
           </Flex>
 
-          <Image
-            src="https://ii3.pepperfry.com/media/wysiwyg/banners/2021_web_regBanner1x_2712.jpg"
-            width={0}
-            height={0}
-            sizes="100vw"
-            alt="image"
-            style={{ width: "auto", height: "auto" }}
-          />
-
+          <Hide below="sm">
+            <Link href={"#"}>
+              <Image
+                src="https://ii3.pepperfry.com/media/wysiwyg/banners/2021_web_regBanner1x_2712.jpg"
+                width={0}
+                height={0}
+                sizes="100vw"
+                alt="image"
+                style={{ width: "100vw", height: "auto" }}
+              />
+            </Link>
+          </Hide>
+          
           <ShopByRoom />
 
           <FryDeals />

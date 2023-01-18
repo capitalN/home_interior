@@ -28,11 +28,11 @@ export default function GetInspired() {
     },
     tablet: {
       breakpoint: { max: 1024, min: 520 },
-      items: 3.5,
+      items: 2.5,
     },
     mobile: {
       breakpoint: { max: 519, min: 0 },
-      items: 2.5,
+      items: 1,
     },
   };
 
