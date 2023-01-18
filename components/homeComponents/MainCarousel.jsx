@@ -3,8 +3,6 @@ import { Box, useBreakpointValue, Image } from "@chakra-ui/react";
 import Slider from "react-slick";
 
 const settings = {
-  // dots: true,
-  // arrows: false,
   fade: true,
   infinite: true,
   autoplay: true,
@@ -15,7 +13,6 @@ const settings = {
 };
 
 export default function mainCarousel() {
-  // const [slider, setSlider] = (useState < Slider) | (null > null);
   let [slider, setSlider] = useState(0);
   const top = useBreakpointValue({ base: "90%", md: "50%" });
   const side = useBreakpointValue({ base: "30%", md: "40px" });
@@ -36,11 +33,7 @@ export default function mainCarousel() {
   ];
 
   return (
-    <Box
-      position={"relative"}
-      width={"full"}
-      overflow={"hidden"}
-    >
+    <Box position={"relative"} width={"full"} overflow={"hidden"}>
       {/* CSS files for react-slick */}
       <link
         rel="stylesheet"

@@ -1,5 +1,6 @@
 import { Box, Grid, Heading, Stack, Text } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function FryDeals() {
@@ -25,6 +26,7 @@ export default function FryDeals() {
       img: "https://ii3.pepperfry.com/media/wysiwyg/banners/Home_Deal16_web_16012023_4.jpg",
     },
   ];
+
   return (
     <Stack>
       <Heading>What The Fry Deals</Heading>
@@ -33,18 +35,20 @@ export default function FryDeals() {
         gap="5"
       >
         {FRY_DEALS.map((el) => (
-          <Stack key={el.name}>
-            <Image
-              src={el.img}
-              alt={el.name}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: "auto", height: "auto" }}
-            />
-            <Heading size={"md"}>{el.discount}</Heading>
-            <Text>{el.name}</Text>
-          </Stack>
+          <Link href="#" key={el.name}>
+            <Stack>
+              <Image
+                src={el.img}
+                alt={el.name}
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "auto", height: "auto" }}
+              />
+              <Heading size={"md"}>{el.discount}</Heading>
+              <Text>{el.name}</Text>
+            </Stack>
+          </Link>
         ))}
       </Grid>
     </Stack>

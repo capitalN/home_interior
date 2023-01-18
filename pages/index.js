@@ -1,6 +1,9 @@
 import FryDeals from "@/components/homeComponents/FryDeals";
+import GetInspired from "@/components/homeComponents/GetInspired";
 import MainCarousel from "@/components/homeComponents/MainCarousel";
 import ShopByRoom from "@/components/homeComponents/ShopByRoom";
+import TopBrands from "@/components/homeComponents/TopBrands";
+import WinterEdit from "@/components/homeComponents/WinterEdit";
 import {
   Box,
   Container,
@@ -43,7 +46,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container maxW={"8xl"}>
-        <Stack gap={5}>
+        <Stack gap={10}>
           <Heading>home</Heading>
           <Flex gap={5}>
             <MainCarousel />
@@ -71,6 +74,12 @@ export default function Home() {
           <ShopByRoom />
 
           <FryDeals />
+
+          <GetInspired />
+
+          <TopBrands />
+
+          <WinterEdit />
         </Stack>
       </Container>
     </>
