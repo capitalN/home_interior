@@ -1,3 +1,4 @@
+
 import FryDeals from "@/components/homeComponents/FryDeals";
 import GetInspired from "@/components/homeComponents/GetInspired";
 import MainCarousel from "@/components/homeComponents/MainCarousel";
@@ -15,9 +16,15 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+
+import LoginModal from "@/components/loginModal";
+import SignupModal from "@/components/signupModal";
+import { Heading } from "@chakra-ui/react";
+
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+
 
 export default function Home() {
   const SHOP_BY_ROOM = [
@@ -47,6 +54,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Container maxW={"8xl"}>
         <Stack gap={10}>
           <Heading>home</Heading>
@@ -90,6 +98,9 @@ export default function Home() {
           <WinterEdit />
         </Stack>
       </Container>
+      <Heading>home</Heading>
+      <SignupModal/>
+      <LoginModal/>
     </>
   );
 }
