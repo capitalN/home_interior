@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import React from "react";
 import {
   Box,
   Flex,
@@ -22,6 +23,8 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { HiSearch } from 'react-icons/hi';
 import { BsHeart ,BsCart2 } from 'react-icons/bs';
 import { CiUser } from 'react-icons/ci';
+import SignupModal from './signupModal';
+import { Link as RouterLink } from "react-router-dom";
 
 const Links = ['Dashboard', 'Projects', 'Team'];
 
@@ -45,7 +48,7 @@ export default function Navbar() {
   return (
     <>
       <Box  px={4}>
-        <Flex h={20} alignItems={'center'} justifyContent={'space-between'}>
+        <Flex h={20} alignItems={'center'} justifyContent={'space-between'} cursor={'pointer'}>
           <IconButton
             size={'lg'}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -55,7 +58,11 @@ export default function Navbar() {
           />
 
             <Box marginLeft={14}>
-              <Image src='/home_interior_logo.png' w="100px" />
+              {/* <RouterLink to="/"> */}
+                <Image src='/home_interior_logo.png' w="130px" />
+          
+              {/* </RouterLink> */}
+
             </Box>
             {/* <HStack
               as={'nav'}
@@ -68,10 +75,10 @@ export default function Navbar() {
             <Box spacing={20}
             // display={{ base: 'none', md: '' }}>
               display={{ base: 'none',lg:"flex", md: '500px' }} 
-              justifyItems="center" border="1px solid"
-              paddingRight={5} borderRadius="10px"> 
+              justifyItems="center" border="0px solid"
+              padding="0 5px"  bgColor={"orange.400"}> 
 
-              <Input  w="800px" border="none" />
+              <Input  w="800px" border="none" bgColor="orange.400" _hover={"none"} />
               <Flex alignItems={'center'}> <HiSearch size={20} /></Flex>
              
                </Box>
@@ -97,7 +104,8 @@ export default function Navbar() {
                 <MenuDivider />
                 <MenuItem>Link 3</MenuItem>
               </MenuList> */}
-                    <Link href="#"><CiUser size={30} /></Link>
+                    {/* <Link href="#"><CiUser size={30} /> </Link> */}
+                     <SignupModal /> 
                     <Link href="#"><BsHeart size={30}/></Link>
                     <Link href="#"><BsCart2 size={30} /></Link>
             </HStack>
