@@ -1,28 +1,29 @@
 
-import * as authActions from './authAction'
+import * as authActionsTypes from './authActionTypes'
 
-const intiState = {
+const initState = {
     login: false,
     loading: false,
     error: false,
     details: []
 }
 
-const actionReducer = (state=intiState, {type, payload}) => {
+export const authReducer = (state=initState, {type,payload}) => {
+    
     switch(type){
         default:{
             return state;
         }
 
-        case authActions.loginRequest:{
+        case authActionsTypes.AUTH_LOADING:{
             return {...state, loading:true}
         }
 
-        case authActions.loginSuccess:{
+        case authActionsTypes.AUTH_SUCCESS:{
             return {...state, loading: false, details: payload}
         }
 
-        case authActions.loginFailure:{
+        case authActionsTypes.AUTH_FAILURE:{
             return {...state, loading: false, error: true}
         }
     }
