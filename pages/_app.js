@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import { store } from "@/reducer/store";
 import "@/styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -10,7 +11,8 @@ export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <ChakraProvider theme={theme}>
-
+      <ChakraProvider>
+        <Navbar />
         <Component {...pageProps} />
       </ChakraProvider>
     </Provider>
