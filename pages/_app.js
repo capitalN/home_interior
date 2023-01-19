@@ -11,7 +11,6 @@ export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <ChakraProvider theme={theme}>
-      <ChakraProvider>
         <Navbar />
         <Component {...pageProps} />
       </ChakraProvider>
