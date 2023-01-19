@@ -1,0 +1,31 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
+.scrollbar{
+    scrollbar-width: normal;
+    scrollbar-color: #777 #555;
+}
+.heading{
+    font-family: 'Prata', serif;
+    letter-spacing: 1px;
+}
+
+@media  all and (min-width:320px) and (max-width:479px){
+
+.scroll{
+width: 100%;
+overflow: scroll;
+}
+.scrollcard{
+ min-width: 200px;
+ font-size: 15px;
+}
+.scrollcard img{
+height: 180px;
+}
+.heading{
+    font-family: 'Prata', serif;
+    letter-spacing: normal;
+}
+
+}
