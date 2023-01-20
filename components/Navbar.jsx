@@ -1,4 +1,8 @@
-import { ReactNode } from 'react';
+
+import { ReactNode, useState } from 'react';
+
+import React from "react";
+
 import {
   Box,
   Flex,
@@ -23,6 +27,12 @@ import { HiSearch } from 'react-icons/hi';
 import { BsHeart ,BsCart2 } from 'react-icons/bs';
 import { CiUser } from 'react-icons/ci';
 
+import Cart from './Cart';
+
+import SignupModal from './signupModal';
+import { Link as RouterLink } from "react-router-dom";
+
+
 const Links = ['Dashboard', 'Projects', 'Team'];
 
 const NavLink = ({ children }) => (
@@ -41,11 +51,12 @@ const NavLink = ({ children }) => (
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [ drawer, setDrawer] = useState(false)
 
   return (
     <>
       <Box  px={4}>
-        <Flex h={20} alignItems={'center'} justifyContent={'space-between'}>
+        <Flex h={20} alignItems={'center'} justifyContent={'space-between'} cursor={'pointer'}>
           <IconButton
             size={'lg'}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -55,7 +66,11 @@ export default function Navbar() {
           />
 
             <Box marginLeft={14}>
-              <Image src='/home_interior_logo.png' w="100px" />
+              {/* <RouterLink to="/"> */}
+                <Image src='/home_interior_logo.png' w="130px" />
+          
+              {/* </RouterLink> */}
+
             </Box>
             {/* <HStack
               as={'nav'}
@@ -68,10 +83,10 @@ export default function Navbar() {
             <Box spacing={20}
             // display={{ base: 'none', md: '' }}>
               display={{ base: 'none',lg:"flex", md: '500px' }} 
-              justifyItems="center" border="1px solid"
-              paddingRight={5} borderRadius="10px"> 
+              justifyItems="center" border="0px solid"
+              padding="0 5px"  bgColor={"orange.400"}> 
 
-              <Input  w="800px" border="none" />
+              <Input  w="800px" border="none" bgColor="orange.400" _hover={"none"} />
               <Flex alignItems={'center'}> <HiSearch size={20} /></Flex>
              
                </Box>
@@ -97,11 +112,19 @@ export default function Navbar() {
                 <MenuDivider />
                 <MenuItem>Link 3</MenuItem>
               </MenuList> */}
-                    <Link href="#"><CiUser size={30} /></Link>
+                    {/* <Link href="#"><CiUser size={30} /> </Link> */}
+                     <SignupModal /> 
                     <Link href="#"><BsHeart size={30}/></Link>
-                    <Link href="#"><BsCart2 size={30} /></Link>
+                    <Button onClick={()=>{setDrawer((val)=>!val)}} 
+                            href="#"
+                            variant="ghost"
+                            bgColor="white"
+                            color="black"><BsCart2  
+                            size={30}
+                            /></Button>
             </HStack>
           </Flex>
+          {drawer&& <Cart setDrawer={setDrawer} drawer={drawer}/>}
         </Flex>
         <hr  />
         <Box spacing={4} p={4}

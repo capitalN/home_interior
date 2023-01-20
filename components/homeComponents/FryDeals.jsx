@@ -2,6 +2,7 @@ import { Box, Grid, Heading, Stack, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import style from './home.module.css'
 
 export default function FryDeals() {
   const FRY_DEALS = [
@@ -29,9 +30,9 @@ export default function FryDeals() {
 
   return (
     <Stack>
-      <Heading>What The Fry Deals</Heading>
+      <Heading className={style.heading}>What The Fry Deals</Heading>
       <Grid
-        gridTemplateColumns={{ md: "repeat(2,1fr)", lg: "repeat(4,1fr)" }}
+        gridTemplateColumns={{base:"repeat(2,1fr)", lg: "repeat(4,1fr)" }}
         gap="5"
       >
         {FRY_DEALS.map((el) => (

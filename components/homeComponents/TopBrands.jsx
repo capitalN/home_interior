@@ -31,7 +31,7 @@ export default function TopBrands() {
     <Stack>
       <Heading>Top Brands On Home Interior</Heading>
       <Grid
-        gridTemplateColumns={{ md: "repeat(2,1fr)", lg: "repeat(4,1fr)" }}
+        gridTemplateColumns={{ base: "repeat(2,1fr)", lg: "repeat(4,1fr)" }}
         gap="5"
       >
         {TOP_BRANDS.map((el) => (
