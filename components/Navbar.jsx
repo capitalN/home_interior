@@ -1,5 +1,8 @@
-import { ReactNode } from 'react';
+
+import { ReactNode, useState } from 'react';
+
 import React from "react";
+
 import {
   Box,
   Flex,
@@ -23,8 +26,12 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { HiSearch } from 'react-icons/hi';
 import { BsHeart ,BsCart2 } from 'react-icons/bs';
 import { CiUser } from 'react-icons/ci';
+
+import Cart from './Cart';
+
 import SignupModal from './signupModal';
 import { Link as RouterLink } from "react-router-dom";
+
 
 const Links = ['Dashboard', 'Projects', 'Team'];
 
@@ -44,6 +51,7 @@ const NavLink = ({ children }) => (
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [ drawer, setDrawer] = useState(false)
 
   return (
     <>
@@ -107,9 +115,16 @@ export default function Navbar() {
                     {/* <Link href="#"><CiUser size={30} /> </Link> */}
                      <SignupModal /> 
                     <Link href="#"><BsHeart size={30}/></Link>
-                    <Link href="#"><BsCart2 size={30} /></Link>
+                    <Button onClick={()=>{setDrawer((val)=>!val)}} 
+                            href="#"
+                            variant="ghost"
+                            bgColor="white"
+                            color="black"><BsCart2  
+                            size={30}
+                            /></Button>
             </HStack>
           </Flex>
+          {drawer&& <Cart setDrawer={setDrawer} drawer={drawer}/>}
         </Flex>
         <hr  />
         <Box spacing={4} p={4}

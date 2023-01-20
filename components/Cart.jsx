@@ -21,27 +21,28 @@ import style from "./Cart.module.css"
 
 let cartButton = {backgroundColor:"black",
                   color:"white",
-                  fontSize:"13.9px",
-                  letterSpacing: "0.1px"
+                  fontSize:"13px",
+                  letterSpacing: "0.1px",
+                  lineHeight:"0px"
                   }
-let cartButton1 = {fontSize:"13px",  letterSpacing: "0.1px"}
+let cartButton1 = {fontSize:"13px",  letterSpacing: "0.1px",lineHeight:"0px"}
 
 
-const Cart = () => {
+const Cart = ({setDrawer, drawer}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
   const [ cartflag, setCartflag ] = useState({"one": false,"second":true, "three":true})
 
   return (
     <>
-      <Button variant="ghost" ref={btnRef} colorScheme="teal" onClick={onOpen} position="fixed" top="0px" right="0px">
+      {/* <Button variant="ghost" ref={btnRef} colorScheme="teal" onClick={onOpen} position="fixed" top="0px" right="0px">
       <BsCart2 size={30}  />
-      </Button>
+      </Button> */}
       <Drawer
-        size={{base:"",sm:"md",md:"md"}}
-        isOpen={isOpen}
+        size={{base:"xl",sm:"md",md:"md"}}
+        isOpen={onOpen}
         placement="right"
-        onClose={onClose}
+        onClose={drawer&&onClose}
         finalFocusRef={btnRef}
         
       >
@@ -77,66 +78,78 @@ const Cart = () => {
                   justifyContent="center"
                   alignItems="center"
                 >
-                  <DrawerCloseButton />
+                  <DrawerCloseButton onClick={()=>setDrawer(!drawer)} />
                   {/* <SmallCloseIcon /> */}
                 </Flex>
               </Flex>
               <Flex color="black"   
                     justifyContent="space-around"
-                    gap="3rem">
+                    gap="1rem"
+                    m="0rem 1rem"
+                    >
                 <Button borderRadius="0.4rem 0.4rem 0rem 0rem" 
+                        flex="1"
                         onClick={()=>setCartflag({...cartflag,"one":false,"second":true,"three":true})}
                         
                         style={cartflag.one?cartButton:cartButton1}
+                        width="95%"
                         >
-                  MY CART{" "}
-                  <span
+                 <Text width="95%" > MY CART{" "}</Text>
+                  <Text as="span"
+                     display="none"
                     style={{
                             backgroundColor: "orange",
                             borderRadius: "1rem",
-                            width: "1.3rem",
+                            width: "30%",
                             height: "1.3rem",
                             marginLeft: "0.5rem",
+                            lineHeight:"1.2rem",
                          }}
-                  >
-                    0
-                  </span>
+                  >0
+                    
+                  </Text>
                 </Button>
                 <Button borderRadius="0.4rem 0.4rem 0rem 0rem" 
-        
+                        flex="1.1"
                         onClick={()=>setCartflag({...cartflag,"one":true,"second":false,"three":true})}
                         style={cartflag.second?cartButton:cartButton1}
                        >
-                  MY WISHLIST{" "}
-                  <span
+                       <Text width="80%">MY WISHLIST{" "}</Text>
+                 
+                  <Text as="span"
+                    display="block"
                     style={{
                       backgroundColor: "orange",
                       borderRadius: "1rem",
-                      width: "1.3rem",
+                      width: "30%",
                       height: "1.3rem",
                       marginLeft: "0.5rem",
+                      lineHeight:"1.2rem"
                     }}
                   >
                     0
-                  </span>
+                  </Text>
                 </Button>
                 <Button borderRadius="0.4rem 0.4rem 0rem 0rem" 
-        
+                        flex="1.4"
                         onClick={()=>setCartflag({...cartflag,"one":true,"second":true,"three":false})}
                         style={cartflag.three?cartButton:cartButton1}
                        >
-                  RECENTLY VIEWED{" "}
-                  <span
+                       <Text width="74%"> RECENTLY VIEWED{" "}</Text>
+                  
+                  <Text as="span"
+                     display="block"
                     style={{
                       backgroundColor: "orange",
                       borderRadius: "1rem",
-                      width: "1.3rem",
+                      width: "30%",
                       height: "1.3rem",
-                      marginLeft: "0.5rem",
+                      marginLeft: "1rem",
+                      lineHeight:"1.2rem"
                     }}
                   >
                     0
-                  </span>
+                  </Text>
                 </Button>
               </Flex>
             </Flex>
