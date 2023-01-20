@@ -22,11 +22,15 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../reducer/AuthReducer/SignupAuth/signupActions";
 
 function SignupModal() {
-  const { isOpen: isSignupOpen, onOpen: onSignupOpen, onClose: onSignupClose } = useDisclosure();
+  const {
+    isOpen: isSignupOpen,
+    onOpen: onSignupOpen,
+    onClose: onSignupClose,
+  } = useDisclosure();
   const dispatch = useDispatch();
 
-    const loginStore = useSelector((store) => store.loginManager);
-    const signupStore = useSelector((store) => store.signupManager);
+  const loginStore = useSelector((store) => store.loginManager);
+  const signupStore = useSelector((store) => store.signupManager);
 
   const [details, setDetails] = React.useState(null);
   const [insecurePassword, setInsecurePassword] = React.useState(false);
@@ -39,43 +43,50 @@ function SignupModal() {
     };
 
     setDetails(newDetails);
-    setInvalidEmail(false)
-    setInsecurePassword(false)
+    setInvalidEmail(false);
+    setInsecurePassword(false);
   };
 
-
   const handleFormSubmit = () => {
-
-    if(details==null){
+    if (details == null) {
       window.alert("Please fill the form!");
-      return
-    }
-    else if ( details.email=="" || !(details.email).includes("@") ||  !(details.email).includes("@gmail.com")) {
-      setInvalidEmail(true)
+      return;
+    } else if (
+      details.email == "" ||
+      !details.email.includes("@") ||
+      !details.email.includes("@gmail.com")
+    ) {
+      setInvalidEmail(true);
+      return;
+    } else if (
+      details.password.length >= 8 &&
+      details.password.match(/[!\@\#\$\%\^\&\*\+\-]/)
+    ) {
+      window.alert("Success!");
+    } else if (
+      details.password.length < 8 &&
+      details.password.match(/[!\@\#\$\%\^\&\*\+\-]/)
+    ) {
+      setInsecurePassword(true);
+      return;
+    } else if (!details.password.match(/[!\@\#\$\%\^\&\*\+\-]/)) {
+      setInsecurePassword(true);
       return;
     }
-    else if (details.password.length >= 8 && (details.password).match(/[!\@\#\$\%\^\&\*\+\-]/)) {
-      window.alert("Success!")
-    }
-    else if (details.password.length < 8 && (details.password).match(/[!\@\#\$\%\^\&\*\+\-]/)) {
-      setInsecurePassword(true)
-      return;
-    }
-    else if (!(details.password).match(/[!\@\#\$\%\^\&\*\+\-]/)) {
-      setInsecurePassword(true)
-      return;
-    }
-    
-    
-    setInvalidEmail(false)
-    setInsecurePassword(false)
+
+    setInvalidEmail(false);
+    setInsecurePassword(false);
     dispatch(actions.signupSuccess(details));
-    onSignupClose()
+    onSignupClose();
   };
 
   return (
     <>
-      {loginStore.login ? (<Avatar size="sm" name={loginStore.details.name}/>) : (<CiUser size={25} onClick={onSignupOpen} />)}
+      {loginStore.login ? (
+        <Avatar size="sm" name={loginStore.details.name} />
+      ) : (
+        <CiUser size={25} onClick={onSignupOpen} />
+      )}
 
       <Modal isOpen={isSignupOpen} onClose={onSignupClose} size={"2xl"}>
         <ModalOverlay />
@@ -113,23 +124,30 @@ function SignupModal() {
                 type="text"
                 size={"sm"}
                 border={"1px solid #777"}
-                _focus={{ borderColor: "brand.100"}}
+                _focus={{ borderColor: "brand.100" }}
               />
               <FormLabel mt={3} mb={0} fontSize="xs" color="gray.500">
                 Email
               </FormLabel>
               <Input
                 onChange={(e) => handleChange(e)}
-
                 name="email"
                 type="email"
                 size={"sm"}
                 border={"1px solid #777"}
                 _focus={{ borderColor: "brand.100" }}
               />
-              {invalidEmail ? (<FormHelperText mb={5} fontSize="xs" color={"red.400"} p={0} m={0}>
-                Please enter valid email
-              </FormHelperText>): null}
+              {invalidEmail ? (
+                <FormHelperText
+                  mb={5}
+                  fontSize="xs"
+                  color={"red.400"}
+                  p={0}
+                  m={0}
+                >
+                  Please enter valid email
+                </FormHelperText>
+              ) : null}
               <FormLabel mt={3} mb={0} fontSize="xs" color="gray.500">
                 Password
               </FormLabel>
@@ -141,7 +159,12 @@ function SignupModal() {
                 border={"1px solid #777"}
                 _focus={{ borderColor: "brand.100" }}
               />
-              {insecurePassword? (<FormHelperText color={"red.500"} fontSize="xs" p={0} m={0}>Choose a password of minimum 8 characters having special characters</FormHelperText>) : null}
+              {insecurePassword ? (
+                <FormHelperText color={"red.500"} fontSize="xs" p={0} m={0}>
+                  Choose a password of minimum 8 characters having special
+                  characters
+                </FormHelperText>
+              ) : null}
               <Button
                 onClick={handleFormSubmit}
                 bg={"brand.200"}

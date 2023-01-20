@@ -19,7 +19,6 @@ import {
 //import LoginModal from "@/components/loginModal";
 //import SignupModal from "@/components/signupModal";
 
-
 import LoginModal from "@/components/login_signup/loginModal";
 import SignupModal from "@/components/login_signup/signupModal";
 
@@ -31,8 +30,6 @@ import Help from "@/components/homeComponents/Help";
 
 import MyComponent from "@/components/login_signup/authModals";
 import AuthModals from "@/components/login_signup/authModals";
-
-
 
 export default function Home() {
   return (
@@ -87,13 +84,8 @@ export default function Home() {
 
           <Help />
         </Stack>
-
       </Box>
-
-      </Container>
-      <SignupModal/>
-      <LoginModal/>
-      <AuthModals/>
+      <AuthModals />
     </>
   );
 }

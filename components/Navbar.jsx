@@ -1,78 +1,70 @@
-
-import { ReactNode, useState } from 'react';
+import { useState } from "react";
 
 import React from "react";
 
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link,
   IconButton,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
   Stack,
   Input,
   Image,
-} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { HiSearch } from 'react-icons/hi';
-import { BsHeart ,BsCart2 } from 'react-icons/bs';
-import { CiUser } from 'react-icons/ci';
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { HiSearch } from "react-icons/hi";
+import { BsHeart, BsCart2 } from "react-icons/bs";
+import Cart from "./Cart";
 
-import Cart from './Cart';
-
-import SignupModal from './signupModal';
-import { Link as RouterLink } from "react-router-dom";
-
-
-const Links = ['Dashboard', 'Projects', 'Team'];
+const Links = ["Dashboard", "Projects", "Team"];
 
 const NavLink = ({ children }) => (
   <Link
     px={2}
     py={1}
-    rounded={'md'}
+    rounded={"md"}
     _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('orange.200', 'orange.700'),
+      textDecoration: "none",
+      bg: useColorModeValue("orange.200", "orange.700"),
     }}
-    href={'#'}>
+    href={"#"}
+  >
     {children}
   </Link>
 );
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [ drawer, setDrawer] = useState(false)
+  const [drawer, setDrawer] = useState(false);
 
   return (
     <>
-      <Box  px={4}>
-        <Flex h={20} alignItems={'center'} justifyContent={'space-between'} cursor={'pointer'}>
+      <Box px={4}>
+        <Flex
+          h={20}
+          alignItems={"center"}
+          justifyContent={"space-between"}
+          cursor={"pointer"}
+        >
           <IconButton
-            size={'lg'}
+            size={"lg"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
+            aria-label={"Open Menu"}
+            display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
 
-            <Box marginLeft={14}>
-              {/* <RouterLink to="/"> */}
-                <Image src='/home_interior_logo.png' w="130px" />
-          
-              {/* </RouterLink> */}
+          <Box marginLeft={14}>
+            {/* <RouterLink to="/"> */}
+            <Image src="/home_interior_logo.png" w="130px" />
 
-            </Box>
-            {/* <HStack
+            {/* </RouterLink> */}
+          </Box>
+          {/* <HStack
               as={'nav'}
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
@@ -80,18 +72,28 @@ export default function Navbar() {
                 <NavLink key={link}>{link}</NavLink>
               ))}
             </HStack> */}
-            <Box spacing={20}
+          <Box
+            spacing={20}
             // display={{ base: 'none', md: '' }}>
-              display={{ base: 'none',lg:"flex", md: '500px' }} 
-              justifyItems="center" border="0px solid"
-              padding="0 5px"  bgColor={"orange.400"}> 
+            display={{ base: "none", lg: "flex", md: "500px" }}
+            justifyItems="center"
+            border="0px solid"
+            padding="0 5px"
+            bgColor={"orange.400"}
+          >
+            <Input
+              w="800px"
+              border="none"
+              bgColor="orange.400"
+              _hover={"none"}
+            />
+            <Flex alignItems={"center"}>
+              {" "}
+              <HiSearch size={20} />
+            </Flex>
+          </Box>
 
-              <Input  w="800px" border="none" bgColor="orange.400" _hover={"none"} />
-              <Flex alignItems={'center'}> <HiSearch size={20} /></Flex>
-             
-               </Box>
-
-          <Flex alignItems={'center'} marginRight={14}>
+          <Flex alignItems={"center"} marginRight={14}>
             <HStack spacing={5}>
               {/* <MenuButton
                 as={Button}
@@ -112,40 +114,49 @@ export default function Navbar() {
                 <MenuDivider />
                 <MenuItem>Link 3</MenuItem>
               </MenuList> */}
-                    {/* <Link href="#"><CiUser size={30} /> </Link> */}
-                     <SignupModal /> 
-                    <Link href="#"><BsHeart size={30}/></Link>
-                    <Button onClick={()=>{setDrawer((val)=>!val)}} 
-                            href="#"
-                            variant="ghost"
-                            bgColor="white"
-                            color="black"><BsCart2  
-                            size={30}
-                            /></Button>
+              {/* <Link href="#"><CiUser size={30} /> </Link> */}
+
+              <Link href="#">
+                <BsHeart size={30} />
+              </Link>
+              <Button
+                onClick={() => {
+                  setDrawer((val) => !val);
+                }}
+                href="#"
+                variant="ghost"
+                bgColor="white"
+                color="black"
+              >
+                <BsCart2 size={30} />
+              </Button>
             </HStack>
           </Flex>
-          {drawer&& <Cart setDrawer={setDrawer} drawer={drawer}/>}
+          {drawer && <Cart setDrawer={setDrawer} drawer={drawer} />}
         </Flex>
-        <hr  />
-        <Box spacing={4} p={4}
-              display={{ base: 'none', lg:"flex", md: 'none' }} >
-         <HStack spacing={10}>
-           <Link href="#">Furniture</Link>
-           <Link href="#">Home Decor</Link>
-           <Link href="#">Lamps & Lighting</Link>
-           <Link href="#">Kitchen & Dining</Link>
-           <Link href="#">Furnishings</Link>
-           <Link href="#">Mattresses</Link>
-           <Link href="#">Appliances</Link>
-           <Link href="#">Pets</Link>
-           <Link href="#">Modular</Link>
-           <Link href="#">Gift Cards</Link>
-         </HStack>
-          </Box>
-          <hr  />
+        <hr />
+        <Box
+          spacing={4}
+          p={4}
+          display={{ base: "none", lg: "flex", md: "none" }}
+        >
+          <HStack spacing={10}>
+            <Link href="#">Furniture</Link>
+            <Link href="#">Home Decor</Link>
+            <Link href="#">Lamps & Lighting</Link>
+            <Link href="#">Kitchen & Dining</Link>
+            <Link href="#">Furnishings</Link>
+            <Link href="#">Mattresses</Link>
+            <Link href="#">Appliances</Link>
+            <Link href="#">Pets</Link>
+            <Link href="#">Modular</Link>
+            <Link href="#">Gift Cards</Link>
+          </HStack>
+        </Box>
+        <hr />
         {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
+          <Box pb={4} display={{ md: "none" }}>
+            <Stack as={"nav"} spacing={4}>
               {Links.map((link) => (
                 <NavLink key={link}>{link}</NavLink>
               ))}
