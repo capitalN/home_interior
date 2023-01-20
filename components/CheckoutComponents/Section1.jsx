@@ -19,13 +19,6 @@ const Section1 = () => {
           p="0.3rem"
           gap="1rem"
          >
-        <Flex direction="column" 
-              justifyContent="center" >
-            <Text bgColor="#F0F7EF" 
-                  color="#67AD5B"
-                  textAlign="center"
-                  p="0.6rem">You saved <b>₹ 16,200</b>  On This Order</Text>
-        </Flex>
         <Flex gap="1rem" 
               border="1px solid grey"
               borderRadius="5px"
