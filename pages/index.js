@@ -19,7 +19,7 @@ import {
 
 import LoginModal from "@/components/loginModal";
 import SignupModal from "@/components/signupModal";
-import { Heading } from "@chakra-ui/react";
+// import { Heading } from "@chakra-ui/react";
 
 import Head from "next/head";
 import Image from "next/image";
