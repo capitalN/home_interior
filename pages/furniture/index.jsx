@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NextLink from 'next/link'
+import NextLink from 'next/link';
 import { Box,Text,Flex,Image,Link,SimpleGrid } from '@chakra-ui/react';
 import style from './furniture.module.css'
 
@@ -26,10 +26,10 @@ let BestDelas = [
 ]
 
 let Trending = [
-    {name:'Me-Time Nook',offer:'40+ Printed Wing Chairs',img:'https://ii3.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section5_large_1.jpg'},
-    {name:'Sofa cum Bed',offer:'15+ Inovative Designs',img:'https://ii1.pepperfry.com/media/wysiwyg/banners/Furniture_section5_web_05122022_2.jpg'},
-    {name:'Magestic Marble',offer:'20+ Marble Top End Tables',img:'https://ii2.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section5_large_3.jpg'},
-    {name:'The Binge Corner ',offer:'120+ TV Units',img:'https://ii3.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section5_large_4.jpg'},
+    {name:'Me-Time Nook',link:'wingchair',offer:'40+ Printed Wing Chairs',img:'https://ii3.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section5_large_1.jpg'},
+    {name:'Sofa cum Bed',link:'sofa',offer:'15+ Inovative Designs',img:'https://ii1.pepperfry.com/media/wysiwyg/banners/Furniture_section5_web_05122022_2.jpg'},
+    {name:'Magestic Marble',link:'table',offer:'20+ Marble Top End Tables',img:'https://ii2.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section5_large_3.jpg'},
+    {name:'The Binge Corner ',link:'tvunit',offer:'120+ TV Units',img:'https://ii3.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section5_large_4.jpg'},
 ]
 
 let newLaunces =  [
@@ -172,11 +172,13 @@ const [more,setMore] = useState(false)
            <Text as='b' fontSize={{base:'xl',md:'3xl'}} className={style.heading}>What's #Trending?</Text>
             <Flex gap='20px' mt='10px' className={style.scroll}>
                 {Trending.map((ele,i)=>(
+                  <Link href={`/furniture/products/${ele.link}`}>
                     <Box key={i} className={style.scrollcard}>
                         <Image w='100%' m='auto' src={ele.img} alt={ele.name} />
                         <Text fontSize={{base:'md',md:'xl'}}>{ele.name}</Text>
                         <Text color='gray' fontSize={{base:'sm',md:'lg'}}>{ele.offer}</Text>
                     </Box>
+                  </Link>
                 ))}
             </Flex>
            </Box>

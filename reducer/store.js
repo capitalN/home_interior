@@ -5,11 +5,14 @@ import {
   legacy_createStore,
 } from "redux";
 import thunk from "redux-thunk";
-import authReducer from "./AuthReducer/authReducer";
+import {authReducer} from "./AuthReducer/authReducer";
+import { ProductReducer } from "./Product/Product.reducer";
 
 
-
-const rootReducer = combineReducers({authManager: authReducer});
+const rootReducer = combineReducers({
+  authManager: authReducer,
+  ProductManager:ProductReducer
+});
 
 const composeEnhancers = compose;
 
