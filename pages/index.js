@@ -19,8 +19,6 @@ import {
 
 import LoginModal from "@/components/loginModal";
 import SignupModal from "@/components/signupModal";
-import { Heading } from "@chakra-ui/react";
-
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -57,7 +55,6 @@ export default function Home() {
 
       <Container maxW={"8xl"}>
         <Stack gap={10}>
-          <Heading>home</Heading>
           <Flex gap={5}>
             <MainCarousel />
             <Hide below="sm">
@@ -98,7 +95,6 @@ export default function Home() {
           <WinterEdit />
         </Stack>
       </Container>
-      <Heading>home</Heading>
       <SignupModal/>
       <LoginModal/>
     </>
