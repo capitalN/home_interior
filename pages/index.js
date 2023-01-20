@@ -5,8 +5,6 @@ import ShopByRoom from "@/components/homeComponents/ShopByRoom";
 import TopBrands from "@/components/homeComponents/TopBrands";
 import WinterEdit from "@/components/homeComponents/WinterEdit";
 
-import { Box, Container, Flex, Heading, Hide, Stack } from "@chakra-ui/react";
-
 import {
   Box,
   Container,
@@ -18,14 +16,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-
 //import LoginModal from "@/components/loginModal";
 //import SignupModal from "@/components/signupModal";
 
 
 import LoginModal from "@/components/login_signup/loginModal";
 import SignupModal from "@/components/login_signup/signupModal";
-
 
 import Head from "next/head";
 import Image from "next/image";

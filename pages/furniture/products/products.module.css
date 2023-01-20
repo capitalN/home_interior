@@ -1,0 +1,48 @@
+
+.sidebar{
+    width: 30%;
+    height: 100vh;
+    border-right: 1px solid gray;
+}
+.productbar{
+    width: 70%;
+}
+.productcard{
+ 
+}
+
+.name{
+    /* as='b' fontSize={{base:'md',md:'xl'}} color:#aaaaaa, */
+    font-weight: 500; 
+    font-size: 18px;
+    color: #2e2c2c;
+    line-height: 22px;
+}
+.price{
+
+}
+.cardimg{
+    position: relative;
+}
+.filterbox{
+    padding-bottom: 20px;
+   border-bottom: 1px solid gray;
+}
+
+
+
+
+@media  all and (min-width:320px) and (max-width:479px){
+    .sidebar{
+     display: none;
+    }
+
+    .productbar{
+      width: 100%;
+      margin: auto;
+    }
+   .name{
+    font-size: 14px;
+    line-height: 20px;
+   }
+}
