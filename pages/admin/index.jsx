@@ -9,6 +9,7 @@ import {
   Grid,
   Button,
   Link,
+  Flex,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,10 +33,13 @@ export default function Admin() {
   };
 
   return (
-    <VStack>
-      <Heading>Admin</Heading>
+    <Flex direction={{ base: "column", sm: "row" }}>
       <AddProduct />
-      <Grid gridTemplateColumns={{lg:"repeat(2, 1fr)"}} gap="30px" p={"20px"}>
+      <Grid
+        gridTemplateColumns={{ lg: "repeat(2, 1fr)" }}
+        gap="30px"
+        p={"20px"}
+      >
         {SHOP.map((product) => (
           <Box key={product.id} boxShadow="xl" textAlign={"left"} p="10px">
             <HStack gap={"5px"}>
@@ -59,6 +63,6 @@ export default function Admin() {
           </Box>
         ))}
       </Grid>
-    </VStack>
+    </Flex>
   );
 }

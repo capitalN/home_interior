@@ -1,17 +1,39 @@
 import axios from "axios";
 import { useState } from "react";
-import { Button, Input, Stack, VStack } from "@chakra-ui/react";
+import {
+  Button,
+  Heading,
+  Input,
+  Stack,
+  Textarea,
+  VStack,
+} from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { add_to_shop } from "@/reducer/Admin/actions";
 import { useToast } from "@chakra-ui/react";
 let proobj = {
   name: "",
   image: "",
+  img1: "",
+  img2: "",
+  img3: "",
+  img4: "",
+  img5: "",
+  img6: "",
+  img7: "",
+  img8: "",
+  img9: "",
+  img10: "",
   categories: "",
   type: "",
   price: "",
   prints: "",
   discount: "",
+  rating: "",
+  clr1: "",
+  clr2: "",
+  specs: "",
+  details: "",
 };
 
 let Admin = () => {
@@ -37,25 +59,130 @@ let Admin = () => {
     setprodata(proobj);
   };
 
-  let { name, image, categories, price, discount, type } = prodata;
+  let {
+    name,
+    image,
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
+    img7,
+    img8,
+    img9,
+    img10,
+    prints,
+    categories,
+    price,
+    discount,
+    rating,
+    clr1,
+    clr2,
+    type,
+    specs,
+    details,
+  } = prodata;
+
   return (
-    <Stack boxShadow={"xl"} p="10">
+    <Stack boxShadow={"xl"} p="5">
+      <Heading w={"250px"}>Add Product</Heading>
       <Input
         placeholder="product name"
         type="text"
         name="name"
         value={name}
         onChange={handelchange}
-        required
       />
+
       <Input
         placeholder="image url"
         type="link"
         name="image"
         value={image}
         onChange={handelchange}
-        required
       />
+
+      <Input
+        placeholder="img1"
+        type="link"
+        name="img1"
+        value={img1}
+        onChange={handelchange}
+      />
+
+      <Input
+        placeholder="img2"
+        type="link"
+        name="img2"
+        value={img2}
+        onChange={handelchange}
+      />
+
+      <Input
+        placeholder="img3"
+        type="link"
+        name="img3"
+        value={img3}
+        onChange={handelchange}
+      />
+
+      <Input
+        placeholder="img4"
+        type="link"
+        name="img4"
+        value={img4}
+        onChange={handelchange}
+      />
+
+      <Input
+        placeholder="img5"
+        type="link"
+        name="img5"
+        value={img5}
+        onChange={handelchange}
+      />
+
+      <Input
+        placeholder="img6"
+        type="link"
+        name="img6"
+        value={img6}
+        onChange={handelchange}
+      />
+
+      <Input
+        placeholder="img7"
+        type="link"
+        name="img7"
+        value={img7}
+        onChange={handelchange}
+      />
+
+      <Input
+        placeholder="img8"
+        type="link"
+        name="img8"
+        value={img8}
+        onChange={handelchange}
+      />
+
+      <Input
+        placeholder="img9"
+        type="link"
+        name="img9"
+        value={img9}
+        onChange={handelchange}
+      />
+
+      <Input
+        placeholder="img10"
+        type="link"
+        name="img10"
+        value={img10}
+        onChange={handelchange}
+      />
+
       <Input
         placeholder="categories"
         type="text"
@@ -63,6 +190,7 @@ let Admin = () => {
         value={categories}
         onChange={handelchange}
       />
+
       <Input
         placeholder="type"
         type="text"
@@ -70,6 +198,7 @@ let Admin = () => {
         value={type}
         onChange={handelchange}
       />
+
       <Input
         placeholder="price"
         type="number"
@@ -77,6 +206,7 @@ let Admin = () => {
         value={price}
         onChange={handelchange}
       />
+
       <Input
         placeholder="discount"
         type="text"
@@ -84,6 +214,54 @@ let Admin = () => {
         value={discount}
         onChange={handelchange}
       />
+
+      <Input
+        placeholder="rating"
+        type="number"
+        name="rating"
+        value={rating}
+        onChange={handelchange}
+      />
+
+      <Input
+        placeholder="Print/pattern/Solid"
+        type="text"
+        name="prints"
+        value={prints}
+        onChange={handelchange}
+      />
+
+      <Input
+        placeholder="clr1"
+        type="text"
+        name="clr1"
+        value={clr1}
+        onChange={handelchange}
+      />
+
+      <Input
+        placeholder="clr2"
+        type="text"
+        name="clr2"
+        value={clr2}
+        onChange={handelchange}
+      />
+
+      <Textarea
+        name="specs"
+        placeholder="specs"
+        value={specs}
+        size={"lg"}
+        onChange={handelchange}
+      ></Textarea>
+      <Textarea
+        name="details"
+        placeholder="details"
+        value={details}
+        size={"lg"}
+        onChange={handelchange}
+      ></Textarea>
+
       <Button onClick={addproduct} colorScheme={"red"}>
         ADD PRODUCT
       </Button>
