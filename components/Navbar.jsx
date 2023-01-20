@@ -19,6 +19,7 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { HiSearch } from "react-icons/hi";
 import { BsHeart, BsCart2 } from "react-icons/bs";
 import Cart from "./Cart";
+import AuthModals from "./login_signup/authModals";
 
 const Links = ["Dashboard", "Projects", "Team"];
 
@@ -114,7 +115,10 @@ export default function Navbar() {
                 <MenuDivider />
                 <MenuItem>Link 3</MenuItem>
               </MenuList> */}
-              {/* <Link href="#"><CiUser size={30} /> </Link> */}
+          
+               
+                <AuthModals />
+             
 
               <Link href="#">
                 <BsHeart size={30} />
