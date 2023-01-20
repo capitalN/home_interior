@@ -17,7 +17,7 @@ import {
   Heading
 } from "@chakra-ui/react";
 import React from "react";
-import { CiUser } from "react-icons/ci";
+import { SlUser } from "react-icons/sl";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../reducer/AuthReducer/SignupAuth/signupActions";
 import * as loginActions from "../../reducer/AuthReducer/LoginAuth/loginActions"
@@ -49,16 +49,17 @@ const AuthModals = () => {
 
   const handleSignupChange = (e) => {
     const newDetails = {
-      ...details,
+      ...signupDetails,
       [e.target.name]: e.target.value,
     };
-
+    console.log(newDetails)
     setSignupDetails(newDetails);
     setInvalidEmail(false);
     setInsecurePassword(false);
   };
 
   const handleSignupFormSubmit = () => {
+    // console.log(signupDetails);
     if (signupDetails == null) {
       window.alert("Please fill the form!");
       return;
@@ -152,7 +153,7 @@ const AuthModals = () => {
         {loginStore.login ? (
           <Link href="/account"><Avatar size="sm" name={loginStore.details.name} /></Link>
         ) : (
-          <CiUser size={25} onClick={onSignupOpen} />
+          <SlUser size={30} onClick={onSignupOpen} />
         )}
 
         <Modal isOpen={isSignupOpen} onClose={onSignupClose} size={"2xl"}>
