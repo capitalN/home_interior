@@ -12,18 +12,19 @@ import {
   Grid,
   Heading,
   Hide,
-  // Image,
   Stack,
   Text,
 } from "@chakra-ui/react";
 
-import LoginModal from "@/components/loginModal";
-import SignupModal from "@/components/signupModal";
-// import { Heading } from "@chakra-ui/react";
+
+import LoginModal from "@/components/login_signup/loginModal";
+import SignupModal from "@/components/login_signup/signupModal";
 
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import MyComponent from "@/components/login_signup/authModals";
+import AuthModals from "@/components/login_signup/authModals";
 
 
 export default function Home() {
@@ -98,9 +99,7 @@ export default function Home() {
           <WinterEdit />
         </Stack>
       </Container>
-      <Heading>home</Heading>
-      <SignupModal/>
-      <LoginModal/>
+      <AuthModals/>
     </>
   );
 }

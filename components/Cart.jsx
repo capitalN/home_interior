@@ -1,4 +1,4 @@
-import { SmallCloseIcon } from "@chakra-ui/icons";
+// import { SmallCloseIcon } from "@chakra-ui/icons";
 import { BsCart2 } from 'react-icons/bs';
 
 import { useDisclosure, RadioGroup } from "@chakra-ui/react";
