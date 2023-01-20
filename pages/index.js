@@ -1,10 +1,12 @@
-
 import FryDeals from "@/components/homeComponents/FryDeals";
 import GetInspired from "@/components/homeComponents/GetInspired";
 import MainCarousel from "@/components/homeComponents/MainCarousel";
 import ShopByRoom from "@/components/homeComponents/ShopByRoom";
 import TopBrands from "@/components/homeComponents/TopBrands";
 import WinterEdit from "@/components/homeComponents/WinterEdit";
+
+import { Box, Container, Flex, Heading, Hide, Stack } from "@chakra-ui/react";
+
 import {
   Box,
   Container,
@@ -24,33 +26,19 @@ import {
 import LoginModal from "@/components/login_signup/loginModal";
 import SignupModal from "@/components/login_signup/signupModal";
 
+
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+
+import Help from "@/components/homeComponents/Help";
+
 import MyComponent from "@/components/login_signup/authModals";
 import AuthModals from "@/components/login_signup/authModals";
 
 
-export default function Home() {
-  const SHOP_BY_ROOM = [
-    {
-      name: "Shop Living Room",
-      img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_section4_web_04012023_1.jpg",
-    },
-    {
-      name: "Shop Bedroom",
-      img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_section4_web_04012023_2.jpg",
-    },
-    {
-      name: "Shop Dining Room",
-      img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_section4_web_04012023_3.jpg",
-    },
-    {
-      name: "Shop Study Room",
-      img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Hp_section4_web_04012023_4.jpg",
-    },
-  ];
 
+export default function Home() {
   return (
     <>
       <Head>
@@ -60,7 +48,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container maxW={"8xl"}>
+      <Box p={{ base: "15px", md: "55px" }}>
         <Stack gap={10}>
           <Flex gap={5}>
             <MainCarousel />
@@ -90,7 +78,7 @@ export default function Home() {
               />
             </Link>
           </Hide>
-          
+
           <ShopByRoom />
 
           <FryDeals />
@@ -100,7 +88,12 @@ export default function Home() {
           <TopBrands />
 
           <WinterEdit />
+
+          <Help />
         </Stack>
+
+      </Box>
+
       </Container>
       <SignupModal/>
       <LoginModal/>

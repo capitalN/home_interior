@@ -26,7 +26,7 @@ export default function ShopByRoom() {
     <Stack>
       <Heading>Shop By Room</Heading>
       <Grid
-        gridTemplateColumns={{ md: "repeat(2,1fr)", lg: "repeat(4,1fr)" }}
+        gridTemplateColumns={{ base: "repeat(2,1fr)", lg: "repeat(4,1fr)" }}
         gap="5"
       >
         {SHOP_BY_ROOM.map((el) => (
