@@ -7,65 +7,99 @@ import {
     ModalOverlay,
     ModalContent,
     Flex,
-    ModalHeader,
     ModalCloseButton,
     FormControl,
     FormLabel,
     Input,
     FormHelperText,
     Box,
-    FormErrorMessage,
     Text,
     Link,
     Heading,
   } from "@chakra-ui/react";
-  import React from "react";
+  import React, { useEffect, useState } from "react";
   import { CiUser } from "react-icons/ci";
   import { useDispatch, useSelector } from "react-redux";
-  import * as actions from "../reducer/AuthReducer/authAction"
+
   
   function LoginModal() {
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const dispatch = useDispatch();
+    const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose:onLoginClose } = useDisclosure();
+    
+    const loginStore = useSelector((store) => store.loginManager);
+    const signupStore = useSelector((store) => store.signupManager);
+    const [details, setDetails] = React.useState(null)
+    const [passIsEmpty, setPassIsEmpty] = useState(false);
+    const [emailIsEmpty, setEmailIsEmpty] = useState(false);
   
-    const name = useSelector((store)=>{
-      console.log(store, "store")
-      store.name});
-    const password = useSelector((store)=>store.password);
-    const mobile = useSelector((store)=>store.mobile);
-    const email = useSelector((store)=>store.email);
-    const [details, setDetails] = React.useState({})
-    const [insecurePassword, setInsecurePassword] = React.useState(false);
-  
-    // const handleChange = (e) => {
-    //   if (e.target.name == "name") {
-    //     setName(e.target.value);
-    //   } else if (e.target.name == "mobile") {
-    //     setMobile(e.target.value);
-    //   } else if (e.target.name == "email") {
-    //     setEmail(e.target.value);
-    //   } else {
-    //     setPassword(e.target.value);
-    //   }
-    // };
   
     const handleChange = (e) => {
       const newDetails = {
         ...details,
         [e.target.name]: e.target.value,
       }
-  
-      dispatch(actions.loginRequest(newDetails))
-  
+      setDetails(newDetails)
+      setPassIsEmpty(false);
+      setEmailIsEmpty(false);
     }
+
+    const handleFormSubmit = () => {
+      console.log(details)
+      if(details==null){
+        window.alert("Please fill the form!");
+        return
+      }    
+      else if(details.userId == undefined || details.userId == ""){
+        setEmailIsEmpty(true);
+        return;
+      }
+      else if(details.password == undefined || details.password == ""){
+        setPassIsEmpty(true);
+        return;
+      }
+
+      setPassIsEmpty(false);
+      setEmailIsEmpty(false);
+
+      signupStore.details.map((el)=>{
+        if(el.email == details.userId || el.mobile == details.userId){
+          if(el.password == details.password){
+            console.log("woohoo")
+            dispatch(actions.loginSuccess(el))
+            onLoginClose();
+            alert("Login Successful!")
+          }else{
+            dispatch(actions.loginFailure())
+          }
+        }
+        else{
+          dispatch(actions.loginFailure())
+        }
+      })
+      console.log(loginStore);
+    };
+
+
+    useEffect(()=>{
+      console.log(loginStore)
+    },[signupStore.details])
   
-    // console.log(name, mobile, email, password);
   
     return (
       <>
-        <CiUser size={25} onClick={onOpen} />
+        <CiUser size={25}  />
+        <Button
+              mt={5}
+              variant="outline"
+              borderRadius={"3px"}
+              w="100%"
+              fontWeight={400}
+              fontSize={"sm"}
+              onClick={onLoginOpen}
+            >
+              Existing User? Log In
+            </Button>
   
-        <Modal isOpen={isOpen} onClose={onClose} size={"2xl"}>
+        <Modal isOpen={isLoginOpen} onClose={onLoginClose} size={"2xl"}>
           <ModalOverlay />
           <ModalContent>
             <ModalCloseButton size={"sm"} />
@@ -86,23 +120,21 @@ import {
               left={320}
             >
               <FormControl>
-                <FormLabel m={0} fontSize="xs" color="brand.900">
+                {loginStore.error ? (<FormHelperText mb={2} color="red.400">*You entered wrong user details/password</FormHelperText>) : null}
+                <FormLabel m={0} fontSize="xs" color="gray.500">
                   Email/Mobile No.
                 </FormLabel>
                 <Input
                   onChange={(e) => handleChange(e)}
-                  mb={5}
-                  name="name"
+                  name="userId"
                   type="text"
                   size={"sm"}
                   border={"1px solid #777"}
                   _focus={{ borderColor: "brand.100" }}
                 />
-                <FormErrorMessage mb={3}>
-                  {name == "" ? "Please enter your name" : ""}
-                </FormErrorMessage>
+                {emailIsEmpty ? (<FormHelperText color={"red.500"} fontSize="xs" p={0} m={0}>Please enter email/mobile no.</FormHelperText>): null}
                 
-                <FormLabel m={0} fontSize="xs" color="brand.900">
+                <FormLabel m={0} fontSize="xs" color="gray.500" mt={5}>
                   Password
                 </FormLabel>
                 <Input
@@ -110,15 +142,17 @@ import {
                   name="password"
                   type="password"
                   size={"sm"}
-                  mb={5}
+
                   border={"1px solid #777"}
                   _focus={{ borderColor: "brand.100" }}
                 />
-                <FormErrorMessage>Please enter your password</FormErrorMessage>
+                {passIsEmpty ? (<FormHelperText color={"red.500"} fontSize="xs" p={0} m={0}>Please enter your password</FormHelperText>): null}
                 <Button
+                onClick={handleFormSubmit}
                   bg={"brand.200"}
                   borderRadius={"3px"}
                   w="100%"
+                  mt={7}
                   fontSize={"xs"}
                   _hover={{ bg: "brand.500" }}
                 >

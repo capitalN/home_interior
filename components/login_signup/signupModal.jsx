@@ -1,75 +1,83 @@
 import {
   Image,
-  ModalBody,
   useDisclosure,
   Button,
   Modal,
   ModalOverlay,
   ModalContent,
   Flex,
-  ModalHeader,
   ModalCloseButton,
   FormControl,
   FormLabel,
   Input,
   FormHelperText,
   Box,
-  FormErrorMessage,
   Text,
   Link,
+  Avatar,
 } from "@chakra-ui/react";
 import React from "react";
 import { CiUser } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../reducer/AuthReducer/authAction"
-import LoginModal from "./loginModal";
+import * as actions from "../../reducer/AuthReducer/SignupAuth/signupActions";
 
 function SignupModal() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isSignupOpen, onOpen: onSignupOpen, onClose: onSignupClose } = useDisclosure();
   const dispatch = useDispatch();
 
-  const name = useSelector((store)=>{
-    console.log(store, "store")
-    store.name});
-  const password = useSelector((store)=>store.password);
-  const mobile = useSelector((store)=>store.mobile);
-  const email = useSelector((store)=>store.email);
-  const [details, setDetails] = React.useState({})
-  const [insecurePassword, setInsecurePassword] = React.useState(false);
+    const loginStore = useSelector((store) => store.loginManager);
+    const signupStore = useSelector((store) => store.signupManager);
 
-  // const handleChange = (e) => {
-  //   if (e.target.name == "name") {
-  //     setName(e.target.value);
-  //   } else if (e.target.name == "mobile") {
-  //     setMobile(e.target.value);
-  //   } else if (e.target.name == "email") {
-  //     setEmail(e.target.value);
-  //   } else {
-  //     setPassword(e.target.value);
-  //   }
-  // };
+  const [details, setDetails] = React.useState(null);
+  const [insecurePassword, setInsecurePassword] = React.useState(false);
+  const [invalidEmail, setInvalidEmail] = React.useState(false);
 
   const handleChange = (e) => {
     const newDetails = {
       ...details,
       [e.target.name]: e.target.value,
+    };
+
+    setDetails(newDetails);
+    setInvalidEmail(false)
+    setInsecurePassword(false)
+  };
+
+
+  const handleFormSubmit = () => {
+
+    if(details==null){
+      window.alert("Please fill the form!");
+      return
     }
-
-    dispatch(actions.loginRequest(newDetails))
-
-  }
-
-  // console.log(name, mobile, email, password);
-
-  const handleLogin = () => {
-    return <LoginModal/>
-  }
+    else if ( details.email=="" || !(details.email).includes("@") ||  !(details.email).includes("@gmail.com")) {
+      setInvalidEmail(true)
+      return;
+    }
+    else if (details.password.length >= 8 && (details.password).match(/[!\@\#\$\%\^\&\*\+\-]/)) {
+      window.alert("Success!")
+    }
+    else if (details.password.length < 8 && (details.password).match(/[!\@\#\$\%\^\&\*\+\-]/)) {
+      setInsecurePassword(true)
+      return;
+    }
+    else if (!(details.password).match(/[!\@\#\$\%\^\&\*\+\-]/)) {
+      setInsecurePassword(true)
+      return;
+    }
+    
+    
+    setInvalidEmail(false)
+    setInsecurePassword(false)
+    dispatch(actions.signupSuccess(details));
+    onSignupClose()
+  };
 
   return (
     <>
-      <CiUser size={25} onClick={onOpen} />
+      {loginStore.login ? (<Avatar size="sm" name={loginStore.details.name}/>) : (<CiUser size={25} onClick={onSignupOpen} />)}
 
-      <Modal isOpen={isOpen} onClose={onClose} size={"2xl"}>
+      <Modal isOpen={isSignupOpen} onClose={onSignupClose} size={"2xl"}>
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton size={"sm"} />
@@ -85,52 +93,44 @@ function SignupModal() {
             left={320}
           >
             <FormControl>
-              <FormLabel m={0} fontSize="xs" color="brand.900">
+              <FormLabel mb={0} fontSize="xs" color="gray.500">
                 Name
               </FormLabel>
               <Input
                 onChange={(e) => handleChange(e)}
-                mb={5}
                 name="name"
                 type="text"
                 size={"sm"}
                 border={"1px solid #777"}
                 _focus={{ borderColor: "brand.100" }}
               />
-              <FormErrorMessage mb={3}>
-                {name == "" ? "Please enter your name" : ""}
-              </FormErrorMessage>
-              <FormLabel m={0} fontSize="xs" color="brand.900">
+              <FormLabel mt={3} mb={0} fontSize="xs" color="gray.500">
                 Mobile Number
               </FormLabel>
               <Input
                 onChange={(e) => handleChange(e)}
-                mb={5}
                 name="mobile"
                 type="text"
                 size={"sm"}
                 border={"1px solid #777"}
-                _focus={{ borderColor: "brand.100" }}
+                _focus={{ borderColor: "brand.100"}}
               />
-              <FormErrorMessage mb={3}>
-                Please enter your mobile number
-              </FormErrorMessage>
-              <FormLabel m={0} fontSize="xs" color="brand.900">
+              <FormLabel mt={3} mb={0} fontSize="xs" color="gray.500">
                 Email
               </FormLabel>
               <Input
                 onChange={(e) => handleChange(e)}
-                mb={5}
+
                 name="email"
                 type="email"
                 size={"sm"}
                 border={"1px solid #777"}
                 _focus={{ borderColor: "brand.100" }}
               />
-              <FormErrorMessage mb={3}>
-                Please enter your email
-              </FormErrorMessage>
-              <FormLabel m={0} fontSize="xs" color="brand.900">
+              {invalidEmail ? (<FormHelperText mb={5} fontSize="xs" color={"red.400"} p={0} m={0}>
+                Please enter valid email
+              </FormHelperText>): null}
+              <FormLabel mt={3} mb={0} fontSize="xs" color="gray.500">
                 Password
               </FormLabel>
               <Input
@@ -138,13 +138,14 @@ function SignupModal() {
                 name="password"
                 type="password"
                 size={"sm"}
-                mb={5}
                 border={"1px solid #777"}
                 _focus={{ borderColor: "brand.100" }}
               />
-              <FormErrorMessage>Please enter your password</FormErrorMessage>
+              {insecurePassword? (<FormHelperText color={"red.500"} fontSize="xs" p={0} m={0}>Choose a password of minimum 8 characters having special characters</FormHelperText>) : null}
               <Button
+                onClick={handleFormSubmit}
                 bg={"brand.200"}
+                mt={5}
                 borderRadius={"3px"}
                 w="100%"
                 fontSize={"xs"}
@@ -165,23 +166,31 @@ function SignupModal() {
             </Text>
 
             <Button
-              mt={6}
+              mt={5}
               variant="outline"
               borderRadius={"3px"}
               w="100%"
               fontWeight={400}
               fontSize={"sm"}
-              onClick={()=>handleLogin()}
+              onClick={() => handleLogin()}
             >
               Existing User? Log In
             </Button>
 
-            <Flex gap={2} justifyContent="center" mt={7}>
+            <Flex gap={2} justifyContent="center" mt={5}>
               <Text color={"#999"} fontSize="sm">
                 OR Continue With:
               </Text>
-              <Image src="https://ii1.pepperfry.com/images/social_login_fb_2x.png" h={"auto"} w={7}/>
-              <Image src="https://ii1.pepperfry.com/images/social_login_google_2x.png" h={"auto"} w={6}/>
+              <Image
+                src="https://ii1.pepperfry.com/images/social_login_fb_2x.png"
+                h={"auto"}
+                w={7}
+              />
+              <Image
+                src="https://ii1.pepperfry.com/images/social_login_google_2x.png"
+                h={"auto"}
+                w={6}
+              />
               <Link>
                 <Image />
               </Link>

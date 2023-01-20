@@ -4,12 +4,39 @@ import MainCarousel from "@/components/homeComponents/MainCarousel";
 import ShopByRoom from "@/components/homeComponents/ShopByRoom";
 import TopBrands from "@/components/homeComponents/TopBrands";
 import WinterEdit from "@/components/homeComponents/WinterEdit";
+
 import { Box, Container, Flex, Heading, Hide, Stack } from "@chakra-ui/react";
+
+import {
+  Box,
+  Container,
+  Flex,
+  Grid,
+  Heading,
+  Hide,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
+
+
+//import LoginModal from "@/components/loginModal";
+//import SignupModal from "@/components/signupModal";
+
+
+import LoginModal from "@/components/login_signup/loginModal";
+import SignupModal from "@/components/login_signup/signupModal";
+
 
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+
 import Help from "@/components/homeComponents/Help";
+
+import MyComponent from "@/components/login_signup/authModals";
+import AuthModals from "@/components/login_signup/authModals";
+
+
 
 export default function Home() {
   return (
@@ -64,7 +91,13 @@ export default function Home() {
 
           <Help />
         </Stack>
+
       </Box>
+
+      </Container>
+      <SignupModal/>
+      <LoginModal/>
+      <AuthModals/>
     </>
   );
 }
