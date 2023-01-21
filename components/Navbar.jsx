@@ -1,5 +1,5 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 import React from "react";
 
 import {
@@ -42,6 +42,33 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [drawer, setDrawer] = useState(false);
 
+  const [searchinput, setSearchinput] = useState("");
+  const [data, setData] = useState([]);
+  const [searchdata, setSearchdata] = useState([]);
+
+  useEffect(()=>{
+        axios.get(`https://icy-thread-zydeco.glitch.me/Furniture`).then((res)=>{
+          setData(res.data); 
+            console.log(res.data); 
+            })
+            .catch((error)=>
+            console.log(error)
+            )
+ },[])
+
+  const handlesearch=()=>{
+    const value = searchinput
+    let temp=[];
+            temp = data.filter((d) => {
+                d = d.name.toLowerCase();
+                return d.indexOf(value) > -1;
+            });
+            console.log(temp);
+            setSearchdata(temp);
+    }
+
+
+
   return (
     <>
       <Box px={4}>
@@ -78,19 +105,23 @@ export default function Navbar() {
             // display={{ base: 'none', md: '' }}>
             display={{ base: "none", lg: "flex", md: "500px" }}
             justifyItems="center"
-            border="0px solid"
+            border="1px solid"
             padding="0 5px"
-            bgColor={"orange.400"}
+            bgColor="grey.400"
           >
             <Input
               w="800px"
               border="none"
-              bgColor="orange.400"
+              bgColor="grey.700"
               _hover={"none"}
+              type="text"
+              value={searchinput}
+              onChange={(e)=>setSearchinput(e.target.value)}
             />
+            
             <Flex alignItems={"center"}>
               {" "}
-              <HiSearch size={20} />
+              <HiSearch size={20} bgColor="grey.400" onClick={handlesearch} />
             </Flex>
           </Box>
 
