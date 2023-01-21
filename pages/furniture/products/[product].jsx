@@ -7,17 +7,17 @@ import { GetProduct } from '@/reducer/Product/Product.action.js';
 import { getProductbyAPI } from '@/reducer/Product/Product.API';
 import { SmallAddIcon } from '@chakra-ui/icons';
 
-const Page = ({products}) => {
+const Page = () => {
    
     let router = useRouter()
     let dispatch = useDispatch()
 
-// let data = useSelector((store)=> console.log(store.ProductManager))
+let products = useSelector((store)=>(store.ProductManager.Data))
 
 
-// useEffect(()=> {
-//    dispatch(GetProduct())
-// },[dispatch])
+useEffect(()=> {
+   dispatch(GetProduct())
+},[dispatch])
 
   return (
     <Box>
@@ -73,8 +73,9 @@ const Page = ({products}) => {
                    <SimpleGrid columns={{base:2,md:3}} spacing='12px' m='auto' mt='30px'>
                    {products && products.map((ele)=>(
                             <Box key={ele.id} className={style.productcard} p='3px'>
-                             
-                             <Box position='relative' className={style.cardimg}>
+                            
+                            <Link target='_blank' href={`/furniture/products/productid/${ele.id}`}>
+                            <Box position='relative' className={style.cardimg}>
                              <Image w='100%' src={ele.image}/>
                               <Button
                                position='absolute'
@@ -85,6 +86,7 @@ const Page = ({products}) => {
                                display={{base:'none',md:'block'}}
                                >Add To Cart</Button>
                              </Box>
+                            </Link>
 
                               <Box mt='15px'>
                                 <Text mb='10px' className={style.name} >{ele.name}</Text>
@@ -106,15 +108,15 @@ const Page = ({products}) => {
 }
 
 
-export async function getServerSideProps(context) {
+// export async function getServerSideProps(context) {
 
-    let type = context.query.product;
-    let res = await getProductbyAPI()
-    let data = res.filter((ele)=> ele.type === type)
+//     let type = context.query.product;
+//     let res = await getProductbyAPI()
+//     let data = res.filter((ele)=> ele.type === type)
 
-    return {
-      props: {products:data}, // will be passed to the page component as props
-    }
-  }
+//     return {
+//       props: {products:data}, // will be passed to the page component as props
+//     }
+//   }
 
 export default Page
