@@ -7,7 +7,6 @@ export const GetProduct = () =>async (dispatch) =>{
        dispatch({type:GET_PRODUCT_LOADING})
        try{
         let data =await getProductbyAPI()
-        console.log(data)
         dispatch({type:GET_PRODUCT_SUCCESS,payload:data})
        }
        catch(err){

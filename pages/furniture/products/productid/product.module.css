@@ -1,0 +1,45 @@
+.pro_name{
+    color: #2e2c2c;
+    font-size: 22px;
+}
+.btn1{
+  border-radius: none;
+  border: 1px solid rgb(59, 57, 57);
+  font-size: 18px;
+  padding: 8px;
+  font-weight: bold;
+  width: 50%;
+  color: rgb(59, 57, 57);
+  font-family: sans-serif;
+}
+.btn2{
+    border-radius: none;
+    border: 1px solid #ff7035;
+    background-color: #ff7035;
+    font-size: 18px;
+    padding: 8px;
+    font-weight: bold;
+    width: 50%;
+    color: white;
+    font-family: sans-serif;
+}
+
+.price{
+    font-size: 35px;
+    font-weight: bold;
+}
+.discount{
+    color: #67ad80;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+
+
+
+@media  all and (min-width:320px) and (max-width:479px){
+    .pro_name{
+        font-size: 20px;
+    }
+}
