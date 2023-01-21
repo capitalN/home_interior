@@ -21,7 +21,9 @@ const VeryBfontSize={
 
 const border={border:"1px solid grey"}
 
-const Section2 = () => {
+const Section2 = ({val1, flagg}) => {
+    const val = val1==="none"?"none":"flex"
+    const flag = flagg==="true"?"PAY NOW":"PROCEED TO PAY"
   return (
     <Flex direction="column" 
           flex="1" 
@@ -30,16 +32,16 @@ const Section2 = () => {
         <Flex alignItems="center">
             <Text style={SfontSize}>Delivering To</Text>
             <Spacer/>
-            <Text color="#FF7035" style={mediumfontSize}><b>Change</b></Text>
+            <Text  display={val} color="#FF7035" style={mediumfontSize}><b>Change</b></Text>
         </Flex>
-        <Flex style={border} direction="column">
-           <Text style={mediumfontSize}><b>Shakil Pendhari</b> HOME</Text>
+        <Flex gap="-0.8rem"  style={border} direction="column">
+           <Text  style={mediumfontSize}><b>Shakil Pendhari</b> HOME</Text>
            <Text style={mediumfontSize}><span>abc road,</span>bindu chowk,<span></span><span>kolpaur,</span><span>Mahararastra</span><span>416120</span></Text>
         </Flex>
-        <Flex alignItems="center"     
+        <Flex  display={val} alignItems="center"     
               border="1px solid grey"
               p="5px">
-            <Flex alignItems="center" >
+            <Flex display={val} alignItems="center" >
                <Image src="https://ii2.pepperfry.com/assets/w22-coupon-card-icon.svg"/>
                <Text style={ SfontSize } ml="0.5rem">Apply Coupon</Text>
             </Flex>
@@ -60,10 +62,10 @@ const Section2 = () => {
                 <Spacer/>
                 <Text style={mediumfontSize} as="span">₹ <span>47,400</span></Text>
             </Flex>
-            <Flex alignItems="center">
+            <Flex display={val} alignItems="center">
                 <Flex alignItems="center">
                 <Checkbox size='lg' colorScheme='orange' ></Checkbox>
-                <Text  style={mediumfontSize}>Save the Environment, Plant a Tree</Text>
+                <Text  display={val}  style={mediumfontSize}>Save the Environment, Plant a Tree</Text>
                 <InfoIcon />
                 </Flex>
                 <Spacer/>
@@ -79,17 +81,17 @@ const Section2 = () => {
                 <Text color="#1979B5" style={mediumfontSize}>-₹2,000</Text>
             </Flex>
             <Flex>
-                <Flex style={BfontSize} alignItems="center" as="b">YOU PAY  <Text style={SfontSize}> (Inclusive of All Taxes)</Text></Flex>
+                <Flex style={BfontSize} alignItems="center" justifyContent="center" as="b"><Text mr="0.6rem">YOU PAY</Text>  <Text ml="0.3rem" style={SfontSize}> (Inclusive of All Taxes)</Text></Flex>
                 <Spacer/>
                 <Heading fontSize="0.9rem" as="b">₹45,400</Heading>
             </Flex>
-            <Flex>
-                <Text style={SfontSize} color="#67AD5B">You Saved</Text>
+            <Flex display={val}>
+                <Text style={SfontSize} color="#67AD5B" >You Saved</Text>
                 <Spacer/>
                 <Text color="#67AD5B">₹16,432</Text>
             </Flex>
         </Flex>
-        <Flex>
+        <Flex display={val}>
             <Text>Use GSTIN For Business Purchase (Optional)</Text>
             <Spacer/>
             <MdNavigateNext/>
@@ -100,7 +102,7 @@ const Section2 = () => {
               height="2.5rem"
               alignItems="center"
                >
-            PROCEED TO PAY
+           {flag}
         </Flex>
     </Flex>
   )
