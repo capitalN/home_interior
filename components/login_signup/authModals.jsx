@@ -19,8 +19,8 @@ import {
 import React from "react";
 import { SlUser } from "react-icons/sl";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../../reducer/AuthReducer/SignupAuth/signupActions";
-import * as loginActions from "../../reducer/AuthReducer/LoginAuth/loginActions"
+import {signupSuccess} from "../../reducer/AuthReducer/SignupAuth/signupActions";
+import {loginSuccess, loginFailure} from "../../reducer/AuthReducer/LoginAuth/loginActions"
 import Link from "next/link";
 
 const AuthModals = () => {
@@ -34,7 +34,8 @@ const AuthModals = () => {
 
   const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose:onLoginClose } = useDisclosure();
 
-  const [signupDetails, setSignupDetails] = React.useState(null);
+  const [signupDetails, setSignupDetails] = React.useState(
+    {name: "", mobile: "", email: "", password: ""});
   const [insecurePassword, setInsecurePassword] = React.useState(false);
   const [invalidEmail, setInvalidEmail] = React.useState(false);
 
@@ -60,13 +61,23 @@ const AuthModals = () => {
 
   const handleSignupFormSubmit = () => {
     // console.log(signupDetails);
-    if (signupDetails == null) {
+    let isValid = true;
+    Object.keys(signupDetails).forEach((key)=>{
+      const value = signupDetails[key];
+
+      if(!value) {
+        isValid = false
+      }
+    });
+
+
+    if (!isValid) {
       window.alert("Please fill the form!");
       return;
     } else if (
-      signupDetails.email == "" ||
-      !signupDetails.email.includes("@") ||
-      !signupDetails.email.includes("@gmail.com")
+      signupDetails.email == "" || ( signupDetails.email &&
+      (!signupDetails.email.includes("@") ||
+      !signupDetails.email.includes("@gmail.com")))
     ) {
       setInvalidEmail(true);
       return;
@@ -74,7 +85,7 @@ const AuthModals = () => {
       signupDetails.password.length >= 8 &&
       signupDetails.password.match(/[!\@\#\$\%\^\&\*\+\-]/)
     ) {
-      window.alert("Success!");
+      
     } else if (
       signupDetails.password.length < 8 &&
       signupDetails.password.match(/[!\@\#\$\%\^\&\*\+\-]/)
@@ -88,7 +99,7 @@ const AuthModals = () => {
 
     setInvalidEmail(false);
     setInsecurePassword(false);
-    dispatch(actions.signupSuccess(signupDetails));
+    dispatch(signupSuccess(signupDetails));
     onSignupClose();
   };
 
@@ -129,14 +140,14 @@ const AuthModals = () => {
       if (el.email == details.userId || el.mobile == details.userId) {
         if (el.password == details.password) {
           console.log("woohoo");
-          dispatch(loginActions.loginSuccess(el));
+          dispatch(loginSuccess(el));
           onLoginClose();
           alert("Login Successful!");
         } else {
-          dispatch(loginActions.loginFailure());
+          dispatch(loginFailure());
         }
       } else {
-        dispatch(loginActions.loginFailure());
+        dispatch(loginFailure());
       }
     });
     console.log(loginStore);

@@ -4,8 +4,19 @@ import * as loginTypes from './loginActionTypes'
 const initLoginState = {
     login: false,
     error: false,
-    details: {name: 'Arun Rana', mobile: '12341234', email: 'abc@gmail.com', password: 'asd123!@#'}
+    details: {}
 }
+
+// if(localStorage.getItem("loginStatus")){
+//     initLoginState={
+//         login: true,
+//         error: false,
+//         details: JSON.parse(localStorage.getItem("loginStatus"))
+//     }
+// }
+// else{
+//     initLoginState = {...initLoginState, details:{}}
+// }
 
 export const loginReducer = (state=initLoginState, {type,payload}) => {
     
