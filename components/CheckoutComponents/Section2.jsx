@@ -1,6 +1,7 @@
 import { InfoIcon } from '@chakra-ui/icons'
 import { Spacer } from '@chakra-ui/react'
 import { Flex, Heading, Image, Text, Checkbox, Box } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { MdNavigateNext } from "react-icons/md"
 
@@ -21,9 +22,29 @@ const VeryBfontSize={
 
 const border={border:"1px solid grey"}
 
-const Section2 = ({val1, flagg}) => {
+const Section2 = ({val1, flagg, total, data}) => {
     const val = val1==="none"?"none":"flex"
-    const flag = flagg==="true"?"PAY NOW":"PROCEED TO PAY"
+    const flag = flagg==="true"?"PAY NOW":"PROCEED TO PAY";
+    const router = useRouter();
+
+    const handlePrice = ()=>{
+        let sum =0;
+        
+        for(let i=0; i<data?.length; i++)
+        {
+            const { price, discount } = data[i];
+            sum = sum + Math.floor(price-((price*discount)/100)+1836)
+        }
+        return sum;
+    }
+    const handlePay = ()=>{
+        if(flagg){
+            alert("Payment Successful!")
+        }
+        else{
+            router.push("/Payment")
+        }
+    }
   return (
     <Flex direction="column" 
           flex="1" 
@@ -55,12 +76,12 @@ const Section2 = ({val1, flagg}) => {
             <Flex>
                 <Text style={mediumfontSize}>Items In Cart</Text>
                 <Spacer/>
-                <Text style={mediumfontSize} as="span">4</Text>
+                <Text style={mediumfontSize} as="span">{data?.length}</Text> 
             </Flex>
             <Flex>
                 <Text style={mediumfontSize}>Cart Total Price</Text>
                 <Spacer/>
-                <Text style={mediumfontSize} as="span">₹ <span>47,400</span></Text>
+                <Text style={mediumfontSize} as="span">₹ <span>{handlePrice()}</span></Text>
             </Flex>
             <Flex display={val} alignItems="center">
                 <Flex alignItems="center">
@@ -81,14 +102,14 @@ const Section2 = ({val1, flagg}) => {
                 <Text color="#1979B5" style={mediumfontSize}>-₹2,000</Text>
             </Flex>
             <Flex>
-                <Flex style={BfontSize} alignItems="center" justifyContent="center" as="b"><Text mr="0.6rem">YOU PAY</Text>  <Text ml="0.3rem" style={SfontSize}> (Inclusive of All Taxes)</Text></Flex>
+                <Flex  style={BfontSize} alignItems="center" justifyContent="center" as="b"><Text mr="0.6rem" >YOU PAY</Text>  <Text ml="0.3rem" style={SfontSize}> (Inclusive of All Taxes)</Text></Flex>
                 <Spacer/>
-                <Heading fontSize="0.9rem" as="b">₹45,400</Heading>
+                <Heading fontSize="0.9rem" as="b">₹{handlePrice()}</Heading>
             </Flex>
             <Flex display={val}>
                 <Text style={SfontSize} color="#67AD5B" >You Saved</Text>
                 <Spacer/>
-                <Text color="#67AD5B">₹16,432</Text>
+                <Text color="#67AD5B">₹{total}</Text>
             </Flex>
         </Flex>
         <Flex display={val}>
@@ -96,8 +117,10 @@ const Section2 = ({val1, flagg}) => {
             <Spacer/>
             <MdNavigateNext/>
         </Flex>
-        <Flex backgroundColor="#FF7035"
+        <Flex _hover={{ cursor: "pointer", color:"green"}}
+              backgroundColor="#FF7035"
               color="white"
+              onClick={handlePay}
               justifyContent="center"
               height="2.5rem"
               alignItems="center"

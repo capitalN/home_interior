@@ -57,7 +57,7 @@ export default function Navbar() {
   useEffect(()=>{
         axios.get(`https://icy-thread-zydeco.glitch.me/Furniture`).then((res)=>{
           setData(res.data); 
-            console.log(res.data); 
+            // console.log(res.data); 
             })
             .catch((error)=>
             console.log(error)

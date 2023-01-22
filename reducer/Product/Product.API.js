@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const getProduct_by_API = async () => {
        let res = await axios.get('http://localhost:4040/furniture')
+
        return res.data;
 }
 
@@ -15,7 +16,7 @@ export const getProductbyAPI = async (str) => {
 
 
 export const getProductIdbyAPI = async (id) => {
-       let res = await axios.get(`http://localhost:4040/furniture/${id}`)
+       let res = await axios.get(`https://home-interior.onrender.com/furniture/${id}`)
        return res;
 }
 
