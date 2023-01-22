@@ -1,134 +1,64 @@
+// import * as types from "./cart.types";
+
 import {
-  CART_ERROR,
-  CART_LOADING,
-  DELETE_CART_SUCCESS,
-  DELETE_CART_SUCCESS_RECENTLY_VIEW,
-  DELETE_CART_SUCCESS_WISHLIST,
-  GET_CART_SUCCESS,
-  GET_CART_SUCCESS_RECENTLY_VIEW,
-  GET_CART_SUCCESS_WISHLIST,
-  PATCH_DATA,
-  POST_CART_SUCCESS,
-  POST_CART_SUCCESS_RECENTLY_VIEW,
-  POST_CART_SUCCESS_WISHLIST,
+  ADD_TO_CART,
+  DELETE_FROM_CART,
+  GET_CART,
+  ITEM_EXIST,
+  UPDATE_CART,
 } from "./Cart.actionTypes";
 
-let initialData = {
-  loading: false,
-  error: false,
-  Data: [],
+const initialState = {
+  item_exist: false,
+  CART: [],
+  item_deleted: false,
 };
 
-export const CartReducer = (state = initialData, { type, payload }) => {
+export const CartReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case CART_LOADING: {
+    case GET_CART: {
       return {
         ...state,
-        loading: true,
-        error: false,
+        CART: payload,
       };
     }
-
-    case CART_ERROR: {
+    case ADD_TO_CART: {
       return {
         ...state,
-        loading: false,
-        error: true,
+        CART: [...state.CART, payload],
       };
     }
-
-    case GET_CART_SUCCESS: {
+    case ITEM_EXIST: {
       return {
         ...state,
-        loading: false,
-        error: false,
-        Data: payload,
+        item_exist: true,
       };
     }
-
-    case POST_CART_SUCCESS: {
+    case UPDATE_CART: {
+      let updated = state.CART.map((el) => {
+        if (el.id == payload.id) {
+          return payload;
+        }
+        return el;
+      });
       return {
         ...state,
-        loading: false,
-        error: false,
-        Data: payload,
+        CART: updated,
       };
     }
-
-    case DELETE_CART_SUCCESS: {
+    case DELETE_FROM_CART: {
+      let updated = state.CART.filter((el) => {
+        if (el.id !== payload) {
+          return el;
+        }
+      });
       return {
         ...state,
-        loading: false,
-        error: false,
-        Data: payload,
+        CART: updated,
+        item_deleted: true,
       };
     }
-
-    case GET_CART_SUCCESS_WISHLIST: {
-      return {
-        ...state,
-        loading: false,
-        error: false,
-        Data: payload,
-      };
-    }
-
-    case POST_CART_SUCCESS_WISHLIST: {
-      return {
-        ...state,
-        loading: false,
-        error: false,
-        Data: payload,
-      };
-    }
-
-    case DELETE_CART_SUCCESS_WISHLIST: {
-      return {
-        ...state,
-        loading: false,
-        error: false,
-        Data: payload,
-      };
-    }
-
-    case GET_CART_SUCCESS_RECENTLY_VIEW: {
-      return {
-        ...state,
-        loading: false,
-        error: false,
-        Data: payload,
-      };
-    }
-
-    case POST_CART_SUCCESS_RECENTLY_VIEW: {
-      return {
-        ...state,
-        loading: false,
-        error: false,
-        Data: payload,
-      };
-    }
-
-    case DELETE_CART_SUCCESS_RECENTLY_VIEW: {
-      return {
-        ...state,
-        loading: false,
-        error: false,
-        Data: payload,
-      };
-    }
-
-    case PATCH_DATA: {
-      return {
-        ...state,
-        loading: false,
-        error: false,
-        Data: payload,
-      };
-    }
-
-    default: {
+    default:
       return state;
-    }
   }
 };

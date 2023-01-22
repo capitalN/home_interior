@@ -14,7 +14,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { SmallAddIcon } from "@chakra-ui/icons";
-import { PostToCart } from "@/reducer/Cart/Cart.action";
+import { add_to_cart } from "@/reducer/Cart/Cart.action";
 
 import {
   GetProduct,
@@ -264,7 +264,7 @@ const Page = () => {
                             let count = 1;
                             let count1 = 1;
                             let obj = { ...ele, count: count, count1: count1 };
-                            PostToCart(obj);
+                            add_to_cart(obj);
                           }}
                           disabled={true}
                           display={{ base: "none", md: "block" }}

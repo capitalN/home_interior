@@ -21,12 +21,14 @@ import { GiAutoRepair } from "react-icons/gi";
 import { RiTruckLine } from "react-icons/ri";
 import { SiAdguard } from "react-icons/si";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import { PostToCart } from "@/reducer/Cart/Cart.action";
+import { add_to_cart } from "@/reducer/Cart/Cart.action";
 import { useDispatch } from "react-redux";
+import { useToast } from "@chakra-ui/react";
 
 const Page = ({ product }) => {
   const dispatch = useDispatch();
 
+  const toast = useToast();
   let router = useRouter();
 
   return (
@@ -240,7 +242,13 @@ const Page = ({ product }) => {
                     let count = 1;
                     let count1 = 1;
                     let obj = { ...product, count: count, count1: count1 };
-                    PostToCart(obj);
+                    dispatch(add_to_cart(obj));
+                    toast({
+                      title: "Product Added Successfully",
+                      status: "success",
+                      duration: 9000,
+                      isClosable: true,
+                    });
                   }}
                 >
                   ADD TO CART

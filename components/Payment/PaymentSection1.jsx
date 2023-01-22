@@ -1,4 +1,4 @@
-import { GetCartData } from '@/reducer/Cart/Cart.action';
+import { GetCartData, get_cart } from '@/reducer/Cart/Cart.action';
 import { InfoIcon } from '@chakra-ui/icons';
 import { Image, Flex, Text, Spacer, Box } from '@chakra-ui/react'
 import { useEffect } from 'react';
@@ -13,7 +13,7 @@ const PaymentSection1 = () => {
     const data = useSelector((store)=>store.cartManager.Data);
     const dispatch = useDispatch();
     useEffect(()=>{
-      dispatch(GetCartData())
+      dispatch(get_cart())
    },[]);
 
    const handlePrice = ()=>{

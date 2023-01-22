@@ -91,58 +91,57 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           ></IconButton>
 
-          <Box marginLeft={14}>
+          <Box w="200px">
             <Link href="/">
-              <Image src="/home_interior_logo.png" w="130px" alt="" />
+              <Image src="/home_interior_logo.png" w="100%" alt="" />
             </Link>
           </Box>
 
           <Box
             spacing={20}
-            // display={{ base: 'none', md: '' }}>
             display={{ base: "none", lg: "flex", md: "500px" }}
             justifyItems="center"
             border="0px solid"
-            padding="0 5px"
-            bgColor="orange.400"
+            bgColor="gray.100"
           >
             <Input
-              w="800px"
+              w="700px"
               border="none"
-              bgColor="orange.400"
+              bgColor="gray.100"
               _hover={"none"}
               type="text"
+              placeholder="Search"
               value={searchinput}
               onChange={(e) => setSearchinput(e.target.value)}
             />
 
-            <Flex alignItems={"center"}>
-              {" "}
-              <HiSearch size={20} bgColor="orange.400" onClick={handlesearch} />
+            <Flex alignItems={"center"} pr="5">
+              <HiSearch size={20} onClick={handlesearch} />
             </Flex>
           </Box>
 
-          <Flex alignItems={"center"} marginRight={14}>
-            <HStack spacing={5}>
-              <AuthModals />
-
-              <Link href="#">
-                <BsHeart size={30} />
-              </Link>
-              <Button
-                onClick={() => {
-                  setDrawer((val) => !val);
-                }}
-                href="#"
-                variant="ghost"
-                bgColor="white"
-                color="black"
-              >
-                <BsCart2 size={30} />
-              </Button>
-            </HStack>
-          </Flex>
-          {drawer && <Cart setDrawer={setDrawer} drawer={drawer} />}
+          <Box>
+            <Flex alignItems={"center"}>
+              <HStack spacing={5}>
+                <AuthModals />
+                <Link href="#">
+                  <BsHeart size={30} />
+                </Link>
+                <Button
+                  onClick={() => {
+                    setDrawer((val) => !val);
+                  }}
+                  href="#"
+                  variant="ghost"
+                  bgColor="white"
+                  color="black"
+                >
+                  <BsCart2 size={30} />
+                </Button>
+              </HStack>
+              {drawer && <Cart setDrawer={setDrawer} drawer={drawer} />}
+            </Flex>
+          </Box>
         </Flex>
         <hr />
         <Box

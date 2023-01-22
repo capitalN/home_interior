@@ -1,132 +1,37 @@
 import axios from "axios";
 import {
-  CART_ERROR,
-  CART_LOADING,
-  GET_CART_SUCCESS,
-  GET_CART_SUCCESS_RECENTLY_VIEW,
-  GET_CART_SUCCESS_WISHLIST,
-  POST_CART_SUCCESS,
-  DELETE_CART_SUCCESS,
+  ADD_TO_CART,
+  DELETE_FROM_CART,
+  GET_CART,
+  ITEM_EXIST,
+  UPDATE_CART,
 } from "./Cart.actionTypes";
 
-// export const PostToCart = async (payload) => {
-//   let response = await axios.post(
-//     `https://home-interior-api-uqah.onrender.com/products`,
-//     payload
-//   );
-//   PostToRecentlyViewed(payload);
-// };
-
-export const PostToCart = (payload) => async (dispatch) => {
-  let response = await axios.post(
-    `https://home-interior-api-uqah.onrender.com/products`,
-    payload
-  );
-  dispatch({ type: POST_CART_SUCCESS, payload: response.data });
+export const get_cart = () => async (dispatch) => {
+  let res = await axios.get("https://home-interior.onrender.com/cart");
+  dispatch({ type: GET_CART, payload: res.data });
 };
 
-
-
-
-
-
-
-
-
-
-
-
-////////////////////
-
-export const PostToRecentlyViewed = async (payload) => {
-  let response = await axios.post(
-    `https://home-interior-api-uqah.onrender.com/recently_viewed`,
-    payload
-  );
-};
-
-export const PostToWishList = async (payload) => {
-  let response = await axios.post(
-    `https://home-interior-api-uqah.onrender.com/wishlist`,
-    payload
-  );
-};
-
-export const DeleteCart = (id) => async (dispatch) => {
-  let response = await axios.delete(
-    `https://home-interior-api-uqah.onrender.com/products/${id}`
-  );
-  dispatch({ type: DELETE_CART_SUCCESS, payload: id });
-};
-
-export const DeleteRecentlyViewed = async (id) => {
-  let response = await axios.delete(
-    `https://home-interior-api-uqah.onrender.com/recently_viewed/${id}`
-  );
-};
-
-export const DeleteWishList = async (id) => {
-  let response = await axios.delete(
-    `https://home-interior-api-uqah.onrender.com/wishlist/${id}`
-  );
-};
-
-export const GetCartData = () => async (dispatch) => {
-  dispatch({ type: CART_LOADING });
+export const add_to_cart = (product) => async (dispatch) => {
   try {
-    let res = await axios.get(
-      `https://home-interior-api-uqah.onrender.com/products`
+    let res = await axios.post(
+      "https://home-interior.onrender.com/cart",
+      product
     );
-    // PostToRecentlyViewed(payload);
-    // console.log(res);
-    dispatch({ type: GET_CART_SUCCESS, payload: res.data });
-    return res.data;
-  } catch (error) {
-    console.log(error);
-    dispatch({ type: CART_ERROR });
+    dispatch({ type: ADD_TO_CART, payload: res.data });
+  } catch (err) {
+    console.log(err);
   }
 };
 
-export const GetRecentlyViewed = () => async (dispatch) => {
-  dispatch({ type: CART_LOADING });
-  try {
-    let res = await axios.get(
-      `https://home-interior-api-uqah.onrender.com/recently_viewed`
-    );
-    // PostToRecentlyViewed(payload)
-    dispatch({ type: GET_CART_SUCCESS_RECENTLY_VIEW, payload: res.data });
-  } catch (error) {
-    console.log(error);
-    dispatch({ type: CART_ERROR });
-  }
+export const update_cart = (id, quantity) => async (dispatch) => {
+  let res = await axios.patch(`https://home-interior.onrender.com/cart/${id}`, {
+    quantity,
+  });
+  dispatch({ type: UPDATE_CART, payload: res.data });
 };
 
-export const GetWishList = () => async (dispatch) => {
-  dispatch({ type: CART_LOADING });
-  try {
-    let res = await axios.get(
-      `https://home-interior-api-uqah.onrender.com/wishlist`
-    );
-    // PostToRecentlyViewed(payload)
-    dispatch({ type: GET_CART_SUCCESS_WISHLIST, payload: res.data });
-  } catch (error) {
-    console.log(error);
-    dispatch({ type: CART_ERROR });
-  }
+export const delete_from_cart = (id) => async (dispatch) => {
+  let res = await axios.delete(`https://home-interior.onrender.com/cart/${id}`);
+  dispatch({ type: DELETE_FROM_CART, payload: id });
 };
-
-export const PatchCart =
-  ({ id, a }) =>
-  async (dispatch) => {
-    console.log(id, a);
-    try {
-      let response = await axios.patch(
-        `https://home-interior-api-uqah.onrender.com/products/${id}`,
-        { count: a }
-      );
-      console.log(response);
-      dispatch(GetCartData());
-    } catch (e) {
-      console.log(e);
-    }
-  };

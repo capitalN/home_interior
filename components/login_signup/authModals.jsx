@@ -20,6 +20,8 @@ import {
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineUser } from "react-icons/ai";
+import * as actions from "../../reducer/AuthReducer/SignupAuth/signupActions";
+import * as loginActions from "../../reducer/AuthReducer/LoginAuth/loginActions";
 
 const AuthModals = () => {
   const {

@@ -1,4 +1,4 @@
-import { DeleteCart, GetCartData, PatchCart } from '@/reducer/Cart/Cart.action'
+import { DeleteCart, GetCartData, get_cart, PatchCart } from '@/reducer/Cart/Cart.action'
 import { PATCH_DATA } from '@/reducer/Cart/Cart.actionTypes'
 import { InfoIcon } from '@chakra-ui/icons'
 import { Flex, Select, Spacer, Text, Image, Box, Stack, Checkbox, VStack, HStack, Spinner } from '@chakra-ui/react'
@@ -22,7 +22,7 @@ const Section1 = ({name,image,type,categories, price, discount,id, count}) => {
     price = price*count;
     
     useEffect(()=>{
-        dispatch(GetCartData());
+        dispatch(get_cart());
      },[count])
 
     const handleDelete =(id)=>{

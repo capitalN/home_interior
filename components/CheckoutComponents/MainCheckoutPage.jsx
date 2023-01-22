@@ -1,6 +1,6 @@
 import Section1 from '@/components/CheckoutComponents/Section1'
 import Section2 from '@/components/CheckoutComponents/Section2'
-import { GetCartData } from '@/reducer/Cart/Cart.action'
+import {  get_cart } from '@/reducer/Cart/Cart.action'
 import { Flex, Heading,Box, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,11 +9,11 @@ import style from "./MainCheckout.module.css"
 
 const MainCheckoutPage = () => {
   const dispatch = useDispatch();
-  const data = useSelector((store)=>store.cartManager.Data);
+  const data = useSelector((store)=>store.cartManager.CART);
 
   
   useEffect(()=>{
-     dispatch(GetCartData())
+     dispatch(get_cart())
   },[])
 
   const priceSaved = ()=>{

@@ -1,7 +1,18 @@
 // import { SmallCloseIcon } from "@chakra-ui/icons";
 import { BsCart2 } from "react-icons/bs";
 
-import { useDisclosure, RadioGroup } from "@chakra-ui/react";
+import {
+  useDisclosure,
+  RadioGroup,
+  VStack,
+  HStack,
+  Stack,
+  Box,
+  Select,
+  Divider,
+  Image,
+  Link,
+} from "@chakra-ui/react";
 import {
   Button,
   Drawer,
@@ -17,8 +28,10 @@ import {
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import style from "./Cart.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Section1 from "./CheckoutComponents/Section1";
+import { useEffect } from "react";
+import { delete_from_cart, get_cart } from "@/reducer/Cart/Cart.action";
 
 let cartButton = {
   backgroundColor: "black",
@@ -41,7 +54,14 @@ const Cart = ({ setDrawer, drawer }) => {
     second: true,
     three: true,
   });
-  const data = useSelector((store) => store.cartManager.Data);
+  const data = useSelector((store) => store.cartManager.CART);
+  const dispatch = useDispatch();
+
+  console.log(data);
+
+  useEffect(() => {
+    dispatch(get_cart());
+  }, []);
 
   return (
     <>
@@ -186,9 +206,30 @@ const Cart = ({ setDrawer, drawer }) => {
 
           <DrawerBody>
             {!cartflag.one && data?.map((item) => <Section1 {...item} />) && (
-              <Text color="red" textAlign="center" width="90%" margin="auto">
-                Make your Cart
-              </Text>
+              <VStack gap={"5px"}>
+                {data.map((product) => (
+                  <Box key={product.id}>
+                    <HStack gap={"5px"}>
+                      <Image src={product.image} w="35%" p={"5px"} />
+                      <Stack>
+                        <HStack justify={"space-between"}>
+                          <Text>{product.categories}</Text>
+                          <Link
+                            onClick={() =>
+                              dispatch(delete_from_cart(product.id))
+                            }
+                          >
+                            Remove
+                          </Link>
+                        </HStack>
+                        <Text fontSize="20px">{product.name}</Text>
+                        <Text>Price : ₹ {product.price}</Text>
+                      </Stack>
+                    </HStack>
+                    <Divider />
+                  </Box>
+                ))}
+              </VStack>
             )}
             {!cartflag.second && (
               <Text color="red" textAlign="center" width="90%" margin="auto">
@@ -204,15 +245,17 @@ const Cart = ({ setDrawer, drawer }) => {
           </DrawerBody>
 
           <DrawerFooter>
-            <Button
-              width="100%"
-              bgColor="#F16521"
-              color="white"
-              fontwight="300"
-              _hover={{ backgroundColor: "#F16521" }}
-            >
-              PROCEED TO PAY SECURELY
-            </Button>
+            <Link href="/Checkout">
+              <Button
+                width="100%"
+                bgColor="#F16521"
+                color="white"
+                fontwight="300"
+                _hover={{ backgroundColor: "#F16521" }}
+              >
+                PROCEED TO PAY SECURELY
+              </Button>
+            </Link>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
