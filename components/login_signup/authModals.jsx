@@ -13,15 +13,28 @@ import {
   FormHelperText,
   Box,
   Text,
-  Link,
-  Heading,
   Avatar,
+  Heading,
 } from "@chakra-ui/react";
 import React from "react";
+import { SlUser } from "react-icons/sl";
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineUser } from "react-icons/ai";
-import * as actions from "../../reducer/AuthReducer/SignupAuth/signupActions";
-import * as loginActions from "../../reducer/AuthReducer/LoginAuth/loginActions";
+import { signupSuccess } from "../../reducer/AuthReducer/SignupAuth/signupActions";
+import {
+  loginSuccess,
+  loginFailure,
+} from "../../reducer/AuthReducer/LoginAuth/loginActions";
+import Link from "next/link";
+
+let user = { login: false, details: {} };
+
+try {
+  user = localStorage.getItem("hiUser")
+    ? JSON.parse(localStorage.getItem("hiUser"))
+    : { login: false, details: {} };
+} catch (error) {
+  console.log(error);
+}
 
 const AuthModals = () => {
   const {
@@ -38,25 +51,31 @@ const AuthModals = () => {
     onClose: onLoginClose,
   } = useDisclosure();
 
-  const [signupDetails, setSignupDetails] = React.useState(null);
+  const [signupDetails, setSignupDetails] = React.useState({
+    name: "",
+    mobile: "",
+    email: "",
+    password: "",
+  });
   const [insecurePassword, setInsecurePassword] = React.useState(false);
   const [invalidEmail, setInvalidEmail] = React.useState(false);
 
-  const [details, setDetails] = React.useState(null);
+  const [loginDetails, setLoginDetails] = React.useState({
+    login: false,
+    details: {},
+  });
   const [passIsEmpty, setPassIsEmpty] = React.useState(false);
   const [emailIsEmpty, setEmailIsEmpty] = React.useState(false);
 
   const loginStore = useSelector((store) => store.loginManager);
   const signupStore = useSelector((store) => store.signupManager);
-
-  // signup functions
+  console.log(loginStore, "ls");
 
   const handleSignupChange = (e) => {
     const newDetails = {
       ...signupDetails,
       [e.target.name]: e.target.value,
     };
-    console.log(newDetails);
     setSignupDetails(newDetails);
     setInvalidEmail(false);
     setInsecurePassword(false);
@@ -64,13 +83,23 @@ const AuthModals = () => {
 
   const handleSignupFormSubmit = () => {
     // console.log(signupDetails);
-    if (signupDetails == null) {
+    let isValid = true;
+    Object.keys(signupDetails).forEach((key) => {
+      const value = signupDetails[key];
+
+      if (!value) {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
       window.alert("Please fill the form!");
       return;
     } else if (
       signupDetails.email == "" ||
-      !signupDetails.email.includes("@") ||
-      !signupDetails.email.includes("@gmail.com")
+      (signupDetails.email &&
+        (!signupDetails.email.includes("@") ||
+          !signupDetails.email.includes("@gmail.com")))
     ) {
       setInvalidEmail(true);
       return;
@@ -78,7 +107,6 @@ const AuthModals = () => {
       signupDetails.password.length >= 8 &&
       signupDetails.password.match(/[!\@\#\$\%\^\&\*\+\-]/)
     ) {
-      window.alert("Success!");
     } else if (
       signupDetails.password.length < 8 &&
       signupDetails.password.match(/[!\@\#\$\%\^\&\*\+\-]/)
@@ -92,8 +120,9 @@ const AuthModals = () => {
 
     setInvalidEmail(false);
     setInsecurePassword(false);
-    dispatch(actions.signupSuccess(signupDetails));
+    dispatch(signupSuccess(signupDetails));
     onSignupClose();
+    onLoginOpen();
   };
 
   const swapToLogin = () => {
@@ -105,45 +134,49 @@ const AuthModals = () => {
 
   const handleChange = (e) => {
     const newDetails = {
-      ...details,
-      [e.target.name]: e.target.value,
+      ...loginDetails,
+      details: { ...loginDetails.details, [e.target.name]: e.target.value },
     };
-    setDetails(newDetails);
+    setLoginDetails(newDetails);
     setPassIsEmpty(false);
     setEmailIsEmpty(false);
   };
 
   const handleFormSubmit = () => {
-    console.log(details);
-    if (details == null) {
+    // console.log(loginDetails);
+    if (loginDetails == null) {
       window.alert("Please fill the form!");
       return;
-    } else if (details.userId == undefined || details.userId == "") {
+    } else if (
+      loginDetails.details.userId == undefined ||
+      loginDetails.details.userId == ""
+    ) {
       setEmailIsEmpty(true);
       return;
-    } else if (details.password == undefined || details.password == "") {
+    } else if (
+      loginDetails.details.password == undefined ||
+      loginDetails.details.password == ""
+    ) {
       setPassIsEmpty(true);
       return;
     }
-
     setPassIsEmpty(false);
     setEmailIsEmpty(false);
 
     signupStore.details.map((el) => {
-      if (el.email == details.userId || el.mobile == details.userId) {
-        if (el.password == details.password) {
-          console.log("woohoo");
-          dispatch(loginActions.loginSuccess(el));
+      if (
+        el.email == loginDetails.details.userId ||
+        el.mobile == loginDetails.details.userId
+      ) {
+        if (el.password == loginDetails.details.password) {
+          dispatch(loginSuccess(el));
+
           onLoginClose();
           alert("Login Successful!");
-        } else {
-          dispatch(loginActions.loginFailure());
+          return;
         }
-      } else {
-        dispatch(loginActions.loginFailure());
       }
     });
-    console.log(loginStore);
   };
 
   const swapToSignup = () => {
@@ -153,40 +186,30 @@ const AuthModals = () => {
 
   return (
     <>
-      <Box>
+      <>
         {loginStore.login ? (
           <Link href="/account">
-            <Avatar size="sm" name={loginStore.details.name} />
+            <Avatar size="sm" name={"user.details.name"} />
           </Link>
         ) : (
-          <AiOutlineUser size={30} onClick={onSignupOpen} />
+          <SlUser size={30} onClick={onSignupOpen} />
         )}
 
-        <Modal
-          isOpen={isSignupOpen}
-          onClose={onSignupClose}
-          size={{ base: "md", md: "2xl" }}
-        >
+        <Modal isOpen={isSignupOpen} onClose={onSignupClose} size={"2xl"}>
           <ModalOverlay />
-          <ModalContent p={{ base: 2, md: 0 }}>
+          <ModalContent>
             <ModalCloseButton size={"sm"} />
 
             <Box m={0} p={0}>
-              <Image
-                src="https://ii1.pepperfry.com/media/wysiwyg/banners/Web_IMG_17Dec1x_2712.jpg"
-                visibility={{ base: "hidden", md: "visible" }}
-              />
+              <Image src="https://ii1.pepperfry.com/media/wysiwyg/banners/Web_IMG_17Dec1x_2712.jpg" />
             </Box>
             <Box
-              w={{ base: "80%", md: "45%" }}
+              w={"45%"}
               display={"inline-block"}
               position={"absolute"}
               top={5}
-              left={{ base: 10, md: 320 }}
+              left={320}
             >
-              <Heading display={{ base: "block", md: "none" }} size="md" mb={2}>
-                Sign Up to get credit worth ₹5,000
-              </Heading>
               <FormControl>
                 <FormLabel mb={0} fontSize="xs" color="gray.500">
                   Name
@@ -273,7 +296,7 @@ const AuthModals = () => {
               </Text>
 
               <Button
-                mt={{ base: 2, md: 5 }}
+                mt={5}
                 variant="outline"
                 borderRadius={"3px"}
                 w="100%"
@@ -302,41 +325,29 @@ const AuthModals = () => {
             </Box>
           </ModalContent>
         </Modal>
-      </Box>
+      </>
       <>
-        <Modal
-          isOpen={isLoginOpen}
-          onClose={onLoginClose}
-          size={{ base: "md", md: "2xl" }}
-        >
+        <Modal isOpen={isLoginOpen} onClose={onLoginClose} size={"2xl"}>
           <ModalOverlay />
-          <ModalContent p={{ base: 2, md: 0 }}>
+          <ModalContent>
             <ModalCloseButton size={"sm"} />
 
             <Box m={0} p={0}>
-              <Box
-                py={{ base: 1, md: 10 }}
-                px={{ base: 2, md: 7 }}
-                w={{ base: "100%", md: "45%" }}
-                position="absolute"
-              >
+              <Box py={10} px={7} w="45%" position="absolute">
                 <Text fontSize={"xl"}>Log In</Text>
                 <Heading size={"sm"} color="brand.600">
                   You Will Be Able To Track Your Order, Use Wishlist & More.
                 </Heading>
               </Box>
-              <Image
-                src="https://ii1.pepperfry.com/images/new_login_modal_bg_2020.jpg"
-                visibility={{ base: "hidden", md: "visible" }}
-              />
+              <Image src="https://ii1.pepperfry.com/images/new_login_modal_bg_2020.jpg" />
             </Box>
             <Box
-              w={{ base: "90%", md: "45%" }}
+              w={"45%"}
               p={5}
               display={"inline-block"}
               position={"absolute"}
-              top={{ base: 20, md: 10 }}
-              left={{ base: 5, md: 320 }}
+              top={10}
+              left={320}
             >
               <FormControl>
                 {loginStore.error ? (
@@ -432,7 +443,6 @@ const AuthModals = () => {
         </Modal>
       </>
     </>
-    // End ==
   );
 };
 

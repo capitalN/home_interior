@@ -248,10 +248,7 @@ const Page = () => {
               {products &&
                 products.map((ele) => (
                   <Box key={ele.id} className={style.productcard} p="3px">
-                    <Link
-                      target="_blank"
-                      href={`/furniture/products/productid/${ele.id}`}
-                    >
+                    <Link href={`/furniture/products/productid/${ele.id}`}>
                       <Box position="relative" className={style.cardimg}>
                         <Image w="100%" src={ele.image} />
                         <Button
