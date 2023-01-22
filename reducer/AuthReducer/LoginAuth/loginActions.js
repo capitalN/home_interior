@@ -24,4 +24,3 @@ export const logoutUser = () => {
     return {type: loginType.LOGOUT_SUCCESS}
 }
 
-

@@ -8,28 +8,29 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-
 import { useRouter } from "next/router";
 import React from "react";
 import { useSelector } from "react-redux";
 
 const userAccount = () => {
   const loginStore = useSelector((store) => store.loginManager);
-  const route = useRouter();
+  const  route  = useRouter();
 
-  let user = null;
+  let user=null;
   try {
     user = JSON.parse(localStorage.getItem("hiUser"));
-  } catch (error) {}
+  } catch (error) {
+    
+  }
 
-  if (!loginStore.login) {
+  if(!loginStore.login){
     try {
       localStorage.removeItem("hiUser");
-      route.push("/");
+    route.push("/")
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  }
+ }
 
   return (
     <Flex width={"90%"} py={10} m="auto">
