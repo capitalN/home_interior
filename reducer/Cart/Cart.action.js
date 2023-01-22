@@ -24,12 +24,15 @@ export const add_to_cart = (product) => async (dispatch) => {
   }
 };
 
-export const update_cart = (id, quantity) => async (dispatch) => {
-  let res = await axios.patch(`https://home-interior.onrender.com/cart/${id}`, {
-    quantity,
-  });
-  dispatch({ type: UPDATE_CART, payload: res.data });
-};
+export const update_cart =
+  ({ id, a }) =>
+  async (dispatch) => {
+    let res = await axios.patch(
+      `https://home-interior.onrender.com/cart/${id}`,
+      { count: a }
+    );
+    dispatch({ type: UPDATE_CART, payload: res.data });
+  };
 
 export const delete_from_cart = (id) => async (dispatch) => {
   let res = await axios.delete(`https://home-interior.onrender.com/cart/${id}`);

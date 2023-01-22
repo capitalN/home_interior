@@ -71,7 +71,7 @@ const Section2 = ({ val1, flagg, total, data }) => {
       </Flex>
       <Flex gap="-0.8rem" style={border} direction="column">
         <Text style={mediumfontSize}>
-          <b>{local && local}</b>
+          <b>{local && local} </b> 
           HOME
         </Text>
         <Text style={mediumfontSize}>

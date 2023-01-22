@@ -16,26 +16,14 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-//import LoginModal from "@/components/loginModal";
-//import SignupModal from "@/components/signupModal";
-
-import LoginModal from "@/components/login_signup/loginModal";
-import SignupModal from "@/components/login_signup/signupModal";
-
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
 import Help from "@/components/homeComponents/Help";
 
-import MyComponent from "@/components/login_signup/authModals";
-import AuthModals from "@/components/login_signup/authModals";
-
 export default function Home() {
   return (
     <>
-    
-
       <Box p={{ base: "15px", md: "55px" }}>
         <Stack gap={10}>
           <Flex gap={5}>
