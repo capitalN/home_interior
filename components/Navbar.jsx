@@ -79,7 +79,7 @@ export default function Navbar() {
 
   return (
     <>
-      <Box px={4}>
+      <Box px={4} spacing={5}>
         <Flex
           h={20}
           alignItems={"center"}
@@ -90,7 +90,7 @@ export default function Navbar() {
             size={"lg"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={"Open Menu"}
-            display={{ md: "none" }}
+            display={{ md:"600px",lg:"none" }}
             onClick={isOpen ? onClose : onOpen}
           >
 
@@ -98,23 +98,25 @@ export default function Navbar() {
 
           <Box marginLeft={14}>
             <Link href="/">
-            <Image src="/home_interior_logo.png" w="130px" />
+            <Image src="/home_interior_logo.png" w="140px" />
             </Link>
           </Box>
-          
+
           <Box
             spacing={20}
             // display={{ base: 'none', md: '' }}>
             display={{ base: "none", lg: "flex", md: "500px" }}
             justifyItems="center"
-            border="0px solid"
+             border="1px solid"
+            borderColor={"brand.300"}
             padding="0 5px"
-            bgColor="orange.400"
+            bgColor="grey.400"
+            borderRadius={"5px"}
           >
             <Input
-              w="800px"
+              w="700px"
               border="none"
-              bgColor="orange.400"
+              bgColor="white"
               _hover={"none"}
               type="text"
               value={searchinput}
@@ -123,7 +125,7 @@ export default function Navbar() {
 
             <Flex alignItems={"center"}>
               {" "}
-              <HiSearch size={20} bgColor="orange.400" onClick={handlesearch} />
+              <HiSearch size={20}  onClick={handlesearch} />
             </Flex>
           </Box>
 
@@ -168,7 +170,7 @@ export default function Navbar() {
                 minW={0}
                 color="black"
                 _hover={{
-                  color: useColorModeValue("orange.400", "orange.700"),
+                  color: useColorModeValue("orange.500", "orange.500"),
                 }}>
                 <Text>Furniture</Text>
               </MenuButton>
