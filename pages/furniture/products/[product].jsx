@@ -1,11 +1,10 @@
-import { Box,Text,Flex,Image,Link,SimpleGrid,Divider,Checkbox,HStack,Button} from '@chakra-ui/react';
+import { Box,Text,Flex,Image,Link,SimpleGrid,Divider,Checkbox,Button} from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import style from './products.module.css'
 import React, { useEffect, useState } from 'react';
 import {useDispatch,useSelector} from 'react-redux';
-import { GetProduct } from '@/reducer/Product/Product.action.js';
-import { getProductbyAPI } from '@/reducer/Product/Product.API';
-import { SmallAddIcon } from '@chakra-ui/icons';
+import { GetProduct,GetfilterProduct,GetSortProduct,getfilterdata, GetfilterData,GetByType } from '@/reducer/Product/Product.action.js';
+
 
 const Page = () => {
    
@@ -16,8 +15,8 @@ let products = useSelector((store)=>(store.ProductManager.Data))
 
 
 useEffect(()=> {
-   dispatch(GetProduct())
-},[dispatch])
+   dispatch(GetProduct(router.query.product))
+},[router,dispatch])
 
   return (
     <Box>
@@ -39,33 +38,71 @@ useEffect(()=> {
                    <Box className={style.filterbox} >
                     <Text as='b'>Sort By</Text><br />
                       <Box m='5px'>
-                          <Checkbox size='lg' colorScheme='orange' >
+                          <Checkbox size='lg' colorScheme='orange' value={'desc'}
+                            onChange={(e)=>dispatch(GetSortProduct(e,router.query.product))}>
                            High Price First
                           </Checkbox><br />
-                          <Checkbox size='lg' colorScheme='orange' >
+                          <Checkbox size='lg' colorScheme='orange' value={'asc'}
+                             onChange={(e)=>dispatch(GetSortProduct(e,router.query.product))}>
                            Low Price First
                            </Checkbox><br />
                       </Box>
                    </Box>
                    
                    <Box className={style.filterbox} pt='20px' >
-                    <Text as='b'>Storage</Text><br />
-                    <Checkbox size='lg' colorScheme='orange' defaultChecked>
-                      No Storage
+                    <Text as='b'>Material</Text><br />
+                    <Checkbox size='lg' colorScheme='orange' value={'Solid'} 
+                       onChange={(e)=>dispatch(GetfilterData(e,router.query.product))}>
+                     Solid
                     </Checkbox><br />
-                    <Checkbox size='lg' colorScheme='orange' defaultChecked>
-                      Box Storage
+                    <Checkbox size='lg' colorScheme='orange' value={'Pattern'} 
+                        onChange={(e)=>dispatch(GetfilterData(e,router.query.product))}>
+                     Pattern
                     </Checkbox><br />
                    </Box>
                
                    <Box className={style.filterbox} pt='20px'>
                     <Text as='b'>Price</Text><br />
-                    <Checkbox size='lg' colorScheme='orange' defaultChecked>
-                      No Storage
+
+                    <Checkbox size='lg' colorScheme='orange' value={200000} 
+                    onChange={(e)=>dispatch(GetfilterProduct(e,router.query.product))}>
+                      Over ₹ 2,00,000 
                     </Checkbox><br />
-                    <Checkbox size='lg' colorScheme='orange' defaultChecked>
-                      Box Storage
+
+                    <Checkbox size='lg' colorScheme='orange' value={100000} 
+                    onChange={(e)=>dispatch(GetfilterProduct(e,router.query.product))}>
+                      ₹ 1,00,000 To ₹ 2,00,000 
                     </Checkbox><br />
+
+                    <Checkbox size='lg' colorScheme='orange' value={50000} 
+                    onChange={(e)=>dispatch(GetfilterProduct(e,router.query.product))}>
+                      ₹ 50,000 To ₹ 1,00,000 
+                    </Checkbox><br />
+
+                    <Checkbox size='lg' colorScheme='orange'  value={0} 
+                    onChange={(e)=>dispatch(GetfilterProduct(e,router.query.product))}>
+                      Under ₹ 50,000 
+                    </Checkbox><br />
+                   </Box>
+
+                   <Box>
+                    {router.query.product==='sofa'?
+                    <Box>
+                      <Text as='b'>Sofa Type</Text><br />
+                    <Checkbox size='lg' colorScheme='orange' value={'Living Room Furniture Sets'} 
+                       onChange={(e)=>dispatch(GetByType(e,router.query.product))}>
+                     Living Room Furniture Sets
+                    </Checkbox><br />
+                    <Checkbox size='lg' colorScheme='orange' value={'Sectional Sofas'} 
+                        onChange={(e)=>dispatch(GetByType(e,router.query.product))}>
+                     Sectional Sofas
+                    </Checkbox><br />
+                    <Checkbox size='lg' colorScheme='orange' value={'Sofas & Couches'} 
+                        onChange={(e)=>dispatch(GetByType(e,router.query.product))}>
+                    Sofas & Couches
+                    </Checkbox><br />
+                    </Box>:<Box/>
+                    }
                    </Box>
                    
                 </Box>

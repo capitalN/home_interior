@@ -1,7 +1,7 @@
 import React from 'react'
-import { Box,Text,Flex,Image,Link,SimpleGrid,Divider,Checkbox,HStack,Button,Input, InputGroup,InputRightAddon} from '@chakra-ui/react';
+import { Box,Text,Flex,Image,Link,Checkbox,Button,Input, InputGroup,InputRightAddon} from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { getProductbyAPI, getProductIdbyAPI } from '@/reducer/Product/Product.API';
+import { getProduct_by_API, getProductIdbyAPI } from '@/reducer/Product/Product.API';
 import style from './product.module.css';
 import { GiAutoRepair } from "react-icons/gi";
 import { RiTruckLine } from "react-icons/ri";
@@ -131,8 +131,7 @@ let router = useRouter()
 }
 
 export async function getStaticPaths(context) {
-let Data =await getProductbyAPI()
-
+let Data =await getProduct_by_API()
   return {
     paths: Data.map((ele)=>({ params: { id: String(ele.id) } })),
     fallback: false,
