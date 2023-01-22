@@ -21,13 +21,13 @@ useEffect(()=> {
   return (
     <Box>
         {/* <Text>{router.query.product}</Text> */}
-        <Box m={{base:'10px',md:'50px'}}>
-            <Flex  m='auto' w='fit-content' gap='20px' flexDirection={{base:'column',md:'row'}}>
-                <Image border='1px solid gray' w='150px' h='40px' m='auto' src='https://ii1.pepperfry.com/media/wysiwyg/banners/g_home_135x36.jpg' alt='G-Home'/>
-                 <Box>
-                    <Text as='b' fontSize='xl'>G Home</Text>
-                    <Text color='gray'>Items To Choose From.</Text>
-                 </Box>
+        <Box m={{base:'10px',md:'50px'}} textAlign='center' bg=''>
+           <Text className={style.headtext} as='b' >Shopping for Living Room</Text>
+            <Flex className={style.header}  mt='20px' gap='20px'>
+                  <Link href='/furniture/products/sofa'> <Box><Image src='https://ii1.pepperfry.com/media/catalog/product/b/a/494x544/bali-2-seater-sofa-in-blue-colour-by-trevi-furniture-bali-2-seater-sofa-in-blue-colour-by-trevi-furn-xnwtwh.jpg' alt='Sofa'/></Box></Link>
+                  <Link href='/furniture/products/wingchair'><Box> <Image src='https://ii1.pepperfry.com/media/catalog/product/p/a/800x880/panas-wing-chair-in-sea-green-by-febonic-panas-wing-chair-in-sea-green-by-febonic-wbf32h.jpg' alt='Chairs'></Image></Box></Link>
+                  <Link href='/furniture/products/table'><Box> <Image src='https://ii2.pepperfry.com/media/catalog/product/s/i/494x544/siramika-solid-wood-coffee-table-in-honey-oak-finish-by-mudramark-siramika-solid-wood-coffee-table-i-x7zyhj.jpg'  alt='table'/></Box></Link>
+                  <Link href='/furniture/products/wingchair'><Box> <Image src='https://ii1.pepperfry.com/media/catalog/product/r/o/800x880/royal-luxurious-high-back-wing-chair-in-blue-color-by-dreamzz-furniture-royal-luxurious-high-back-wi-j2qhwy.jpg' alt='chairs'/></Box></Link>
             </Flex>
         </Box>
         <Divider></Divider>
