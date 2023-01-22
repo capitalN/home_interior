@@ -1,17 +1,19 @@
 
 import * as signupTypes from './signupActionTypes'
 
-const initSignupState = {}
+const initSignupState = {
+    details:[]
+}
 
 try {
-    console.log(window);
+
     if(localStorage.getItem("hiUsers")){
         initSignupState.details = JSON.parse(localStorage.getItem("hiUsers"))
     } else {
-        initSignupState.details = {};
+        initSignupState.details = [];
     }
 } catch(err) {
-    initSignupState.details = {};
+    initSignupState.details = [];
 }
 
 export const signupReducer = (state=initSignupState, {type,payload}) => {
@@ -22,7 +24,7 @@ export const signupReducer = (state=initSignupState, {type,payload}) => {
         }
         case signupTypes.SIGNUP_SUCCESS:{
             //  console.log({ details: [state.details, ...(payload? payload: {}) ]});
-             return { ...(payload? payload: {}) };
+             return { ...state, details:[...state.details, payload] };
         }
 
     }

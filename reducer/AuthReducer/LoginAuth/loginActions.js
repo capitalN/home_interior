@@ -5,14 +5,23 @@ import * as loginType from "./loginActionTypes"
 
 
 export const loginSuccess = (payload) => {
-    if(localStorage.getItem("loginStatus")){
-        return;
+    
+    const hiUser = localStorage.getItem("hiUser") ? JSON.parse(localStorage.getItem("hiUser")) : null;
+
+    if(hiUser==null){
+        localStorage.setItem("hiUser", JSON.stringify({login: true, details:payload}))
+        return {type: loginType.LOGIN_SUCCESS, payload}
     }
-    return {type: loginType.LOGIN_SUCCESS, payload}
+    else {
+        return {type: loginType.LOGIN_FAILURE, payload}
+    }
+
 }
 
-export const loginFailure = () => {
-    return {type: loginType.LOGIN_FAILURE
-    }
+export const logoutUser = () => {
+    localStorage.removeItem("hiUser");
+    
+    return {type: loginType.LOGOUT_SUCCESS}
 }
+
 

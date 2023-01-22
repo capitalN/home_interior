@@ -45,7 +45,7 @@ function LoginModal() {
   };
 
   const handleFormSubmit = () => {
-    console.log(details);
+
     if (details == null) {
       window.alert("Please fill the form!");
       return;
