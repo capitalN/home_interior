@@ -2,7 +2,18 @@
 import * as signupTypes from './signupActionTypes'
 
 const initSignupState = {
-    details: [{name: 'Arun Rana', mobile: '12341234', email: 'abc@gmail.com', password: 'asd123!@#'}]
+    details:[]
+}
+
+try {
+
+    if(localStorage.getItem("hiUsers")){
+        initSignupState.details = JSON.parse(localStorage.getItem("hiUsers"))
+    } else {
+        initSignupState.details = [];
+    }
+} catch(err) {
+    initSignupState.details = [];
 }
 
 export const signupReducer = (state=initSignupState, {type,payload}) => {
@@ -12,8 +23,9 @@ export const signupReducer = (state=initSignupState, {type,payload}) => {
             return state;
         }
         case signupTypes.SIGNUP_SUCCESS:{
-             console.log({...state, details: [...state.details, payload ]});
-             return {...state, details: [...state.details, payload ]};
+            //  console.log({ details: [state.details, ...(payload? payload: {}) ]});
+             return { ...state, details:[...state.details, payload] };
         }
+
     }
 }
