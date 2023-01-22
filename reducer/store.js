@@ -10,8 +10,10 @@ import { ProductReducer } from "./Product/Product.reducer";
 import { adminReducer } from "./Admin/reducer";
 import { loginReducer } from "./AuthReducer/LoginAuth/loginReducer";
 import { signupReducer } from "./AuthReducer/SignupAuth/signupReducer";
+import { CartReducer } from "./Cart/Cart.reducer";
 
 const rootReducer = combineReducers({
+  cartManager: CartReducer,
   ProductManager: ProductReducer,
   signupManager: signupReducer,
   loginManager: loginReducer,

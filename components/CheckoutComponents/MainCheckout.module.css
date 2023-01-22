@@ -1,0 +1,43 @@
+
+  /* width */
+  .checkout::-webkit-scrollbar{
+    width:4px;
+    height: 10px;
+    position: absolute;
+    right:0px;
+    /* z-index: 1; */
+    border:none;
+   }
+   
+   /* Track */
+   .checkout::-webkit-scrollbar-track{
+     /* position: relative;
+     top:0px;
+     right:0px;
+     box-shadow: inset 5px 5px 5px rgb(250, 249, 249);
+     border-radius: 12px;
+     border-top-left-radius: 4px;
+     background-color: rgb(235, 187, 231); */
+     display: none;
+     height: 90%;
+     /* border:0.1px solid white; */
+   }
+   
+    /* Handle */
+    .checkout::-webkit-scrollbar-thumb{
+      height: 90%;
+     background: #e8e3de;
+      border-radius: 10px;
+    /* border:none; */
+    }
+   
+    /* Handle on hover */
+    .checkout::-webkit-scrollbar-thumb:hover{
+     background-color:#d9f7d7 ;
+    }
+   
+    .checkout {
+     scroll-behavior: smooth;
+     transition: scroll-behavior 5s ease-in 0.3s;
+   }
+   
