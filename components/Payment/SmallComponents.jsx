@@ -1,28 +1,35 @@
+import { GetCartData } from "@/reducer/Cart/Cart.action";
 import { InfoIcon } from "@chakra-ui/icons";
 import { Flex, Input, Text, Image, Box, Select, InputGroup, InputLeftElement, InputRightElement, InputRightAddon, Button, Spacer } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai"
+import { useDispatch, useSelector } from "react-redux";
 import style from "./Payment.module.css"
 
 let Style={border:"1px solid grey", backgroundColor:"white"}
 
-export const Div1 = ()=><Flex direction="column"
-                              gap="1rem"
-                              style={{width:"80%"}}>
-   <Box><Input style={Style} type="text" placeholder="Card Number"/></Box>
-   <Flex gap="1rem">
-      <Input style={Style} type="number" placeholder="Valid Thru(MM/YY)"/>
-      <InputGroup>
-        <InputLeftElement
-             pointerEvents='none'
-             color='gray.300'
-             fontSize='1.2em'
-             children='$' />
-           <Input style={Style} type="number" placeholder='Enter amount' />
-           <InputRightElement children={<InfoIcon color='black.500'/>} />
-       </InputGroup>
-   </Flex>
-   <Box><Input style={Style} type="number" placeholder="Card Number"/></Box>
-</Flex>
+export const Div1 = ({total})=>{
+    
+    return <Flex direction="column"
+                    gap="1rem"
+                    style={{width:"80%"}}>
+                <Box><Input style={Style} type="text" placeholder="Card Number"/></Box>
+                <Flex gap="1rem">
+                <Input style={Style} type="number" placeholder="Valid Thru(MM/YY)"/>
+                <InputGroup>
+                <InputLeftElement
+                pointerEvents='none'
+                color='gray.300'
+                fontSize='1.2em'
+                children='$' />
+                <Input style={Style} type="number"  value={total()} />
+                <InputRightElement children={<InfoIcon color='black.500'/>} />
+                </InputGroup>
+                </Flex>
+                <Box><Input style={Style} type="number" placeholder="Card Number"/></Box>
+         </Flex>
+}
+
 
 export const Div2 = ()=><div  style={{width:"80%"}}>
     <Flex direction="column" gap="1rem">

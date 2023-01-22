@@ -6,18 +6,21 @@ import {useDispatch,useSelector} from 'react-redux';
 import { GetProduct } from '@/reducer/Product/Product.action.js';
 import { getProductbyAPI } from '@/reducer/Product/Product.API';
 import { SmallAddIcon } from '@chakra-ui/icons';
+import { PostToCart } from '@/reducer/Cart/Cart.action';
 
 const Page = () => {
    
     let router = useRouter()
     let dispatch = useDispatch()
 
-let products = useSelector((store)=>(store.ProductManager.Data))
+let products = useSelector((store)=>(store.ProductManager.Data));
+let { loading } = useSelector((store)=>store.ProductManager);
 
 
 useEffect(()=> {
    dispatch(GetProduct())
 },[dispatch])
+
 
   return (
     <Box>
@@ -83,6 +86,8 @@ useEffect(()=> {
                                backgroundColor='#ff7035'
                                top='80%'
                                left='30%'
+                               onClick={()=>{let count =1; let count1=1; let obj={...ele,count:count, count1:count1}; PostToCart(obj)}}
+                               disabled={true}
                                display={{base:'none',md:'block'}}
                                >Add To Cart</Button>
                              </Box>

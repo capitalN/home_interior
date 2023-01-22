@@ -1,11 +1,31 @@
 import Section1 from '@/components/CheckoutComponents/Section1'
 import Section2 from '@/components/CheckoutComponents/Section2'
+import { GetCartData } from '@/reducer/Cart/Cart.action'
 import { Flex, Heading,Box, Text } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import style from "./MainCheckout.module.css"
 
 
 const MainCheckoutPage = () => {
+  const dispatch = useDispatch();
+  const data = useSelector((store)=>store.cartManager.Data);
+
+  
+  useEffect(()=>{
+     dispatch(GetCartData())
+  },[])
+
+  const priceSaved = ()=>{
+    let sum = 0;
+    for(let i=0; i<data.length; i++)
+    {
+      sum = sum + ((data[i].price*data[i].discount)/100) *data[i].count
+    }
+    return Math.floor(sum);
+  }
+
+
   return (
     <div>
           <Flex direction="column"
@@ -13,7 +33,7 @@ const MainCheckoutPage = () => {
             <Flex p="1rem"  
                   width="80%"
                   m="auto">
-              <Heading as="h3" fontSize={17}>Your Cart(4Items)</Heading>
+              <Heading as="h3" fontSize={17}>Your Cart {data.length && data.length} (Items)</Heading>
             </Flex>
             <Flex width="85%" 
                   p="1rem" 
@@ -29,22 +49,23 @@ const MainCheckoutPage = () => {
                        color="#67AD5B"
                        textAlign="center"
                        mb="0.5rem"
-                       p="0.6rem" >You saved <b>₹ 16,200</b>  On This Order</Text>
+                       p="0.6rem" >You saved <b>₹ {priceSaved()}</b>  On This Order</Text>
                  </Flex>
                  <Flex >
                      <Box  height="30rem" 
                            width="100%"
-                           overflowY="scroll"
+                           overflowY="scroll"g
                            className={style.checkout}
                           >
-                        <Section1 key="key1"/>
-                        <Section1 key="key2"/>
+                       {
+                        data?.map((item)=><Section1 {...item}/>)
+                       }
                      </Box>
                     
                  </Flex>
                    
               </Box>
-              <Section2/>
+              <Section2 data={data} total={priceSaved()}/>
             </Flex>
         </Flex>
     </div>

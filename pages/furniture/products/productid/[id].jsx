@@ -7,9 +7,12 @@ import { GiAutoRepair } from "react-icons/gi";
 import { RiTruckLine } from "react-icons/ri";
 import { SiAdguard } from "react-icons/si";
 import { ChevronRightIcon } from '@chakra-ui/icons'
+import { PostToCart } from '@/reducer/Cart/Cart.action';
+import { useDispatch } from 'react-redux';
 
 
 const Page = ({product}) => {
+  const dispatch = useDispatch();
 
 let router = useRouter()
 
@@ -85,7 +88,7 @@ let router = useRouter()
                     </Flex>
 
                       <Flex m='auto' gap='10px' mt='20px' mb='30px'>
-                           <button className={style.btn1}>ADD TO CART</button>
+                           <button className={style.btn1} onClick={()=>{let count =1; let count1=1; let obj={...product,count:count, count1:count1}; PostToCart(obj)}}>ADD TO CART</button>
                            <button className={style.btn2}>BUY NOW</button>
                      </Flex> 
 
