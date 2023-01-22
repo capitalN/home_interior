@@ -1,7 +1,7 @@
 import React from 'react'
-import { Box,Text,Flex,Image,Link,SimpleGrid,Divider,Checkbox,HStack,Button,Input, InputGroup,InputRightAddon} from '@chakra-ui/react';
+import { Box,Text,Flex,Image,Link,Checkbox,Button,Input, InputGroup,InputRightAddon} from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { getProductbyAPI, getProductIdbyAPI } from '@/reducer/Product/Product.API';
+import { getProduct_by_API, getProductIdbyAPI } from '@/reducer/Product/Product.API';
 import style from './product.module.css';
 import { GiAutoRepair } from "react-icons/gi";
 import { RiTruckLine } from "react-icons/ri";
@@ -36,7 +36,8 @@ let router = useRouter()
                     </Box>
               <Box w={{base:'95%',md:'60%'}} pl={{base:'0px',md:'20px'}} m={{base:'auto',md:'block'}}>
                
-                <Flex alignItems='center' color='gray.700' >Home <ChevronRightIcon/>  Furniture <ChevronRightIcon/> {product.type} <ChevronRightIcon/>  {product.categories}</Flex>
+                <Flex alignItems='center' color='gray.700' ><Link href={`/`}>Home</Link> <ChevronRightIcon/> <Link href={`/furniture`}>Furniture</Link> <ChevronRightIcon/> <Link href={`/furniture/products/${product.type}`}>{product.type}</Link> <ChevronRightIcon/>  {product.categories}</Flex>
+               
                 <br />
                 <Text  className={style.pro_name}>{product.name}</Text>
                 <Text >12 Months' Warranty</Text>
@@ -134,8 +135,7 @@ let router = useRouter()
 }
 
 export async function getStaticPaths(context) {
-let Data =await getProductbyAPI()
-
+let Data =await getProduct_by_API()
   return {
     paths: Data.map((ele)=>({ params: { id: String(ele.id) } })),
     fallback: false,
