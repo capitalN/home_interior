@@ -17,6 +17,8 @@ import {
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import style from "./Cart.module.css"
+import { useSelector } from 'react-redux';
+import Section1 from './CheckoutComponents/Section1';
 
 
 let cartButton = {backgroundColor:"black",
@@ -31,7 +33,8 @@ let cartButton1 = {fontSize:"13px",  letterSpacing: "0.1px",lineHeight:"0px"}
 const Cart = ({setDrawer, drawer}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
-  const [ cartflag, setCartflag ] = useState({"one": false,"second":true, "three":true})
+  const [ cartflag, setCartflag ] = useState({"one": false,"second":true, "three":true});
+  const data = useSelector((store)=>store.cartManager.Data)
 
   return (
     <>
@@ -39,7 +42,7 @@ const Cart = ({setDrawer, drawer}) => {
       <BsCart2 size={30}  />
       </Button> */}
       <Drawer
-        size={{base:"xl",sm:"md",md:"md"}}
+        size={{base:"sm",sm:"md",md:"md"}}
         isOpen={onOpen}
         placement="right"
         onClose={drawer&&onClose}
@@ -96,7 +99,7 @@ const Cart = ({setDrawer, drawer}) => {
                         >
                  <Text width="95%" > MY CART{" "}</Text>
                   <Text as="span"
-                     display="none"
+                    //  display="none"
                     style={{
                             backgroundColor: "orange",
                             borderRadius: "1rem",
@@ -105,7 +108,7 @@ const Cart = ({setDrawer, drawer}) => {
                             marginLeft: "0.5rem",
                             lineHeight:"1.2rem",
                          }}
-                  >0
+                  >{data.length}
                     
                   </Text>
                 </Button>
@@ -157,13 +160,13 @@ const Cart = ({setDrawer, drawer}) => {
 
           <DrawerBody>
             {
-                !cartflag.one&&"Hello111"
+                !cartflag.one && (data?.map((item)=><Section1 {...item}/>)&&<Text color="red" textAlign="center" width="90%" margin="auto">Make your Cart</Text>)
             }
             {
-                !cartflag.second&&"Hello222"
+                !cartflag.second&&<Text color="red" textAlign="center" width="90%" margin="auto">Make your Wishlist</Text>
             }
             {
-                !cartflag.three&&"Hello333"
+                !cartflag.three&&<Text color="red" textAlign="center" width="90%" margin="auto">No Recent view</Text>
             }
           {/* <Input placeholder='Type here...' /> */}</DrawerBody>
 

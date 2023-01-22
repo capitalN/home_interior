@@ -1,11 +1,27 @@
 
 import * as loginTypes from './loginActionTypes'
 
-const initLoginState = {
+let initLoginState = {
     login: false,
-    error: false,
-    details: {name: 'Arun Rana', mobile: '12341234', email: 'abc@gmail.com', password: 'asd123!@#'}
+    details: {}
 }
+
+try {
+
+    if(localStorage.getItem("hiUser")){
+
+        initLoginState = JSON.parse(localStorage.getItem("hiUser"))
+        console.log("init", initLoginState)
+    }
+    else {
+
+        initLoginState.details = {};
+    }
+} catch (error) {
+    initLoginState.details = {};
+}
+
+
 
 export const loginReducer = (state=initLoginState, {type,payload}) => {
     
@@ -15,13 +31,17 @@ export const loginReducer = (state=initLoginState, {type,payload}) => {
         }
 
         case loginTypes.LOGIN_SUCCESS:{
-            console.log({...state, login: true, details: payload, error: false})
-            return {...state, login: true, details: payload, error: false}
+            // console.log({...state, login: true, details: payload})
+            // localStorage.setItem("hiUser", JSON.stringify({...state, login: true, details: payload}))
+            return {...state, login: true, details: payload}
         }
 
-        case loginTypes.LOGIN_FAILURE:{
-            console.log("called")
-            return {...state, error: true}
+        case loginTypes.LOGOUT_SUCCESS: {
+            return {
+                login: false,
+                details: {}
+            }
         }
+
     }
 }

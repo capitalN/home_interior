@@ -1,27 +1,4 @@
-import {
-  Image,
-  useDisclosure,
-  Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  Flex,
-  ModalCloseButton,
-  FormControl,
-  FormLabel,
-  Input,
-  FormHelperText,
-  Box,
-  Text,
-  Avatar,
-  Heading,
-} from "@chakra-ui/react";
-import React from "react";
-import { SlUser } from "react-icons/sl";
-import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../../reducer/AuthReducer/SignupAuth/signupActions";
-import * as loginActions from "../../reducer/AuthReducer/LoginAuth/loginActions";
-import Link from "next/link";
+
 
 const AuthModals = () => {
   const {
