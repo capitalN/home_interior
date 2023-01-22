@@ -154,12 +154,7 @@ const AuthModals = () => {
       if (el.email == loginDetails.details.userId || el.mobile == loginDetails.details.userId) {
         if (el.password == loginDetails.details.password) {
           dispatch(loginSuccess(el));
-          // try {
-          //   // localStorage.setItem("hiUser", JSON.stringify(el))
-          //   // window.alert("Login Successful!")
-          // } catch (error) {
-          //   console.log(error);
-          // }
+
           onLoginClose();
           alert("Login Successful!");
           return;
