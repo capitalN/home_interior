@@ -36,7 +36,7 @@ export default function WinterEdit() {
       <Flex flexWrap={"wrap"} gap="5" align={"center"} justify="center">
         {WINTER_EDIT.map((el) => (
           <Link href="#" key={el.name}>
-            <Image src={el.img} width={360} height={360} />
+            <Image src={el.img} width={360} height={360} alt="" />
           </Link>
         ))}
       </Flex>

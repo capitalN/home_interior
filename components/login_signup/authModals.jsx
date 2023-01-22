@@ -1,4 +1,25 @@
-
+import {
+  Image,
+  useDisclosure,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  Flex,
+  ModalCloseButton,
+  FormControl,
+  FormLabel,
+  Input,
+  FormHelperText,
+  Box,
+  Text,
+  Link,
+  Heading,
+  Avatar,
+} from "@chakra-ui/react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineUser } from "react-icons/ai";
 
 const AuthModals = () => {
   const {
@@ -39,8 +60,6 @@ const AuthModals = () => {
     setInsecurePassword(false);
   };
 
-
-  
   const handleSignupFormSubmit = () => {
     // console.log(signupDetails);
     if (signupDetails == null) {
@@ -132,14 +151,13 @@ const AuthModals = () => {
 
   return (
     <>
-      {/* Start */}
       <Box>
         {loginStore.login ? (
           <Link href="/account">
             <Avatar size="sm" name={loginStore.details.name} />
           </Link>
         ) : (
-          <SlUser size={30} onClick={onSignupOpen} />
+          <AiOutlineUser size={30} onClick={onSignupOpen} />
         )}
 
         <Modal

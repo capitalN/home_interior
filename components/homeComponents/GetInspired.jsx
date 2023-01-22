@@ -88,6 +88,7 @@ export default function GetInspired() {
                 height={0}
                 sizes="100vw"
                 src={el.img}
+                alt=""
                 style={{
                   width: "auto",
                   height: "auto",

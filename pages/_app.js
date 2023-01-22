@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import { store } from "@/reducer/store";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
-import theme from "./theme";
+import theme from "../components/theme";
 import Cart from "@/components/Cart";
 import Footer from "@/components/Footer";
 

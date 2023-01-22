@@ -6,7 +6,7 @@ import {
   Box,
   Flex,
   HStack,
-  Link,
+  // Link,
   IconButton,
   Button,
   useDisclosure,
@@ -21,15 +21,14 @@ import {
   MenuDivider,
   Heading,
   Text,
-  color
+  color,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { HiSearch } from "react-icons/hi";
 import { BsHeart, BsCart2 } from "react-icons/bs";
 import Cart from "./Cart";
 import AuthModals from "./login_signup/authModals";
-
-
+import Link from "next/link";
 
 const NavLink = ({ children }) => (
   <Link
@@ -54,28 +53,26 @@ export default function Navbar() {
   const [data, setData] = useState([]);
   const [searchdata, setSearchdata] = useState([]);
 
-  useEffect(()=>{
-        axios.get(`https://icy-thread-zydeco.glitch.me/Furniture`).then((res)=>{
-          setData(res.data); 
-            // console.log(res.data); 
-            })
-            .catch((error)=>
-            console.log(error)
-            )
- },[])
+  useEffect(() => {
+    axios
+      .get(`https://icy-thread-zydeco.glitch.me/Furniture`)
+      .then((res) => {
+        setData(res.data);
+        // console.log(res.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
-  const handlesearch=()=>{
-    const value = searchinput
-    let temp=[];
-            temp = data.filter((d) => {
-                d = d.name.toLowerCase();
-                return d.indexOf(value) > -1;
-            });
-            console.log(temp);
-            setSearchdata(temp);
-    }
-
-
+  const handlesearch = () => {
+    const value = searchinput;
+    let temp = [];
+    temp = data.filter((d) => {
+      d = d.name.toLowerCase();
+      return d.indexOf(value) > -1;
+    });
+    console.log(temp);
+    setSearchdata(temp);
+  };
 
   return (
     <>
@@ -92,16 +89,14 @@ export default function Navbar() {
             aria-label={"Open Menu"}
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
-          >
-
-          </IconButton>
+          ></IconButton>
 
           <Box marginLeft={14}>
             <Link href="/">
-            <Image src="/home_interior_logo.png" w="130px" />
+              <Image src="/home_interior_logo.png" w="130px" alt="" />
             </Link>
           </Box>
-          
+
           <Box
             spacing={20}
             // display={{ base: 'none', md: '' }}>
@@ -118,7 +113,7 @@ export default function Navbar() {
               _hover={"none"}
               type="text"
               value={searchinput}
-              onChange={(e)=>setSearchinput(e.target.value)}
+              onChange={(e) => setSearchinput(e.target.value)}
             />
 
             <Flex alignItems={"center"}>
@@ -129,10 +124,7 @@ export default function Navbar() {
 
           <Flex alignItems={"center"} marginRight={14}>
             <HStack spacing={5}>
-          
-               
-                <AuthModals />
-             
+              <AuthModals />
 
               <Link href="#">
                 <BsHeart size={30} />
@@ -158,22 +150,25 @@ export default function Navbar() {
           p={4}
           display={{ base: "none", lg: "flex", md: "none" }}
         >
-          <HStack spacing={10} >
+          <HStack spacing={10}>
             <Menu>
-            <MenuButton
+              <MenuButton
                 as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
                 minW={0}
                 color="black"
                 _hover={{
                   color: useColorModeValue("orange.400", "orange.700"),
-                }}>
+                }}
+              >
                 <Text>Furniture</Text>
               </MenuButton>
               <MenuList>
-              <MenuItem as={Link} href="/furniture">Furniture</MenuItem>
+                <MenuItem as={Link} href="/furniture">
+                  Furniture
+                </MenuItem>
                 <MenuItem>Sofa</MenuItem>
                 <MenuItem>Table</MenuItem>
                 <MenuItem>Chair</MenuItem>
@@ -181,15 +176,15 @@ export default function Navbar() {
                 <MenuItem>beds</MenuItem>
                 <MenuItem>Shoe Racks</MenuItem>
               </MenuList>
-              </Menu>
-              <Menu>
-            <MenuButton
+            </Menu>
+            <Menu>
+              <MenuButton
                 as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
                 minW={0}
-                >
+              >
                 <Text color="black">Home Decor</Text>
               </MenuButton>
               <MenuList>
@@ -199,16 +194,16 @@ export default function Navbar() {
                 <MenuItem>Figurines</MenuItem>
                 <MenuItem>Showpieces</MenuItem>
               </MenuList>
-              </Menu>
-            
+            </Menu>
+
             <Menu>
-            <MenuButton
+              <MenuButton
                 as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
                 minW={0}
-                >
+              >
                 <Text color="black">Lamps & Lighting</Text>
               </MenuButton>
               <MenuList>
@@ -218,16 +213,16 @@ export default function Navbar() {
                 <MenuItem>LED Lights</MenuItem>
                 <MenuItem>Smart Lights</MenuItem>
               </MenuList>
-              </Menu>
-            
+            </Menu>
+
             <Menu>
-            <MenuButton
+              <MenuButton
                 as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
                 minW={0}
-                >
+              >
                 <Text color="black">Kitchen & Dining</Text>
               </MenuButton>
               <MenuList>
@@ -237,16 +232,16 @@ export default function Navbar() {
                 <MenuItem>Table Linen</MenuItem>
                 <MenuItem>Cookware</MenuItem>
               </MenuList>
-              </Menu>
-           
+            </Menu>
+
             <Menu>
-            <MenuButton
+              <MenuButton
                 as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
                 minW={0}
-                >
+              >
                 <Text color="black">Furnishings</Text>
               </MenuButton>
               <MenuList>
@@ -256,35 +251,35 @@ export default function Navbar() {
                 <MenuItem>Essentials</MenuItem>
                 <MenuItem>Home Care</MenuItem>
               </MenuList>
-              </Menu>
-         
+            </Menu>
+
             <Menu>
-            <MenuButton
+              <MenuButton
                 as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
                 minW={0}
-                >
+              >
                 <Text color="black">Mattresses</Text>
               </MenuButton>
               <MenuList>
-              <MenuItem>King size Mattresses</MenuItem>
+                <MenuItem>King size Mattresses</MenuItem>
                 <MenuItem>single Mattresses</MenuItem>
                 <MenuItem>Bed Wedges</MenuItem>
                 <MenuItem>Pillows</MenuItem>
                 <MenuItem>Mattress Protectors</MenuItem>
               </MenuList>
-              </Menu>
-           
+            </Menu>
+
             <Menu>
-            <MenuButton
+              <MenuButton
                 as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
                 minW={0}
-                >
+              >
                 <Text color="black">Appliances</Text>
               </MenuButton>
               <MenuList>
@@ -294,16 +289,16 @@ export default function Navbar() {
                 <MenuItem>Chimneys</MenuItem>
                 <MenuItem>Fans</MenuItem>
               </MenuList>
-              </Menu>
-        
+            </Menu>
+
             <Menu>
-            <MenuButton
+              <MenuButton
                 as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
                 minW={0}
-                >
+              >
                 <Text color="black">Pets</Text>
               </MenuButton>
               <MenuList>
@@ -313,43 +308,43 @@ export default function Navbar() {
                 <MenuItem>Pet Furnishings</MenuItem>
                 <MenuItem>Pet Grooming</MenuItem>
               </MenuList>
-              </Menu>
+            </Menu>
 
             <Menu>
-            <MenuButton
+              <MenuButton
                 as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
                 minW={0}
-                >
+              >
                 <Text color="black">Modular</Text>
               </MenuButton>
               <MenuList>
                 <MenuItem>Modular Kitchens</MenuItem>
                 <MenuItem>Modular Wardrobes</MenuItem>
               </MenuList>
-              </Menu>
-            
-            <Link fontSize={"16px"} fontWeight={600} href="#">Gift Cards</Link>
+            </Menu>
 
-
+            <Link fontSize={"16px"} fontWeight={600} href="#">
+              Gift Cards
+            </Link>
           </HStack>
         </Box>
         <hr />
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-            <Link href="/furniture">Furniture</Link>
-            <Link href="#">Home Decor</Link>
-            <Link href="#">Lamps & Lighting</Link>
-            <Link href="#">Kitchen & Dining</Link>
-            <Link href="#">Furnishings</Link>
-            <Link href="#">Mattresses</Link>
-            <Link href="#">Appliances</Link>
-            <Link href="#">Pets</Link>
-            <Link href="#">Modular</Link>
-            <Link href="#">Gift Cards</Link>
+              <Link href="/furniture">Furniture</Link>
+              <Link href="#">Home Decor</Link>
+              <Link href="#">Lamps & Lighting</Link>
+              <Link href="#">Kitchen & Dining</Link>
+              <Link href="#">Furnishings</Link>
+              <Link href="#">Mattresses</Link>
+              <Link href="#">Appliances</Link>
+              <Link href="#">Pets</Link>
+              <Link href="#">Modular</Link>
+              <Link href="#">Gift Cards</Link>
             </Stack>
           </Box>
         ) : null}
