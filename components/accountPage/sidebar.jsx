@@ -1,17 +1,38 @@
-import { Box, Divider, Heading, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Divider, Heading, Stack, Text } from '@chakra-ui/react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import React from 'react'
-import { useSelector } from 'react-redux'
+
+
 import { useRouter } from 'next/router'
 
+
+import { useDispatch, useSelector } from 'react-redux'
+
+import { logoutUser } from '@/reducer/AuthReducer/LoginAuth/loginActions'
+
+let user={
+   login:false,
+   details:{}
+};
+  try {
+    user = JSON.parse(localStorage.getItem("hiUser"));
+  } catch (error) {
+    
+  }
 
 const Sidebar = ({linkEndPoint}) => {
    const route = useRouter();
     const loginStore = useSelector((store)=>store.loginManager);
+    const dispatch = useDispatch();
     const {details} = loginStore;
 
     const handlePageChange = (endpoint) => {
       route.push(endpoint);
+    }
+
+    const handleLogout = () => {
+      dispatch(logoutUser())
+      route.push("/")
     }
 
   return (
@@ -20,6 +41,11 @@ const Sidebar = ({linkEndPoint}) => {
    <Stack gap={8} display={{base: "none", md: "block"}}>
      <Box>
         <Heading size={"md"}>Hi {details.name}!</Heading>
+
+
+        <Button mt={4} onClick={handleLogout}>Logout</Button>
+     </Box>
+
      <Divider colorScheme="black" />
      </Box>
      <Box onClick = {()=> handlePageChange("/account")} _hover={{cursor: "pointer"}}>
