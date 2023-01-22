@@ -14,13 +14,13 @@ import {
   Box,
   Text,
   Avatar,
-  Heading
+  Heading,
 } from "@chakra-ui/react";
 import React from "react";
 import { SlUser } from "react-icons/sl";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../reducer/AuthReducer/SignupAuth/signupActions";
-import * as loginActions from "../../reducer/AuthReducer/LoginAuth/loginActions"
+import * as loginActions from "../../reducer/AuthReducer/LoginAuth/loginActions";
 import Link from "next/link";
 
 const AuthModals = () => {
@@ -32,15 +32,19 @@ const AuthModals = () => {
 
   const dispatch = useDispatch();
 
-  const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose:onLoginClose } = useDisclosure();
+  const {
+    isOpen: isLoginOpen,
+    onOpen: onLoginOpen,
+    onClose: onLoginClose,
+  } = useDisclosure();
 
   const [signupDetails, setSignupDetails] = React.useState(null);
   const [insecurePassword, setInsecurePassword] = React.useState(false);
   const [invalidEmail, setInvalidEmail] = React.useState(false);
 
-    const [details, setDetails] = React.useState(null)
-    const [passIsEmpty, setPassIsEmpty] = React.useState(false);
-    const [emailIsEmpty, setEmailIsEmpty] = React.useState(false);
+  const [details, setDetails] = React.useState(null);
+  const [passIsEmpty, setPassIsEmpty] = React.useState(false);
+  const [emailIsEmpty, setEmailIsEmpty] = React.useState(false);
 
   const loginStore = useSelector((store) => store.loginManager);
   const signupStore = useSelector((store) => store.signupManager);
@@ -52,7 +56,7 @@ const AuthModals = () => {
       ...signupDetails,
       [e.target.name]: e.target.value,
     };
-    console.log(newDetails)
+    console.log(newDetails);
     setSignupDetails(newDetails);
     setInvalidEmail(false);
     setInsecurePassword(false);
@@ -95,7 +99,7 @@ const AuthModals = () => {
   const swapToLogin = () => {
     onSignupClose();
     onLoginOpen();
-    }
+  };
 
   // login functions
 
@@ -143,35 +147,47 @@ const AuthModals = () => {
   };
 
   const swapToSignup = () => {
-    onLoginClose()
-    onSignupOpen()
-  }
+    onLoginClose();
+    onSignupOpen();
+  };
 
   return (
     <>
+      {/* Start */}
       <Box>
         {loginStore.login ? (
-          <Link href="/account"><Avatar size="sm" name={loginStore.details.name} /></Link>
+          <Link href="/account">
+            <Avatar size="sm" name={loginStore.details.name} />
+          </Link>
         ) : (
           <SlUser size={30} onClick={onSignupOpen} />
         )}
 
-        <Modal isOpen={isSignupOpen} onClose={onSignupClose} size={{base: "md", md: "2xl"}}>
+        <Modal
+          isOpen={isSignupOpen}
+          onClose={onSignupClose}
+          size={{ base: "md", md: "2xl" }}
+        >
           <ModalOverlay />
-          <ModalContent p={{base: 2, md: 0}}>
+          <ModalContent p={{ base: 2, md: 0 }}>
             <ModalCloseButton size={"sm"} />
 
-            <Box m={0} p={0} >
-              <Image src="https://ii1.pepperfry.com/media/wysiwyg/banners/Web_IMG_17Dec1x_2712.jpg" visibility={{base: "hidden", md: "visible"}}/>
+            <Box m={0} p={0}>
+              <Image
+                src="https://ii1.pepperfry.com/media/wysiwyg/banners/Web_IMG_17Dec1x_2712.jpg"
+                visibility={{ base: "hidden", md: "visible" }}
+              />
             </Box>
             <Box
-              w={{base: "80%", md: "45%"}}
+              w={{ base: "80%", md: "45%" }}
               display={"inline-block"}
               position={"absolute"}
               top={5}
-              left={{base: 10,md:320}}
+              left={{ base: 10, md: 320 }}
             >
-              <Heading display={{base: "block", md: "none"}} size="md" mb={2}>Sign Up to get credit worth ₹5,000</Heading>
+              <Heading display={{ base: "block", md: "none" }} size="md" mb={2}>
+                Sign Up to get credit worth ₹5,000
+              </Heading>
               <FormControl>
                 <FormLabel mb={0} fontSize="xs" color="gray.500">
                   Name
@@ -258,7 +274,7 @@ const AuthModals = () => {
               </Text>
 
               <Button
-                mt={{base: 2, md: 5}}
+                mt={{ base: 2, md: 5 }}
                 variant="outline"
                 borderRadius={"3px"}
                 w="100%"
@@ -289,29 +305,40 @@ const AuthModals = () => {
         </Modal>
       </Box>
       <>
-        <Modal isOpen={isLoginOpen} onClose={onLoginClose} size={{base: "md", md: "2xl"}}>
+        <Modal
+          isOpen={isLoginOpen}
+          onClose={onLoginClose}
+          size={{ base: "md", md: "2xl" }}
+        >
           <ModalOverlay />
-          <ModalContent p={{base: 2, md: 0}}>
+          <ModalContent p={{ base: 2, md: 0 }}>
             <ModalCloseButton size={"sm"} />
 
             <Box m={0} p={0}>
-              <Box py={{base: 1, md: 10}} px={{base: 2,md:7}} w={{base: "100%", md: "45%"}} position="absolute">
+              <Box
+                py={{ base: 1, md: 10 }}
+                px={{ base: 2, md: 7 }}
+                w={{ base: "100%", md: "45%" }}
+                position="absolute"
+              >
                 <Text fontSize={"xl"}>Log In</Text>
-                <Heading size={"sm"} color="brand.600" >
+                <Heading size={"sm"} color="brand.600">
                   You Will Be Able To Track Your Order, Use Wishlist & More.
                 </Heading>
               </Box>
-              <Image src="https://ii1.pepperfry.com/images/new_login_modal_bg_2020.jpg" visibility={{base: "hidden", md: "visible"}}/>
+              <Image
+                src="https://ii1.pepperfry.com/images/new_login_modal_bg_2020.jpg"
+                visibility={{ base: "hidden", md: "visible" }}
+              />
             </Box>
             <Box
-              w={{base: "90%", md: "45%"}}
+              w={{ base: "90%", md: "45%" }}
               p={5}
               display={"inline-block"}
               position={"absolute"}
-              top={{base: 20, md:10}}
-              left={{base: 5,md:320}}
+              top={{ base: 20, md: 10 }}
+              left={{ base: 5, md: 320 }}
             >
-            
               <FormControl>
                 {loginStore.error ? (
                   <FormHelperText mb={2} color="red.400">
@@ -406,6 +433,7 @@ const AuthModals = () => {
         </Modal>
       </>
     </>
+    // End
   );
 };
 
