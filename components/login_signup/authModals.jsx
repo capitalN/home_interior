@@ -62,6 +62,8 @@ const AuthModals = () => {
     setInsecurePassword(false);
   };
 
+
+  
   const handleSignupFormSubmit = () => {
     // console.log(signupDetails);
     if (signupDetails == null) {
