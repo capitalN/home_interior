@@ -60,6 +60,7 @@ const AuthModals = () => {
     setSignupDetails(newDetails);
     setInvalidEmail(false);
     setInsecurePassword(false);
+    
   };
 
   const handleSignupFormSubmit = () => {
@@ -433,7 +434,7 @@ const AuthModals = () => {
         </Modal>
       </>
     </>
-    // End
+    // End ==
   );
 };
 
