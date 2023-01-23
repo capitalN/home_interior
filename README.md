@@ -1,5 +1,7 @@
 # Pepperfry.com Clone
 
+# this is the clone of pepperfry.com which is a e-comerce website for home decor and furniture
+
 # OUR TEAM
  - Nikhil Angolkar (Team Lead)
  - Shakil Pendhari (Member 1)
