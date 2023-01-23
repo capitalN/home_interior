@@ -6,7 +6,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { MdNavigateNext } from "react-icons/md";
-
+import { useToast } from "@chakra-ui/react";
 const SfontSize = {
   fontSize: "12px",
 };
@@ -38,6 +38,7 @@ const Section2 = ({ val1, flagg, total, data }) => {
   const flag = flagg === "true" ? "PAY NOW" : "PROCEED TO PAY";
   const router = useRouter();
   const [local, setLocal] = useState(null);
+  const toast = useToast();
 
   useEffect(() => {
     if (getNameintolocalStorage().length > 0) {
@@ -55,7 +56,21 @@ const Section2 = ({ val1, flagg, total, data }) => {
   };
   const handlePay = () => {
     if (flagg) {
-      alert("Payment Successful!");
+      setTimeout(() => {
+        toast({
+          title: "payment successfull",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
+      }, 4000);
+
+      toast({
+        title: "processing",
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+      });
     } else {
       router.push("/Payment");
     }
@@ -141,9 +156,8 @@ const Section2 = ({ val1, flagg, total, data }) => {
             justifyContent="center"
             as="b"
           >
-            <Text mr="0.6rem">YOU PAY</Text>{" "}
+            <Text mr="0.6rem">YOU PAY</Text>
             <Text ml="0.3rem" style={SfontSize}>
-              {" "}
               (Inclusive of All Taxes)
             </Text>
           </Flex>

@@ -12,7 +12,7 @@ const MainCheckoutPage = () => {
 
   useEffect(() => {
     dispatch(get_cart());
-  }, []);
+  }, [dispatch]);
 
   const priceSaved = () => {
     let sum = 0;

@@ -40,14 +40,6 @@ const Page = () => {
     dispatch(GetProduct(router.query.product));
   }, [router, dispatch]);
 
-  if (loading) {
-    return (
-      <Stack h="100vh" w={"100vw"} align="center" justify={"center"}>
-        <Image src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif" />
-      </Stack>
-    );
-  }
-
   return (
     <Box>
       <Box m={{ base: "10px", md: "50px" }} textAlign="center" bg="">
@@ -253,72 +245,69 @@ const Page = () => {
               m="auto"
               mt="30px"
             >
-              {products &&
-                products.map((ele) => (
-                  <Skeleton isLoaded={!loading}>
-                    <Box key={ele.id} className={style.productcard} p="3px">
-                      <Link href={`/furniture/products/productid/${ele.id}`}>
-                        <Box position="relative" className={style.cardimg}>
-                          <Image w="100%" src={ele.image} />
-                          <Button
-                            position="absolute"
-                            borderRadius="0px"
-                            backgroundColor="#ff7035"
-                            top="80%"
-                            left="30%"
-                            onClick={() => {
-                              let count = 1;
-                              let count1 = 1;
-                              let obj = {
-                                ...ele,
-                                count: count,
-                                count1: count1,
-                              };
-                              add_to_cart(obj);
-                            }}
-                            disabled={true}
-                            display={{ base: "none", md: "block" }}
-                          >
-                            Add To Cart
-                          </Button>
-                        </Box>
-                      </Link>
-
-                      <Box mt="15px">
-                        <Text mb="10px" className={style.name}>
-                          {ele.name}
-                        </Text>
-                        <Flex gap="10px" alignItems="center">
-                          <Text
-                            as="b"
-                            color="orange"
-                            fontSize={{ base: "sm", md: "xl" }}
-                          >
-                            ₹ {ele.price}
-                          </Text>
-                          <Text color="#2e2c2c" as="del">
-                            ₹{" "}
-                            {Math.floor(ele.price * (ele.discount * 0.01)) +
-                              ele.price}
-                          </Text>
-                        </Flex>
-                        <Text
-                          fontSize={{ base: "sm", md: "xl" }}
-                          color="#6cb061"
-                          as="b"
-                        >
-                          {ele.discount}% off
-                        </Text>
-                        <Flex alignItems="center" gap="5px">
-                          <Text fontSize="sm">Earn Cashback</Text>
-                          <Text>
-                            {Math.floor(ele.price * (ele.discount * 0.01))}
-                          </Text>
-                        </Flex>
-                      </Box>
+              {products.map((ele) => (
+                <Box key={ele.id} className={style.productcard} p="3px">
+                  <Link href={`/furniture/products/productid/${ele.id}`}>
+                    <Box position="relative" className={style.cardimg}>
+                      <Image w="100%" src={ele.image} />
+                      <Button
+                        position="absolute"
+                        borderRadius="0px"
+                        backgroundColor="#ff7035"
+                        top="80%"
+                        left="30%"
+                        onClick={() => {
+                          let count = 1;
+                          let count1 = 1;
+                          let obj = {
+                            ...ele,
+                            count: count,
+                            count1: count1,
+                          };
+                          add_to_cart(obj);
+                        }}
+                        disabled={true}
+                        display={{ base: "none", md: "block" }}
+                      >
+                        Add To Cart
+                      </Button>
                     </Box>
-                  </Skeleton>
-                ))}
+                  </Link>
+
+                  <Box mt="15px">
+                    <Text mb="10px" className={style.name}>
+                      {ele.name}
+                    </Text>
+                    <Flex gap="10px" alignItems="center">
+                      <Text
+                        as="b"
+                        color="orange"
+                        fontSize={{ base: "sm", md: "xl" }}
+                      >
+                        ₹ {ele.price}
+                      </Text>
+                      <Text color="#2e2c2c" as="del">
+                        ₹{" "}
+                        {Math.floor(ele.price * (ele.discount * 0.01)) +
+                          ele.price}
+                      </Text>
+                    </Flex>
+                    <Text
+                      fontSize={{ base: "sm", md: "xl" }}
+                      color="#6cb061"
+                      as="b"
+                    >
+                      {ele.discount}% off
+                    </Text>
+                    <Flex alignItems="center" gap="5px">
+                      <Text fontSize="sm">Earn Cashback</Text>
+                      <Text>
+                        {Math.floor(ele.price * (ele.discount * 0.01))}
+                      </Text>
+                    </Flex>
+                  </Box>
+                </Box>
+              ))}
             </SimpleGrid>
           </Box>
         </Flex>
@@ -326,16 +315,5 @@ const Page = () => {
     </Box>
   );
 };
-
-// export async function getServerSideProps(context) {
-
-//     let type = context.query.product;
-//     let res = await getProductbyAPI()
-//     let data = res.filter((ele)=> ele.type === type)
-
-//     return {
-//       props: {products:data}, // will be passed to the page component as props
-//     }
-//   }
 
 export default Page;
