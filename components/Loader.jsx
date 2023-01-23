@@ -6,6 +6,7 @@ import style from "./loader.module.css";
 const Loader = () => {
   return (
     <Flex
+    
       position="relative"
       direction="column"
       justifyContent="center"
