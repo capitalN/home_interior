@@ -1,4 +1,9 @@
-# Pepperfry.com Clone
+<img src="https://home-interior-capitaln.vercel.app/home_interior_logo.png"/>
+
+# DESCRIPTION
+- this is the clone of pepperfry.com which is a e-comerce website for home decor and furniture.
+- tech-stacks:- next.js, reducer & chakraUI for UI.
+- link:- https://home-interior-capitaln.vercel.app/
 
 # OUR TEAM
  - Nikhil Angolkar (Team Lead)
