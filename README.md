@@ -1,7 +1,7 @@
 # DESCRIPTION
 - this is the clone of pepperfry.com which is a e-comerce website for home decor and furniture.
-- we have used next.js, reducer & chakraUI for UI.
-- link https://home-interior-capitaln.vercel.app/
+- tech-stacks:- next.js, reducer & chakraUI for UI.
+- link:- https://home-interior-capitaln.vercel.app/
 
 # OUR TEAM
  - Nikhil Angolkar (Team Lead)
