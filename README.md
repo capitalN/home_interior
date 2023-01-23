@@ -9,6 +9,13 @@
  - Vikesh Hinge (Member 2)
  - Suraj Yadav (Member 3)
  - Arun Kumar Rana (Member 4)
+ 
+ #TECH STACK USED
+ - HTML
+ - CSS
+ - Next.js
+ - Chakra-Ui
+ - Redux
 
 # SCREEN-SHOTS
 <div>
