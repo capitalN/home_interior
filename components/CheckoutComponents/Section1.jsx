@@ -23,6 +23,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../Loader";
 
 const mediumtext = {
   fontSize: "14px",
@@ -75,13 +76,7 @@ const Section1 = ({
         margin="auto"
         gap="1rem"
       >
-        <Spinner
-          thickness="4px"
-          speed="0.65s"
-          emptyColor="gray.200"
-          color="blue.500"
-          size="xl"
-        />
+        <Loader />
       </Flex>
     );
   }
