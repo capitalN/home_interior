@@ -24,15 +24,6 @@ import {loginSuccess, loginFailure} from "../../reducer/AuthReducer/LoginAuth/lo
 import Link from "next/link";
 
 
-let user = {login: false,
-  details: {}}
-
-  try {
-    user = localStorage.getItem("hiUser") ? JSON.parse(localStorage.getItem("hiUser")) : {login: false,
-      details: {}};
-  } catch (error) {
-    console.log(error)
-  }
 
 
 
@@ -72,7 +63,6 @@ const AuthModals = () => {
   };
 
   const handleSignupFormSubmit = () => {
-    // console.log(signupDetails);
     let isValid = true;
     Object.keys(signupDetails).forEach((key)=>{
       const value = signupDetails[key];
@@ -136,7 +126,6 @@ const AuthModals = () => {
   };
 
   const handleFormSubmit = () => {
-    // console.log(loginDetails);
     if (loginDetails == null) {
       window.alert("Please fill the form!");
       return;
@@ -171,28 +160,31 @@ const AuthModals = () => {
 
       return (
         <>
-          <>
+          <Box>
             {loginStore.login ? (
-              <Link href="/account"><Avatar size="sm" name={"user.details.name"} /></Link>
+              <Link href="/account"><Avatar size="sm" name={loginStore.details.name} /></Link>
             ) : (
               <SlUser size={30} onClick={onSignupOpen} />
             )}
     
-            <Modal isOpen={isSignupOpen} onClose={onSignupClose} size={"2xl"}>
+            <Modal isOpen={isSignupOpen} onClose={onSignupClose} size={{ base: "md", md: "2xl" }}>
               <ModalOverlay />
-              <ModalContent>
+              <ModalContent p={{ base: 2, md: 0 }}>
                 <ModalCloseButton size={"sm"} />
     
                 <Box m={0} p={0}>
-                  <Image src="https://ii1.pepperfry.com/media/wysiwyg/banners/Web_IMG_17Dec1x_2712.jpg" />
+                  <Image src="https://ii1.pepperfry.com/media/wysiwyg/banners/Web_IMG_17Dec1x_2712.jpg" visibility={{ base: "hidden", md: "visible" }}/>
                 </Box>
                 <Box
-                  w={"45%"}
+                  w={{ base: "80%", md: "45%" }}
                   display={"inline-block"}
                   position={"absolute"}
                   top={5}
-                  left={320}
+                  left={{ base: 10, md: 320 }}
                 >
+                   <Heading display={{ base: "block", md: "none" }} size="md" mb={2}>
+                Sign Up to get credit worth ₹5,000
+              </Heading>
                   <FormControl>
                     <FormLabel mb={0} fontSize="xs" color="gray.500">
                       Name
@@ -279,7 +271,7 @@ const AuthModals = () => {
                   </Text>
     
                   <Button
-                    mt={5}
+                     mt={{ base: 2, md: 5 }}
                     variant="outline"
                     borderRadius={"3px"}
                     w="100%"
@@ -308,29 +300,31 @@ const AuthModals = () => {
                 </Box>
               </ModalContent>
             </Modal>
-          </>
+          </Box>
           <>
-            <Modal isOpen={isLoginOpen} onClose={onLoginClose} size={"2xl"}>
+            <Modal isOpen={isLoginOpen} onClose={onLoginClose} size={{ base: "md", md: "2xl" }}>
               <ModalOverlay />
-              <ModalContent>
+              <ModalContent p={{ base: 2, md: 0 }}>
                 <ModalCloseButton size={"sm"} />
     
                 <Box m={0} p={0}>
-                  <Box py={10} px={7} w="45%" position="absolute">
+                  <Box  py={{ base: 1, md: 10 }}
+                px={{ base: 2, md: 7 }}
+                w={{ base: "100%", md: "45%" }} position="absolute">
                     <Text fontSize={"xl"}>Log In</Text>
                     <Heading size={"sm"} color="brand.600">
                       You Will Be Able To Track Your Order, Use Wishlist & More.
                     </Heading>
                   </Box>
-                  <Image src="https://ii1.pepperfry.com/images/new_login_modal_bg_2020.jpg" />
+                  <Image src="https://ii1.pepperfry.com/images/new_login_modal_bg_2020.jpg" visibility={{ base: "hidden", md: "visible" }}/>
                 </Box>
                 <Box
-                  w={"45%"}
+                  w={{ base: "90%", md: "45%" }}
                   p={5}
                   display={"inline-block"}
                   position={"absolute"}
-                  top={10}
-                  left={320}
+                  top={{ base: 20, md: 10 }}
+                  left={{ base: 5, md: 320 }}
                 >
                   <FormControl>
                     {loginStore.error ? (
