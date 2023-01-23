@@ -25,6 +25,8 @@ import {
   loginFailure,
 } from "../../reducer/AuthReducer/LoginAuth/loginActions";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useToast } from "@chakra-ui/react";
 
 const AuthModals = () => {
   const {
@@ -32,6 +34,7 @@ const AuthModals = () => {
     onOpen: onSignupOpen,
     onClose: onSignupClose,
   } = useDisclosure();
+  const toast = useToast();
 
   const dispatch = useDispatch();
 
@@ -158,7 +161,13 @@ const AuthModals = () => {
         if (el.password == loginDetails.details.password) {
           dispatch(loginSuccess(el));
           onLoginClose();
-          alert("Login Successful!");
+          toast({
+            title: "Login Successfull",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+          location.reload();
           return;
         }
       }
