@@ -31,16 +31,18 @@ const Sidebar = ({ linkEndPoint }) => {
     route.push("/");
   };
 
+  
+
   return (
     <>
-      <Stack gap={8} display={{ base: "none", md: "block" }}>
+      <Stack display={{ base: "none", md: "block" }}>
         <Box>
           <Heading size={"md"}>Hi {details.name}!</Heading>
           <Button mt={4} onClick={handleLogout}>
             Logout
           </Button>
+        <Divider colorScheme="black" mt={5} mb={5}/>
         </Box>
-        <Divider colorScheme="black" />
         <Box
           onClick={() => handlePageChange("/account")}
           _hover={{ cursor: "pointer" }}
@@ -54,7 +56,7 @@ const Sidebar = ({ linkEndPoint }) => {
           <Text fontSize="sm" color={"gray.500"}>
             Edit Your Account Details
           </Text>
-          <Divider colorScheme="black" />
+          <Divider colorScheme="black" mt={5} mb={5}/>
         </Box>
         <Box
           onClick={() => handlePageChange("/orders")}
@@ -69,7 +71,7 @@ const Sidebar = ({ linkEndPoint }) => {
           <Text fontSize="sm" color={"gray.500"}>
             Edit Your Account Details
           </Text>
-          <Divider colorScheme="black" />
+          <Divider colorScheme="black" mt={5} mb={5}/>
         </Box>
         <Box
           onClick={() => handlePageChange("/wallet")}
@@ -84,17 +86,17 @@ const Sidebar = ({ linkEndPoint }) => {
           <Text fontSize="sm" color={"brand.500"}>
             5000 Credits
           </Text>
-          <Divider colorScheme="black" />
+          <Divider colorScheme="black" mt={5} mb={5}/>
         </Box>
         <Box
-          onClick={() => handlePageChange("/wishlist")}
+          onClick={() => handlePageChange("/mycart")}
           _hover={{ cursor: "pointer" }}
         >
           <Heading
             size={"md"}
-            color={linkEndPoint == "/wishlist" ? "brand.600" : "black"}
+            color={linkEndPoint == "/mycart" ? "brand.600" : "black"}
           >
-            My Wishlist <ChevronRightIcon />
+            My Cart <ChevronRightIcon />
           </Heading>
           <Text fontSize="sm" color={"gray.500"}>
             Your Favourites, All In One Place

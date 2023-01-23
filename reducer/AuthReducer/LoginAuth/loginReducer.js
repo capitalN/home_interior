@@ -6,6 +6,8 @@ let initLoginState = {
     details: {}
 }
 
+console.log(initLoginState, "shit");
+
 try {
 
     if(localStorage.getItem("hiUser")){

@@ -35,7 +35,7 @@ const userAccount = () => {
   return (
     <Flex width={"90%"} py={10} m="auto">
       <Sidebar linkEndPoint={route} />
-      <Box width={"900px"}>
+      <Box width={{base: "100%", md: "900px"}}>
         <Flex justifyContent={"space-around"}>
           <Flex gap={4}>
             <Avatar size={"xl"} name={loginStore.details.name} />
