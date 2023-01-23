@@ -59,7 +59,6 @@ const AuthModals = () => {
 
   const loginStore = useSelector((store) => store.loginManager);
   const signupStore = useSelector((store) => store.signupManager);
-  console.log(loginStore, "ls");
 
   const handleSignupChange = (e) => {
     const newDetails = {
