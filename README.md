@@ -4,11 +4,11 @@
 - link:- https://home-interior-capitaln.vercel.app/
 
 # OUR TEAM
- - Nikhil Angolkar (Team Lead)
- - Shakil Pendhari (Member 1)
- - Vikesh Hinge (Member 2)
- - Suraj Yadav (Member 3)
- - Arun Kumar Rana (Member 4)
+ - Nikhil Angolkar (Home Page & Admin Section)
+ - Shakil Pendhari (Cart, Checkout & Payment Section)
+ - Vikesh Hinge (Products, Product Details & Product Filters)
+ - Suraj Yadav (Navbar & Footer)
+ - Arun Kumar Rana (SignUp, LogIn, Account Section)
 
 # SCREEN-SHOTS
 <div>
