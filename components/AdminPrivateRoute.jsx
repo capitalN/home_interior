@@ -12,6 +12,7 @@ function AdminPrivateRoute({ children }) {
   if (!adminAuth) {
     return;
   }
+
   return children;
 }
 

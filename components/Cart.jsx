@@ -11,7 +11,6 @@ import {
   Select,
   Divider,
   Image,
-  Link,
 } from "@chakra-ui/react";
 import {
   Button,
@@ -32,6 +31,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Section1 from "./CheckoutComponents/Section1";
 import { useEffect } from "react";
 import { delete_from_cart, get_cart } from "@/reducer/Cart/Cart.action";
+import Link from "next/link";
 
 let cartButton = {
   backgroundColor: "black",
@@ -58,17 +58,12 @@ const Cart = ({ setDrawer, drawer }) => {
   
   const dispatch = useDispatch();
 
-  console.log(data);
-
   useEffect(() => {
     dispatch(get_cart());
   }, []);
 
   return (
     <>
-      {/* <Button variant="ghost" ref={btnRef} colorScheme="teal" onClick={onOpen} position="fixed" top="0px" right="0px">
-      <BsCart2 size={30}  />
-      </Button> */}
       <Drawer
         size={{ base: "sm", sm: "md", md: "md" }}
         isOpen={onOpen}
@@ -102,7 +97,6 @@ const Cart = ({ setDrawer, drawer }) => {
                   alignItems="center"
                 >
                   <DrawerCloseButton onClick={() => setDrawer(!drawer)} />
-                  {/* <SmallCloseIcon /> */}
                 </Flex>
               </Flex>
               <Flex
@@ -215,13 +209,13 @@ const Cart = ({ setDrawer, drawer }) => {
                       <Stack>
                         <HStack justify={"space-between"}>
                           <Text>{product.categories}</Text>
-                          <Link
+                          <button
                             onClick={() =>
                               dispatch(delete_from_cart(product.id))
                             }
                           >
                             Remove
-                          </Link>
+                          </button>
                         </HStack>
                         <Text fontSize="20px">{product.name}</Text>
                         <Text>Price : ₹ {product.price}</Text>
@@ -242,7 +236,6 @@ const Cart = ({ setDrawer, drawer }) => {
                 No Recent view
               </Text>
             )}
-            {/* <Input placeholder='Type here...' /> */}
           </DrawerBody>
 
           <DrawerFooter>
@@ -253,6 +246,7 @@ const Cart = ({ setDrawer, drawer }) => {
                 color="white"
                 fontwight="300"
                 _hover={{ backgroundColor: "#F16521" }}
+                onClick={() => setDrawer(!drawer)}
               >
                 PROCEED TO PAY SECURELY
               </Button>

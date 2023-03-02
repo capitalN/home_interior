@@ -9,11 +9,15 @@ import style from "./MainCheckout.module.css";
 const MainCheckoutPage = () => {
   const dispatch = useDispatch();
   const data = useSelector((store) => store.cartManager.CART);
+  const login = localStorage.getItem("hiUser");
 
+  const refreshpg = () => {
+    router.replace(router.asPath);
+  };
 
   useEffect(() => {
     dispatch(get_cart());
-  }, []);
+  }, [login]);
 
   const priceSaved = () => {
     let sum = 0;

@@ -11,7 +11,7 @@ export const signupSuccess = (payload) => {
     if(duplicate.length == 0){
         hiUsers.push(payload);
         localStorage.setItem("hiUsers", JSON.stringify(hiUsers));
-        window.alert("Success!");
+        window.alert("Welcome to Home Interior!");
         return{type: signupType.SIGNUP_SUCCESS, payload}
     }
     else {

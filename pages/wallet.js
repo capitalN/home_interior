@@ -13,7 +13,7 @@ const Wallet = () => {
     <Flex width={"90%"} py={10} m="auto">
       <Sidebar linkEndPoint={route} />
       <Stack
-        width={"900px"}
+        width={{base: "100%", md: "900px"}}
         alignItems="center"
         gap={8}
         direction={"column"}

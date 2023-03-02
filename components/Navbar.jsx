@@ -168,10 +168,23 @@ export default function Navbar() {
                 <MenuItem as={Link} href="/furniture">
                   Furniture
                 </MenuItem>
-                <MenuItem>Sofa</MenuItem>
-                <MenuItem>Table</MenuItem>
-                <MenuItem>Chair</MenuItem>
-                <MenuItem>TV & Media Units</MenuItem>
+
+                <MenuItem as={Link} href="/furniture/products/sofa">
+                  Sofa
+                </MenuItem>
+
+                <MenuItem as={Link} href="/furniture/products/table">
+                  Table
+                </MenuItem>
+
+                <MenuItem as={Link} href="/furniture/products/wingchair">
+                  Chair
+                </MenuItem>
+
+                <MenuItem as={Link} href="/furniture/products/tvunit">
+                  TV Unit
+                </MenuItem>
+
                 <MenuItem>beds</MenuItem>
                 <MenuItem>Shoe Racks</MenuItem>
               </MenuList>
