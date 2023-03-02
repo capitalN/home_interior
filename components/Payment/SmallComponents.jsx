@@ -25,10 +25,10 @@ export const Div1 = ({ total }) => {
   return (
     <Flex direction="column" gap="1rem" style={{ width: "80%" }}>
       <Box>
-        <Input style={Style} type="text" placeholder="Card Number" />
+        <Input style={Style} type="text" placeholder="Card Name" />
       </Box>
       <Flex gap="1rem">
-        <Input style={Style} type="number" placeholder="Valid Thru(MM/YY)" />
+        <Input style={Style} type="number" min="1" max="5" placeholder="Valid Thru(MM/YY)" maxLength={5} />
         <InputGroup>
           <InputLeftElement
             pointerEvents="none"
@@ -41,7 +41,7 @@ export const Div1 = ({ total }) => {
         </InputGroup>
       </Flex>
       <Box>
-        <Input style={Style} type="number" placeholder="Card Number" />
+        <Input style={Style} type="number" placeholder="Card Number"  min="1" max="16" />
       </Box>
     </Flex>
   );

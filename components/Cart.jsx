@@ -55,6 +55,7 @@ const Cart = ({ setDrawer, drawer }) => {
     three: true,
   });
   const data = useSelector((store) => store.cartManager.CART);
+  
   const dispatch = useDispatch();
 
   console.log(data);

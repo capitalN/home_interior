@@ -1,0 +1,243 @@
+.div{
+    box-sizing: border-box;
+    animation: sp 2s ease-in-out 0.1s infinite;
+    /* width: 3rem; */
+    animation-fill-mode: forwards;
+}
+
+@keyframes sp{
+   0%{
+    width: 0%;
+    border: 2px solid red;
+    /* height: 1rem; */
+   }
+   20%{
+    /* width: 20% ; */
+    border: 2px solid orange;
+    /* height: 2rem; */
+   }
+   40%{
+    /* width: 40%; */
+    border: 2px solid blue;
+   }
+   60%{
+    /* width: 60%; */
+    border: 2px solid brown;
+   }
+   80%{
+     /* width: 80%; */
+     border: 2px solid rgb(236, 165, 165);
+   }
+   100%{
+    width: 100%;
+    border: 2px solid rgb(109, 161, 109);
+    /* height: 2rem; */
+   }
+}
+
+
+
+.div1{
+    box-sizing: border-box;
+    animation: spp 2s ease-in-out 0.1s infinite;
+    /* width: 3rem; */
+    animation-fill-mode: backwards;
+}
+
+@keyframes spp{
+   100%{
+    width: 0%;
+    border: 2px solid red;
+    /* height: 1rem; */
+   }
+   80%{
+    /* width: 20% ; */
+    border: 2px solid orange;
+    /* height: 2rem; */
+   }
+   60%{
+    /* width: 40%; */
+    border: 2px solid blue;
+   }
+   40%{
+    /* width: 60%; */
+    border: 2px solid brown;
+   }
+   20%{
+     /* width: 80%; */
+     border: 2px solid rgb(236, 165, 165);
+   }
+   0%{
+    width: 100%;
+    border: 2px solid rgb(109, 161, 109);
+    /* height: 2rem; */
+   }
+}
+
+
+
+
+.div2{
+    box-sizing: border-box;
+    animation: sppp 2s ease-out 0.1s infinite;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    animation-fill-mode:forwards;
+    width: 98%;
+    height: 98%;
+    margin: auto;
+}
+
+@keyframes sppp{
+   100%{
+    /* width: 0%; */
+    border: 2px solid red;
+    /* height: 1rem; */
+   }
+   80%{
+    /* width: 20% ; */
+    border: 2px solid orange;
+    /* height: 2rem; */
+   }
+   60%{
+    /* width: 40%; */
+    border: 2px solid blue;
+   }
+   40%{
+    /* width: 60%; */
+    border: 2px solid brown;
+   }
+   20%{
+     /* width: 80%; */
+     border: 2px solid rgb(236, 165, 165);
+   }
+   0%{
+    /* width: 100%; */
+    border: 2px solid rgb(109, 161, 109);
+    /* height: 2rem; */
+   }
+}
+
+
+
+.div3{
+    box-sizing: border-box;
+    animation: sppp 6s ease-out 0.5s infinite;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    animation-fill-mode:forwards;
+    width: 98%;
+    height: 98%;
+    margin: auto;
+}
+
+@keyframes sppp{
+   100%{
+    /* width: 0%; */
+    border: 2px solid red;
+    /* height: 1rem; */
+   }
+   80%{
+    /* width: 20% ; */
+    border: 2px solid orange;
+    /* height: 2rem; */
+   }
+   60%{
+    /* width: 40%; */
+    border: 2px solid blue;
+   }
+   40%{
+    /* width: 60%; */
+    border: 2px solid brown;
+   }
+   20%{
+     /* width: 80%; */
+     border: 2px solid rgb(236, 165, 165);
+   }
+   0%{
+    /* width: 100%; */
+    border: 2px solid rgb(109, 161, 109);
+    /* height: 2rem; */
+   }
+}
+
+.div5{
+  margin-top: 1.75rem;
+}
+.text{
+  font-size: 0.9rem;
+}
+
+
+
+
+.div4{
+  animation: sppp 2s ease-out 0.5s infinite;
+  animation-fill-mode:forwards;
+  width:2rem;
+  height:2rem
+}
+
+@keyframes sppp{
+   from {
+     transform: translate3d(0px, 0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(14.5rem, 0, 0);
+    opacity: 1;
+  }
+}
+
+
+@media all and (min-width:0px) and (max-width:480px){
+ 
+  .div4{
+    width:1.2rem;
+    height:1.2rem
+  }
+  .div5{
+    margin-top: 1rem;
+  }
+  .text{
+    font-size: 0.5rem;
+    letter-spacing: 0px;
+  }
+  @keyframes sppp{
+    from {
+      transform: translate3d(0px, 0, 0);
+     opacity: 0;
+   }
+   to {
+     transform: translate3d(4.5rem, 0, 0);
+     opacity: 1;
+   }
+ }
+}
+
+
+@media all and (min-width:481px) and (max-width:768px){
+  .div4{
+    width:1.5rem;
+    height:1.5rem
+  }
+  .div5{
+    margin-top: 1.32rem;
+  }
+  .text{
+    font-size: 0.7rem;
+    letter-spacing: 0px;
+  }
+  @keyframes sppp{
+    from {
+      transform: translate3d(0px, 0, 0);
+     opacity: 0;
+   }
+   to {
+     transform: translate3d(10.5rem, 0, 0);
+     opacity: 1;
+   }
+ }
+}

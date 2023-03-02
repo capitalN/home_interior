@@ -10,6 +10,7 @@ const MainCheckoutPage = () => {
   const dispatch = useDispatch();
   const data = useSelector((store) => store.cartManager.CART);
 
+
   useEffect(() => {
     dispatch(get_cart());
   }, []);
@@ -58,7 +59,7 @@ const MainCheckoutPage = () => {
                 className={style.checkout}
               >
                 {data?.map((item) => (
-                  <Section1 {...item} />
+                  <Section1 key={item.id} {...item} />
                 ))}
               </Box>
             </Flex>

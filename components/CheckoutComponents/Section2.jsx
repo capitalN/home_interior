@@ -1,6 +1,7 @@
 import { InfoIcon } from "@chakra-ui/icons";
 import { Spacer } from "@chakra-ui/react";
 import { Flex, Heading, Image, Text, Checkbox, Box } from "@chakra-ui/react";
+import axios from "axios";
 import { useRouter } from "next/router";
 import React from "react";
 import { useEffect } from "react";
@@ -48,13 +49,19 @@ const Section2 = ({ val1, flagg, total, data }) => {
   const handlePrice = () => {
     let sum = 0;
     for (let i = 0; i < data?.length; i++) {
-      const { price, discount } = data[i];
-      sum = sum + Math.floor(price - (price * discount) / 100 + 1836);
+      const { price, discount,count } = data[i];
+      sum = sum + Math.floor((price - (price * discount) / 100)*count + 1836) ;
     }
     return sum;
   };
   const handlePay = () => {
     if (flagg) {
+      for(let i=0; i<data.length; i++)
+      {
+        let id = data[i].id
+        axios.delete(`https://home-interior.onrender.com/cart/${id}`)
+      }
+     
       alert("Payment Successful!");
     } else {
       router.push("/Payment");

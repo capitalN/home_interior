@@ -3,12 +3,16 @@
 import {
   ADD_TO_CART,
   DELETE_FROM_CART,
+  ERROR_CART,
   GET_CART,
   ITEM_EXIST,
+  LOADING_CART,
   UPDATE_CART,
 } from "./Cart.actionTypes";
 
 const initialState = {
+  loading:false,
+  error:false,
   item_exist: false,
   CART: [],
   item_deleted: false,
@@ -16,21 +20,41 @@ const initialState = {
 
 export const CartReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case LOADING_CART:{
+      return {
+        ...state,
+        loading:true,
+        error:false
+      }
+    }
+    case ERROR_CART:{
+      return {
+        ...state,
+        error:true,
+        loading:false
+      }
+    }
     case GET_CART: {
       return {
         ...state,
+        loading:false,
+        error:false,
         CART: payload,
       };
     }
     case ADD_TO_CART: {
       return {
         ...state,
+        loading:false,
+        error:false,
         CART: [...state.CART, payload],
       };
     }
     case ITEM_EXIST: {
       return {
         ...state,
+        loading:false,
+        error:false,
         item_exist: true,
       };
     }
@@ -44,6 +68,8 @@ export const CartReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         CART: updated,
+        loading:false,
+        error:false,
       };
     }
     case DELETE_FROM_CART: {
@@ -54,6 +80,8 @@ export const CartReducer = (state = initialState, { type, payload }) => {
       });
       return {
         ...state,
+        loading:false,
+        error:false,
         CART: updated,
         item_deleted: true,
       };

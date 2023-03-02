@@ -2,11 +2,13 @@ import {
   Box,
   Text,
   Flex,
+  Grid,
   Image,
   SimpleGrid,
   Divider,
   Checkbox,
   Button,
+  Skeleton,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import style from "./products.module.css";
@@ -25,16 +27,20 @@ import {
   GetByType,
 } from "@/reducer/Product/Product.action.js";
 import Link from "next/link";
+import Loader from "@/components/Loader/Loader";
 
 const Page = () => {
   let router = useRouter();
   let dispatch = useDispatch();
 
-  let products = useSelector((store) => store.ProductManager.Data);
+  let products = useSelector((store) => store.ProductManager.Data)
   let { loading } = useSelector((store) => store.ProductManager);
+
+  let arr = Array(17).fill(1);
 
   useEffect(() => {
     dispatch(GetProduct(router.query.product));
+    console.log(router,"hello this is router")
   }, [router, dispatch]);
 
   return (
@@ -245,9 +251,12 @@ const Page = () => {
               m="auto"
               mt="30px"
             >
-              {products &&
-                products.map((ele) => (
+              {loading?arr.map((el,i)=><Box border="1px solid grey" width="100%" height="10rem" display="flex" justifyContent="center" alignItems="center"><Loader/></Box>): 
+               products.map((ele) => (
                   <Box key={ele.id} className={style.productcard} p="3px">
+                  {
+                    console.log(loading)
+                  }
                     <Link href={`/furniture/products/productid/${ele.id}`}>
                       <Box position="relative" className={style.cardimg}>
                         <Image w="100%" src={ele.image} />
@@ -304,7 +313,8 @@ const Page = () => {
                       </Flex>
                     </Box>
                   </Box>
-                ))}
+                ))
+                }
             </SimpleGrid>
           </Box>
         </Flex>
