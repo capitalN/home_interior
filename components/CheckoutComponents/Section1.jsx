@@ -23,6 +23,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import Loader from "../Loader/Loader";
 
 const mediumtext = {
@@ -78,7 +79,7 @@ const Section1 = ({
         margin="auto"
         gap="1rem"
       >
-       <Loader/>
+        <Loader />
       </Flex>
     );
   }

@@ -16,6 +16,7 @@ const initialState = {
   item_exist: false,
   CART: [],
   item_deleted: false,
+  loading:false
 };
 
 export const CartReducer = (state = initialState, { type, payload }) => {

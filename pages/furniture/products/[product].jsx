@@ -323,15 +323,5 @@ const Page = () => {
   );
 };
 
-// export async function getServerSideProps(context) {
-
-//     let type = context.query.product;
-//     let res = await getProductbyAPI()
-//     let data = res.filter((ele)=> ele.type === type)
-
-//     return {
-//       props: {products:data}, // will be passed to the page component as props
-//     }
-//   }
-
 export default Page;
+
