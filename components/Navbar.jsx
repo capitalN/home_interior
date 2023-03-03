@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import React from "react";
+import Search from "./Search.function";
 
 import {
   Box,
@@ -30,6 +30,7 @@ import AuthModals from "./login_signup/authModals";
 import Link from "next/link";
 
 const NavLink = ({ children }) => (
+
   <Link
     px={2}
     py={1}
@@ -48,34 +49,10 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [drawer, setDrawer] = useState(false);
 
-  const [searchinput, setSearchinput] = useState("");
-  const [data, setData] = useState([]);
-  const [searchdata, setSearchdata] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(`https://icy-thread-zydeco.glitch.me/Furniture`)
-      .then((res) => {
-        setData(res.data);
-        // console.log(res.data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  const handlesearch = () => {
-    const value = searchinput;
-    let temp = [];
-    temp = data.filter((d) => {
-      d = d.name.toLowerCase();
-      return d.indexOf(value) > -1;
-    });
-    console.log(temp);
-    setSearchdata(temp);
-  };
 
   return (
     <>
-      <Box px={4}>
+      <Box px={4} >
         <Flex
           h={20}
           alignItems={"center"}
@@ -94,7 +71,13 @@ export default function Navbar() {
             <Link href="/">
               <Image src="/home_interior_logo.png" w="100%" alt="" />
             </Link>
+
           </Box>
+    {/* search ....................imported ................here.......... */}
+         <Box>
+         <Search/>
+         </Box>
+ {/* search .............................................. */}
 
           <Box
             spacing={20}
@@ -103,30 +86,18 @@ export default function Navbar() {
             border="0px solid"
             bgColor="gray.100"
           >
-            <Input
-              w="700px"
-              border="none"
-              bgColor="gray.100"
-              _hover={"none"}
-              type="text"
-              placeholder="Search"
-              value={searchinput}
-              onChange={(e) => setSearchinput(e.target.value)}
-            />
-
-            <Flex alignItems={"center"} pr="5">
-              <HiSearch size={20} onClick={handlesearch} />
-            </Flex>
+          
           </Box>
 
-          <Box>
+          <Box ml='15px'>
             <Flex alignItems={"center"}>
-              <HStack spacing={5}>
-                <AuthModals />
-                <Link href="#">
-                  <BsHeart size={30} />
-                </Link>
+              <HStack spacing={'5px'} >
+                <AuthModals size={10}/>
+                {/* <Link href="#">
+                  <BsHeart size={20} />
+                </Link> */}
                 <Button
+                  
                   onClick={() => {
                     setDrawer((val) => !val);
                   }}
@@ -152,7 +123,7 @@ export default function Navbar() {
             <Menu>
               <MenuButton>FURNITURE</MenuButton>
               <MenuList>
-                <MenuItem as={Link} href="/furniture">
+                <MenuItem as={Link} href="/furniture" >
                   Furniture
                 </MenuItem>
                 <MenuItem as={Link} href="/furniture/products/sofa">
@@ -204,7 +175,7 @@ export default function Navbar() {
         <hr />
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
+            <Stack onClick={onClose} as={"nav"} spacing={4}>
               <Link href="/furniture">Furniture</Link>
               <Link href="#">Home Decor</Link>
               <Link href="#">Lamps & Lighting</Link>

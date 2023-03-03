@@ -2,21 +2,15 @@ import {
   Box,
   Text,
   Flex,
-  Grid,
   Image,
   SimpleGrid,
   Divider,
-  Checkbox,
-  Button,
-  Skeleton,
+  Checkbox 
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import style from "./products.module.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { SmallAddIcon } from "@chakra-ui/icons";
-import { add_to_cart } from "@/reducer/Cart/Cart.action";
 
 import {
   GetProduct,
@@ -260,17 +254,49 @@ const Page = () => {
               m="auto"
               mt="30px"
             >
-              {loading
-                ? arr.map((el, i) => (
-                    <Box
-                      border="1px solid grey"
-                      width="100%"
-                      height="10rem"
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                    >
-                      <Loader />
+              {loading?arr.map((el,i)=><Box border="1px solid grey" width="100%" height="10rem" display="flex" justifyContent="center" alignItems="center"><Loader/></Box>): 
+               products.map((ele) => (
+                  <Box key={ele.id} className={style.productcard} p="3px">
+                  {
+                    console.log(loading)
+                  }
+                    <Link href={`/furniture/products/productid/${ele.id}`}>
+                      <Box position="relative" className={style.cardimg}>
+                        <Image w="100%" src={ele.image} />
+                      </Box>
+                    </Link>
+
+                    <Box mt="15px">
+                      <Text mb="10px" className={style.name}>
+                        {ele.name}
+                      </Text>
+                      <Flex gap="10px" alignItems="center">
+                        <Text
+                          as="b"
+                          color="orange"
+                          fontSize={{ base: "sm", md: "xl" }}
+                        >
+                          ₹ {ele.price}
+                        </Text>
+                        <Text color="#2e2c2c" as="del">
+                          ₹{" "}
+                          {Math.floor(ele.price * (ele.discount * 0.01)) +
+                            ele.price}
+                        </Text>
+                      </Flex>
+                      <Text
+                        fontSize={{ base: "sm", md: "xl" }}
+                        color="#6cb061"
+                        as="b"
+                      >
+                        {ele.discount}% off
+                      </Text>
+                      <Flex alignItems="center" gap="5px">
+                        <Text fontSize="sm">Earn Cashback</Text>
+                        <Text>
+                          {Math.floor(ele.price * (ele.discount * 0.01))}
+                        </Text>
+                      </Flex>
                     </Box>
                   ))
                 : products.map(
