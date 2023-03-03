@@ -3,7 +3,7 @@ import { store } from "@/reducer/store";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import theme from "../components/theme";
-import Cart from "@/components/Cart";
+import Cart from "@/components/DrawerCart";
 import Footer from "@/components/Footer";
 import Head from "next/head";
 

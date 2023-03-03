@@ -264,6 +264,7 @@ const Page = () => {
                           position="absolute"
                           borderRadius="0px"
                           backgroundColor="#ff7035"
+                          // className={style.addToCart}
                           top="80%"
                           left="30%"
                           onClick={() => {
@@ -272,7 +273,6 @@ const Page = () => {
                             let obj = { ...ele, count: count, count1: count1 };
                             add_to_cart(obj);
                           }}
-                          disabled={true}
                           display={{ base: "none", md: "block" }}
                         >
                           Add To Cart

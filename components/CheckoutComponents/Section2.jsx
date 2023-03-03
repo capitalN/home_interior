@@ -34,7 +34,7 @@ const getNameintolocalStorage = () => {
   }
 };
 
-const Section2 = ({ val1, flagg, total, data }) => {
+const Section2 = ({ val1, flagg, total, data,MakePayment }) => {
   const val = val1 === "none" ? "none" : "flex";
   const flag = flagg === "true" ? "PAY NOW" : "PROCEED TO PAY";
   const router = useRouter();
@@ -61,8 +61,9 @@ const Section2 = ({ val1, flagg, total, data }) => {
         let id = data[i].id
         axios.delete(`https://home-interior.onrender.com/cart/${id}`)
       }
-     
+      MakePayment();
       alert("Payment Successful!");
+      router.push("/furniture/products/sofa")
     } else {
       router.push("/Payment");
     }
