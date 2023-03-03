@@ -9,7 +9,6 @@ import style from "./MainCheckout.module.css";
 const MainCheckoutPage = () => {
   const dispatch = useDispatch();
   const data = useSelector((store) => store.cartManager.CART);
-
   const login = localStorage.getItem("hiUser");
 
   const refreshpg = () => {
@@ -64,7 +63,7 @@ const MainCheckoutPage = () => {
                 className={style.checkout}
               >
                 {data?.map((item) => (
-                  <Section1 {...item} />
+                  <Section1 key={item.id} {...item} />
                 ))}
               </Box>
             </Flex>

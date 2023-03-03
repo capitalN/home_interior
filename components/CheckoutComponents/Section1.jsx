@@ -23,7 +23,8 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../Loader";
+
+import Loader from "../Loader/Loader";
 
 const mediumtext = {
   fontSize: "14px",
@@ -46,12 +47,13 @@ const Section1 = ({
   count,
 }) => {
   const dispatch = useDispatch();
-  const { loading, error, Data } = useSelector((store) => store.cartManager);
+  const { loading, error, CART } = useSelector((store) => store.cartManager);
   const [countVal, setCountVal] = useState(1);
-  price = price * count;
+  price = +price * Number(count);
 
   useEffect(() => {
     dispatch(get_cart());
+    console.log(price,count,"hello")
   }, [count]);
 
   const handleDelete = (id) => {
@@ -73,6 +75,7 @@ const Section1 = ({
         alignItems="center"
         height="8rem"
         width="100%"
+        padding="2rem"
         margin="auto"
         gap="1rem"
       >

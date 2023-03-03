@@ -18,8 +18,8 @@ const PaymentSection1 = () => {
   const handlePrice = () => {
     let sum = 0;
     for (let i = 0; i < data?.length; i++) {
-      const { price, discount } = data[i];
-      sum = sum + Math.floor(price - (price * discount) / 100 + 1836);
+      const { price, discount,count } = data[i];
+      sum = sum + Math.floor((price - (price * discount) / 100)*count + 1836);
     }
     return sum;
   };
@@ -89,7 +89,7 @@ const PaymentSection1 = () => {
     </div>
   );
 };
-const arr = [`<PaymentSection1/>`];
-console.log(arr);
+// const arr = [`<PaymentSection1/>`];
+// console.log(arr);
 
 export default PaymentSection1;
