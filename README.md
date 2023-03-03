@@ -8,7 +8,14 @@
  - Shakil Pendhari (Cart, Checkout & Payment Section)
  - Vikesh Hinge (Products, Product Details & Product Filters)
  - Suraj Yadav (Navbar & Footer)
- - Arun Kumar Rana (SignUp, LogIn, Account Section)
+ - Arun Kumar Rana (SignUp, LogIn, Account Section
+ 
+ # TECH STACK
+ - HTML 
+ - CSS
+ - Next.js
+ - Chakra- 
+ - Reduxn
 
 # SCREEN-SHOTS
 <div>
