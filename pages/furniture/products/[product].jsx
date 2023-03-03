@@ -2,13 +2,13 @@ import {
   Box,
   Text,
   Flex,
+  Grid,
   Image,
   SimpleGrid,
   Divider,
   Checkbox,
   Button,
   Skeleton,
-  Stack,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import style from "./products.module.css";
@@ -27,27 +27,32 @@ import {
   GetByType,
 } from "@/reducer/Product/Product.action.js";
 import Link from "next/link";
-import Loader from "@/components/Loader";
+import Loader from "@/components/Loader/Loader";
 
 const Page = () => {
   let router = useRouter();
   let dispatch = useDispatch();
 
-  let products = useSelector((store) => store.ProductManager.Data);
+  let products = useSelector((store) => store.ProductManager.Data)
   let { loading } = useSelector((store) => store.ProductManager);
+
+  let arr = Array(17).fill(1);
 
   useEffect(() => {
     dispatch(GetProduct(router.query.product));
+    console.log(router,"hello this is router")
   }, [router, dispatch]);
 
   return (
     <Box>
+      {/* <Text>{router.query.product}</Text> */}
       <Box m={{ base: "10px", md: "50px" }} textAlign="center" bg="">
         <Text className={style.headtext} as="b">
           Shopping for Living Room
         </Text>
         <Flex className={style.header} mt="20px" gap="20px">
           <Link href="/furniture/products/sofa">
+            {" "}
             <Box>
               <Image
                 src="https://ii1.pepperfry.com/media/catalog/product/b/a/494x544/bali-2-seater-sofa-in-blue-colour-by-trevi-furniture-bali-2-seater-sofa-in-blue-colour-by-trevi-furn-xnwtwh.jpg"
@@ -57,6 +62,7 @@ const Page = () => {
           </Link>
           <Link href="/furniture/products/wingchair">
             <Box>
+              {" "}
               <Image
                 src="https://ii1.pepperfry.com/media/catalog/product/p/a/800x880/panas-wing-chair-in-sea-green-by-febonic-panas-wing-chair-in-sea-green-by-febonic-wbf32h.jpg"
                 alt="Chairs"
@@ -245,69 +251,70 @@ const Page = () => {
               m="auto"
               mt="30px"
             >
-              {products.map((ele) => (
-                <Box key={ele.id} className={style.productcard} p="3px">
-                  <Link href={`/furniture/products/productid/${ele.id}`}>
-                    <Box position="relative" className={style.cardimg}>
-                      <Image w="100%" src={ele.image} />
-                      <Button
-                        position="absolute"
-                        borderRadius="0px"
-                        backgroundColor="#ff7035"
-                        top="80%"
-                        left="30%"
-                        onClick={() => {
-                          let count = 1;
-                          let count1 = 1;
-                          let obj = {
-                            ...ele,
-                            count: count,
-                            count1: count1,
-                          };
-                          add_to_cart(obj);
-                        }}
-                        disabled={true}
-                        display={{ base: "none", md: "block" }}
-                      >
-                        Add To Cart
-                      </Button>
-                    </Box>
-                  </Link>
+              {loading?arr.map((el,i)=><Box border="1px solid grey" width="100%" height="10rem" display="flex" justifyContent="center" alignItems="center"><Loader/></Box>): 
+               products.map((ele) => (
+                  <Box key={ele.id} className={style.productcard} p="3px">
+                  {
+                    console.log(loading)
+                  }
+                    <Link href={`/furniture/products/productid/${ele.id}`}>
+                      <Box position="relative" className={style.cardimg}>
+                        <Image w="100%" src={ele.image} />
+                        <Button
+                          position="absolute"
+                          borderRadius="0px"
+                          backgroundColor="#ff7035"
+                          top="80%"
+                          left="30%"
+                          onClick={() => {
+                            let count = 1;
+                            let count1 = 1;
+                            let obj = { ...ele, count: count, count1: count1 };
+                            add_to_cart(obj);
+                          }}
+                          disabled={true}
+                          display={{ base: "none", md: "block" }}
+                        >
+                          Add To Cart
+                        </Button>
+                      </Box>
+                    </Link>
 
-                  <Box mt="15px">
-                    <Text mb="10px" className={style.name}>
-                      {ele.name}
-                    </Text>
-                    <Flex gap="10px" alignItems="center">
+                    <Box mt="15px">
+                      <Text mb="10px" className={style.name}>
+                        {ele.name}
+                      </Text>
+                      <Flex gap="10px" alignItems="center">
+                        <Text
+                          as="b"
+                          color="orange"
+                          fontSize={{ base: "sm", md: "xl" }}
+                        >
+                          ₹ {ele.price}
+                        </Text>
+                        <Text color="#2e2c2c" as="del">
+                          ₹{" "}
+                          {Math.floor(ele.price * (ele.discount * 0.01)) +
+                            ele.price}
+                        </Text>
+                      </Flex>
                       <Text
-                        as="b"
-                        color="orange"
                         fontSize={{ base: "sm", md: "xl" }}
+                        color="#6cb061"
+                        as="b"
                       >
-                        ₹ {ele.price}
+                        {ele.discount}% off
                       </Text>
-                      <Text color="#2e2c2c" as="del">
-                        ₹{" "}
-                        {Math.floor(ele.price * (ele.discount * 0.01)) +
-                          ele.price}
-                      </Text>
-                    </Flex>
-                    <Text
-                      fontSize={{ base: "sm", md: "xl" }}
-                      color="#6cb061"
-                      as="b"
-                    >
-                      {ele.discount}% off
-                    </Text>
-                    <Flex alignItems="center" gap="5px">
-                      <Text fontSize="sm">Earn Cashback</Text>
-                      <Text>
-                        {Math.floor(ele.price * (ele.discount * 0.01))}
-                      </Text>
-                    </Flex>
+                      <Flex alignItems="center" gap="5px">
+                        <Text fontSize="sm">Earn Cashback</Text>
+                        <Text>
+                          {Math.floor(ele.price * (ele.discount * 0.01))}
+                        </Text>
+                      </Flex>
+                    </Box>
                   </Box>
-                </Box>
-              ))}
+                ))
+                }
             </SimpleGrid>
           </Box>
         </Flex>
@@ -317,3 +324,4 @@ const Page = () => {
 };
 
 export default Page;
+
