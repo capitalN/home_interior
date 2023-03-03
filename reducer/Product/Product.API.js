@@ -5,10 +5,18 @@ export const getProduct_by_API = async () => {
   return res.data;
 };
 
-export const getProductbyAPI = async (str) => {
+export const getProductbyAPI = async (str, page = 1) => {
   let res = await axios.get("https://home-interior.onrender.com/furniture");
+  console.log(res.data);
   let data = res.data.filter((ele) => ele.type === str);
-  return data;
+
+  let myData = [];
+  if (data.length) {
+    for (let i = 0 + page; i < 6 + page; i++) {
+      myData.push(data[i]);
+    }
+  }
+  return myData;
 };
 
 export const getProductIdbyAPI = async (id) => {

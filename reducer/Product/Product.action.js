@@ -9,10 +9,10 @@ import {
 } from "./Product.type.js";
 import { getProductbyAPI } from "./Product.API.js";
 
-export const GetProduct = (str) => async (dispatch) => {
+export const GetProduct = (str, page) => async (dispatch) => {
   dispatch({ type: GET_PRODUCT_LOADING });
   try {
-    let data = await getProductbyAPI(str);
+    let data = await getProductbyAPI(str, page);
     dispatch({ type: GET_PRODUCT_SUCCESS, payload: data });
   } catch (err) {
     dispatch({ type: GET_PRODUCT_ERROR, payload: err.message });
