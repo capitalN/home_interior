@@ -25,7 +25,7 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { HiSearch } from "react-icons/hi";
 import { BsHeart, BsCart2 } from "react-icons/bs";
-import Cart from "./Cart";
+import DrawerCart from "./DrawerCart";
 import AuthModals from "./login_signup/authModals";
 import Link from "next/link";
 
@@ -109,7 +109,7 @@ export default function Navbar() {
                   <BsCart2 size={30} />
                 </Button>
               </HStack>
-              {drawer && <Cart setDrawer={setDrawer} drawer={drawer} />}
+              {drawer && <DrawerCart setDrawer={setDrawer} drawer={drawer} />}
             </Flex>
           </Box>
         </Flex>

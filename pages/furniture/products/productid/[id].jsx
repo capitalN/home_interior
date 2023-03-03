@@ -253,7 +253,7 @@ const Page = ({ product }) => {
                 >
                   ADD TO CART
                 </button>
-                <button className={style.btn2}>BUY NOW</button>
+                <button className={style.btn2} onClick= {()=>router.push("/Cart")}>BUY NOW</button>
               </Flex>
             </Box>
           </Flex>

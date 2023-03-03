@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Section2 from "../CheckoutComponents/Section2";
 
-const PaymentSection2 = () => {
+const PaymentSection2 = ({MakePayment}) => {
   const data = useSelector((store) => store.cartManager.CART);
 
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const PaymentSection2 = () => {
 
   return (
     <div flex="1.4">
-      <Section2 data={data} val1="none" flagg="true" />
+      <Section2 MakePayment={MakePayment} data={data} val1="none" flagg="true" />
     </div>
   );
 };

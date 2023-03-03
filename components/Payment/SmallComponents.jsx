@@ -21,34 +21,35 @@ import style from "./Payment.module.css";
 
 let Style = { border: "1px solid grey", backgroundColor: "white" };
 
-export const Div1 = ({ total }) => {
+
+export const Div1 = ({payform,GetPaymentData}) => {
+
+  const handleOnChange = (e)=>{
+    GetPaymentData(e);
+  }
+
   return (
     <Flex direction="column" gap="1rem" style={{ width: "80%" }}>
       <Box>
-        <Input style={Style} type="text" placeholder="Card Name" />
+        <Input name="name" onChange={handleOnChange} value={payform.name} style={Style} type="text" placeholder="Card Name" />
       </Box>
       <Flex gap="1rem">
-        <Input style={Style} type="number" min="1" max="5" placeholder="Valid Thru(MM/YY)" maxLength={5} />
+        <Input style={Style} name="monthYear" onChange={handleOnChange} value={payform.monthYear}  type="number" min="1" max="5" placeholder="Valid Thru(MM/YY)" maxLength={5} />
         <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            color="gray.300"
-            fontSize="1.2em"
-            children="$"
-          />
-          <Input style={Style} type="number" value={total()} />
+          <Input style={Style} name="cvv" onChange={handleOnChange} value={payform.cvv} placeholder="CVV" type="number" />
           <InputRightElement children={<InfoIcon color="black.500" />} />
         </InputGroup>
       </Flex>
       <Box>
-        <Input style={Style} type="number" placeholder="Card Number"  min="1" max="16" />
+        <Input style={Style} name="cardNumber" onChange={handleOnChange} value={payform.cardNumber} type="number" placeholder="Card Number"  min="1" max="16" />
       </Box>
     </Flex>
   );
 };
 
-export const Div2 = () => (
-  <div style={{ width: "80%" }}>
+export const Div2 = ({payform,GetPaymentData}) => {
+     
+  return<div style={{ width: "80%" }}>
     <Flex direction="column" gap="1rem">
       <Text> Pay Using Apps</Text>
       <Flex gap="2rem">
@@ -86,7 +87,7 @@ export const Div2 = () => (
         </Flex>
       </Flex>
       <InputGroup size="sm">
-        <Input style={Style} placeholder="Enter UPI ID" />
+        <Input style={Style} name='UPIID' onChange={(e)=>GetPaymentData(e)} value={payform.UPIID} placeholder="Enter UPI ID" />
         <InputRightAddon
           _hover={{ cursor: "pointer" }}
           style={{ border: "1px solid" }}
@@ -95,10 +96,16 @@ export const Div2 = () => (
       </InputGroup>
     </Flex>
   </div>
-);
 
-export const Div3 = () => (
-  <Flex direction="column" gap="1rem" style={{ width: "80%" }}>
+}
+
+  
+
+
+export const Div3 = () => {
+
+
+  return <Flex direction="column" gap="1rem" style={{ width: "80%" }}>
     <Flex gap="2rem">
       <Flex direction="column" justifyContent="center" alignItems="center">
         <Image
@@ -143,7 +150,7 @@ export const Div3 = () => (
       <option>KDC Bank</option>
     </Select>
   </Flex>
-);
+}
 
 export const Div4 = () => (
   <Box width={{ base: "100%", sm: "90%", md: "80%" }} style={{ width: "80%" }}>
@@ -176,17 +183,18 @@ export const Div4 = () => (
   </Box>
 );
 
-export const Div5 = () => (
+export const Div5 = ({cardData,payform,GetPaymentData}) => (
   <Flex gap="1rem" direction="column" style={{ width: "80%" }}>
     <Box>
-      <Input type="number" style={Style} placeholder="Card Number" />
+      <Input type="password" name="cardNumber" onChange={(e)=>GetPaymentData(e)} value={payform.cardNumber} style={Style} placeholder="Card Number" />
     </Box>
     <Box>
-      <Input type="text" maxLength={10} style={Style} placeholder="Card PIN" />
+      <Input type="password" name="cardPassword" onChange={(e)=>GetPaymentData(e)} value={payform.cardPassword} maxLength={10} style={Style} placeholder="Card PIN" />
     </Box>
-    <Box border="1px solid orange" borderRadius="0.3rem" textAlign="center">
+    <Box border="1px solid orange" borderRadius="0.3rem" textAlign="center"  onClick={cardData}>
       <Button
         m="auto"
+       
         _hover={{ backgroundColor: "white" }}
         bgColor="white"
         color="orange"

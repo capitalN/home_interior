@@ -239,7 +239,7 @@ const Cart = ({ setDrawer, drawer }) => {
           </DrawerBody>
 
           <DrawerFooter>
-            <Link href="/Checkout">
+            <Link href="/Cart">
               <Button
                 width="100%"
                 bgColor="#F16521"

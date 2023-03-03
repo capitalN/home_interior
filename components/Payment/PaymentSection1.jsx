@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { usePaymentHook, CardArray } from "../hook/usePaymentHook";
 import { Div1, Div2, Div3, Div4, Div5 } from "./SmallComponents";
 
-const PaymentSection1 = () => {
+const PaymentSection1 = ({cardData,payform,GetPaymentData}) => {
   const { flag, handleNavi } = usePaymentHook();
   const data = useSelector((store) => store.cartManager.CART);
   const dispatch = useDispatch();
@@ -66,21 +66,21 @@ const PaymentSection1 = () => {
               display={!flag[id] ? "none" : "block"}
             >
               {flag.a ? (
-                <Div1 total={handlePrice} />
+                <Div1 payform={payform} GetPaymentData={GetPaymentData}/>
               ) : flag.b ? (
-                <Div1 total={handlePrice} />
+                <Div1 payform={payform} GetPaymentData={GetPaymentData}/>
               ) : flag.c ? (
-                <Div2 total={handlePrice} />
+                <Div2 payform={payform} GetPaymentData={GetPaymentData}/>
               ) : flag.d ? (
-                <Div3 total={handlePrice} />
+                <Div3/>
               ) : flag.f ? (
                 <Text>You have no wallet balance</Text>
               ) : flag.e ? (
-                <Div4 total={handlePrice} />
+                <Div4 />
               ) : flag.g ? (
-                <Div5 total={handlePrice} />
+                <Div5 cardData={cardData} payform={payform} GetPaymentData={GetPaymentData}/>
               ) : (
-                <Div1 total={handlePrice} />
+                <Div1 payform={payform} GetPaymentData={GetPaymentData}/>
               )}
             </Box>
           </Box>
