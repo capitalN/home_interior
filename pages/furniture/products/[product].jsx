@@ -28,24 +28,29 @@ import {
 } from "@/reducer/Product/Product.action.js";
 import Link from "next/link";
 import Loader from "@/components/Loader/Loader";
+import { Pagination } from "@/components/ProductsComponents/Pagination";
 
 const Page = () => {
   let router = useRouter();
   let dispatch = useDispatch();
 
-  let products = useSelector((store) => store.ProductManager.Data)
+  let products = useSelector((store) => store.ProductManager.Data);
   let { loading } = useSelector((store) => store.ProductManager);
 
   let arr = Array(17).fill(1);
 
   useEffect(() => {
     dispatch(GetProduct(router.query.product));
-    console.log(router,"hello this is router")
   }, [router, dispatch]);
+
+  const handlePagination = (page = 1) => {
+    dispatch(GetProduct(router.query.product, page));
+  };
 
   return (
     <Box>
       {/* <Text>{router.query.product}</Text> */}
+
       <Box m={{ base: "10px", md: "50px" }} textAlign="center" bg="">
         <Text className={style.headtext} as="b">
           Shopping for Living Room
@@ -245,76 +250,97 @@ const Page = () => {
             </Box>
           </Box>
           <Box className={style.productbar} w={{ base: "99%", md: "75%" }}>
+            <Pagination
+              handlePagination={handlePagination}
+              lastEl={products[products.length - 1]}
+            />
             <SimpleGrid
               columns={{ base: 2, md: 3 }}
               spacing="12px"
               m="auto"
               mt="30px"
             >
-              {loading?arr.map((el,i)=><Box border="1px solid grey" width="100%" height="10rem" display="flex" justifyContent="center" alignItems="center"><Loader/></Box>): 
-               products.map((ele) => (
-                  <Box key={ele.id} className={style.productcard} p="3px">
-                  {
-                    console.log(loading)
-                  }
-                    <Link href={`/furniture/products/productid/${ele.id}`}>
-                      <Box position="relative" className={style.cardimg}>
-                        <Image w="100%" src={ele.image} />
-                        <Button
-                          position="absolute"
-                          borderRadius="0px"
-                          backgroundColor="#ff7035"
-                          top="80%"
-                          left="30%"
-                          onClick={() => {
-                            let count = 1;
-                            let count1 = 1;
-                            let obj = { ...ele, count: count, count1: count1 };
-                            add_to_cart(obj);
-                          }}
-                          disabled={true}
-                          display={{ base: "none", md: "block" }}
-                        >
-                          Add To Cart
-                        </Button>
-                      </Box>
-                    </Link>
-
-                    <Box mt="15px">
-                      <Text mb="10px" className={style.name}>
-                        {ele.name}
-                      </Text>
-                      <Flex gap="10px" alignItems="center">
-                        <Text
-                          as="b"
-                          color="orange"
-                          fontSize={{ base: "sm", md: "xl" }}
-                        >
-                          ₹ {ele.price}
-                        </Text>
-                        <Text color="#2e2c2c" as="del">
-                          ₹{" "}
-                          {Math.floor(ele.price * (ele.discount * 0.01)) +
-                            ele.price}
-                        </Text>
-                      </Flex>
-                      <Text
-                        fontSize={{ base: "sm", md: "xl" }}
-                        color="#6cb061"
-                        as="b"
-                      >
-                        {ele.discount}% off
-                      </Text>
-                      <Flex alignItems="center" gap="5px">
-                        <Text fontSize="sm">Earn Cashback</Text>
-                        <Text>
-                          {Math.floor(ele.price * (ele.discount * 0.01))}
-                        </Text>
-                      </Flex>
+              {loading
+                ? arr.map((el, i) => (
+                    <Box
+                      border="1px solid grey"
+                      width="100%"
+                      height="10rem"
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      <Loader />
                     </Box>
-                  </Box>
-                ))
-                }
+                  ))
+                : products.map(
+                    (ele) =>
+                      ele && (
+                        <Box key={ele.id} className={style.productcard} p="3px">
+                          <Link
+                            href={`/furniture/products/productid/${ele.id}`}
+                          >
+                            <Box position="relative" className={style.cardimg}>
+                              <Image w="100%" src={ele.image} />
+                              <Button
+                                position="absolute"
+                                borderRadius="0px"
+                                backgroundColor="#ff7035"
+                                top="80%"
+                                left="30%"
+                                onClick={() => {
+                                  let count = 1;
+                                  let count1 = 1;
+                                  let obj = {
+                                    ...ele,
+                                    count: count,
+                                    count1: count1,
+                                  };
+                                  add_to_cart(obj);
+                                }}
+                                disabled={true}
+                                display={{ base: "none", md: "block" }}
+                              >
+                                Add To Cart
+                              </Button>
+                            </Box>
+                          </Link>
+
+                          <Box mt="15px">
+                            <Text mb="10px" className={style.name}>
+                              {ele.name}
+                            </Text>
+                            <Flex gap="10px" alignItems="center">
+                              <Text
+                                as="b"
+                                color="orange"
+                                fontSize={{ base: "sm", md: "xl" }}
+                              >
+                                ₹ {ele.price}
+                              </Text>
+                              <Text color="#2e2c2c" as="del">
+                                ₹{" "}
+                                {Math.floor(ele.price * (ele.discount * 0.01)) +
+                                  ele.price}
+                              </Text>
+                            </Flex>
+                            <Text
+                              fontSize={{ base: "sm", md: "xl" }}
+                              color="#6cb061"
+                              as="b"
+                            >
+                              {ele.discount}% off
+                            </Text>
+                            <Flex alignItems="center" gap="5px">
+                              <Text fontSize="sm">Earn Cashback</Text>
+                              <Text>
+                                {Math.floor(ele.price * (ele.discount * 0.01))}
+                              </Text>
+                            </Flex>
+                          </Box>
+                        </Box>
+                      )
+                  )}
             </SimpleGrid>
           </Box>
         </Flex>
@@ -324,4 +350,3 @@ const Page = () => {
 };
 
 export default Page;
-

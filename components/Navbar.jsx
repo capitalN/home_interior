@@ -6,7 +6,6 @@ import {
   Box,
   Flex,
   HStack,
-  // Link,
   IconButton,
   Button,
   useDisclosure,
@@ -149,26 +148,13 @@ export default function Navbar() {
           p={4}
           display={{ base: "none", lg: "flex", md: "none" }}
         >
-          <HStack spacing={10}>
+          <HStack spacing={10} w="100%" justify="space-evenly">
             <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-                color="black"
-                _hover={{
-                  color: useColorModeValue("orange.400", "orange.700"),
-                }}
-              >
-                <Text>Furniture</Text>
-              </MenuButton>
+              <MenuButton>FURNITURE</MenuButton>
               <MenuList>
                 <MenuItem as={Link} href="/furniture">
                   Furniture
                 </MenuItem>
-
                 <MenuItem as={Link} href="/furniture/products/sofa">
                   Sofa
                 </MenuItem>
@@ -184,162 +170,34 @@ export default function Navbar() {
                 <MenuItem as={Link} href="/furniture/products/tvunit">
                   TV Unit
                 </MenuItem>
-
-                <MenuItem>beds</MenuItem>
-                <MenuItem>Shoe Racks</MenuItem>
               </MenuList>
             </Menu>
             <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
-                <Text color="black">Home Decor</Text>
+              <MenuButton as={Link} href="/furniture/products/shoerack">
+                SHOE RACKS
               </MenuButton>
-              <MenuList>
-                <MenuItem>Wall Art</MenuItem>
-                <MenuItem>Spiritual</MenuItem>
-                <MenuItem>Vases</MenuItem>
-                <MenuItem>Figurines</MenuItem>
-                <MenuItem>Showpieces</MenuItem>
-              </MenuList>
             </Menu>
 
             <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
-                <Text color="black">Lamps & Lighting</Text>
+              <MenuButton as={Link} href="/furniture/products/beds">
+                BEDS
               </MenuButton>
-              <MenuList>
-                <MenuItem>Lamps</MenuItem>
-                <MenuItem>Ceiling Lights</MenuItem>
-                <MenuItem>wall Lights</MenuItem>
-                <MenuItem>LED Lights</MenuItem>
-                <MenuItem>Smart Lights</MenuItem>
-              </MenuList>
             </Menu>
 
             <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
-                <Text color="black">Kitchen & Dining</Text>
-              </MenuButton>
-              <MenuList>
-                <MenuItem>Servrware</MenuItem>
-                <MenuItem>Teaware</MenuItem>
-                <MenuItem>Dinnerware</MenuItem>
-                <MenuItem>Table Linen</MenuItem>
-                <MenuItem>Cookware</MenuItem>
-              </MenuList>
+              <MenuButton>KITCHEN & DINING</MenuButton>
             </Menu>
 
             <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
-                <Text color="black">Furnishings</Text>
-              </MenuButton>
-              <MenuList>
-                <MenuItem>Carpets</MenuItem>
-                <MenuItem>Bed Sheets</MenuItem>
-                <MenuItem>Bed Liner</MenuItem>
-                <MenuItem>Essentials</MenuItem>
-                <MenuItem>Home Care</MenuItem>
-              </MenuList>
+              <MenuButton>FURNISHING</MenuButton>
             </Menu>
 
             <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
-                <Text color="black">Mattresses</Text>
-              </MenuButton>
-              <MenuList>
-                <MenuItem>King size Mattresses</MenuItem>
-                <MenuItem>single Mattresses</MenuItem>
-                <MenuItem>Bed Wedges</MenuItem>
-                <MenuItem>Pillows</MenuItem>
-                <MenuItem>Mattress Protectors</MenuItem>
-              </MenuList>
-            </Menu>
-
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
-                <Text color="black">Appliances</Text>
-              </MenuButton>
-              <MenuList>
-                <MenuItem>Mixers & Processors</MenuItem>
-                <MenuItem>Breakfast Appliances</MenuItem>
-                <MenuItem>Food Makers</MenuItem>
-                <MenuItem>Chimneys</MenuItem>
-                <MenuItem>Fans</MenuItem>
-              </MenuList>
-            </Menu>
-
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
-                <Text color="black">Pets</Text>
-              </MenuButton>
-              <MenuList>
-                <MenuItem>Dog Furniture</MenuItem>
-                <MenuItem>Cat Furniture</MenuItem>
-                <MenuItem>Pet Toys</MenuItem>
-                <MenuItem>Pet Furnishings</MenuItem>
-                <MenuItem>Pet Grooming</MenuItem>
-              </MenuList>
-            </Menu>
-
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
-                <Text color="black">Modular</Text>
-              </MenuButton>
-              <MenuList>
-                <MenuItem>Modular Kitchens</MenuItem>
-                <MenuItem>Modular Wardrobes</MenuItem>
-              </MenuList>
+              <MenuButton>MATTRESSES</MenuButton>
             </Menu>
 
             <Link fontSize={"16px"} fontWeight={600} href="#">
-              Gift Cards
+              GIFT CARDS
             </Link>
           </HStack>
         </Box>
