@@ -2,21 +2,15 @@ import {
   Box,
   Text,
   Flex,
-  Grid,
   Image,
   SimpleGrid,
   Divider,
-  Checkbox,
-  Button,
-  Skeleton,
+  Checkbox 
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import style from "./products.module.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { SmallAddIcon } from "@chakra-ui/icons";
-import { add_to_cart } from "@/reducer/Cart/Cart.action";
 
 import {
   GetProduct,
@@ -260,23 +254,6 @@ const Page = () => {
                     <Link href={`/furniture/products/productid/${ele.id}`}>
                       <Box position="relative" className={style.cardimg}>
                         <Image w="100%" src={ele.image} />
-                        <Button
-                          position="absolute"
-                          borderRadius="0px"
-                          backgroundColor="#ff7035"
-                          top="80%"
-                          left="30%"
-                          onClick={() => {
-                            let count = 1;
-                            let count1 = 1;
-                            let obj = { ...ele, count: count, count1: count1 };
-                            add_to_cart(obj);
-                          }}
-                          disabled={true}
-                          display={{ base: "none", md: "block" }}
-                        >
-                          Add To Cart
-                        </Button>
                       </Box>
                     </Link>
 
