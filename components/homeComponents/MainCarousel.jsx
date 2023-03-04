@@ -48,7 +48,7 @@ export default function mainCarousel() {
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
       />
       {/* Slider */}
-      <Link href={"#"}>
+      <Link href="/furniture">
         <Slider {...settings} ref={(slider) => setSlider(slider)}>
           {cards.map((card, index) => (
             <Image
@@ -58,7 +58,12 @@ export default function mainCarousel() {
               height={0}
               alt="carausel img"
               sizes={"100vw"}
-              style={{width:"auto", height:"auto" , display:"block", verticalAlign:"bottom"}}
+              style={{
+                width: "auto",
+                height: "auto",
+                display: "block",
+                verticalAlign: "bottom",
+              }}
             />
           ))}
         </Slider>

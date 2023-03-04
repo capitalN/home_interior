@@ -267,48 +267,53 @@ const Page = () => {
                       <Loader />
                     </Box>
                   ))
-                : products.map((ele) => (
-                    <Box key={ele.id} className={style.productcard} p="3px">
-                      <Link href={`/furniture/products/productid/${ele.id}`}>
-                        <Box position="relative" className={style.cardimg}>
-                          <Image w="100%" src={ele.image} />
-                        </Box>
-                      </Link>
-
-                      <Box mt="15px">
-                        <Text mb="10px" className={style.name}>
-                          {ele.name}
-                        </Text>
-                        <Flex gap="10px" alignItems="center">
-                          <Text
-                            as="b"
-                            color="orange"
-                            fontSize={{ base: "sm", md: "xl" }}
+                : products.map(
+                    (ele) =>
+                      ele && (
+                        <Box key={ele.id} className={style.productcard} p="3px">
+                          <Link
+                            href={`/furniture/products/productid/${ele.id}`}
                           >
-                            ₹ {ele.price}
-                          </Text>
-                          <Text color="#2e2c2c" as="del">
-                            ₹{" "}
-                            {Math.floor(ele.price * (ele.discount * 0.01)) +
-                              ele.price}
-                          </Text>
-                        </Flex>
-                        <Text
-                          fontSize={{ base: "sm", md: "xl" }}
-                          color="#6cb061"
-                          as="b"
-                        >
-                          {ele.discount}% off
-                        </Text>
-                        <Flex alignItems="center" gap="5px">
-                          <Text fontSize="sm">Earn Cashback</Text>
-                          <Text>
-                            {Math.floor(ele.price * (ele.discount * 0.01))}
-                          </Text>
-                        </Flex>
-                      </Box>
-                    </Box>
-                  ))}
+                            <Box position="relative" className={style.cardimg}>
+                              <Image w="100%" src={ele.image} />
+                            </Box>
+                          </Link>
+
+                          <Box mt="15px">
+                            <Text mb="10px" className={style.name}>
+                              {ele.name}
+                            </Text>
+                            <Flex gap="10px" alignItems="center">
+                              <Text
+                                as="b"
+                                color="orange"
+                                fontSize={{ base: "sm", md: "xl" }}
+                              >
+                                ₹ {ele.price}
+                              </Text>
+                              <Text color="#2e2c2c" as="del">
+                                ₹{" "}
+                                {Math.floor(ele.price * (ele.discount * 0.01)) +
+                                  ele.price}
+                              </Text>
+                            </Flex>
+                            <Text
+                              fontSize={{ base: "sm", md: "xl" }}
+                              color="#6cb061"
+                              as="b"
+                            >
+                              {ele.discount}% off
+                            </Text>
+                            <Flex alignItems="center" gap="5px">
+                              <Text fontSize="sm">Earn Cashback</Text>
+                              <Text>
+                                {Math.floor(ele.price * (ele.discount * 0.01))}
+                              </Text>
+                            </Flex>
+                          </Box>
+                        </Box>
+                      )
+                  )}
             </SimpleGrid>
           </Box>
         </Flex>

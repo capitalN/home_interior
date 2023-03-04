@@ -35,7 +35,7 @@ export default function TopBrands() {
         gap="5"
       >
         {TOP_BRANDS.map((el) => (
-          <Link href="#" key={el.name}>
+          <Link href="/furniture" key={el.name}>
             <Stack>
               <Image
                 src={el.img}
