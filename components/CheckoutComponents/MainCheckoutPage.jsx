@@ -1,7 +1,8 @@
 import Section1 from "@/components/CheckoutComponents/Section1";
 import Section2 from "@/components/CheckoutComponents/Section2";
 import { get_cart } from "@/reducer/Cart/Cart.action";
-import { Flex, Heading, Box, Text } from "@chakra-ui/react";
+import { Flex, Heading, Box, Text, Image, Button } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./MainCheckout.module.css";
@@ -10,7 +11,7 @@ const MainCheckoutPage = () => {
   const dispatch = useDispatch();
   const data = useSelector((store) => store.cartManager.CART);
   const login = localStorage.getItem("hiUser");
-
+  const router = useRouter();
   const refreshpg = () => {
     router.replace(router.asPath);
   };
@@ -29,7 +30,8 @@ const MainCheckoutPage = () => {
 
   return (
     <div>
-      <Flex direction="column">
+    {
+      data.length>0? <Flex direction="column">
         <Flex p="1rem" width="80%" m="auto">
           <Heading as="h3" fontSize={17}>
             Your Cart {data.length && data.length} (Items)
@@ -70,7 +72,28 @@ const MainCheckoutPage = () => {
           </Box>
           <Section2 data={data} total={priceSaved()} />
         </Flex>
+      </Flex>:
+      <Flex p="1rem" direction="column" gap="1rem"  width="70%"  m="4rem auto" 
+      // border="1px solid green"
+      >
+        <Heading textAlign="center" fontSize={{base:"0.8rem",sm:"1rem",md:"1.35rem"}} as="h2">Oops!</Heading>
+        <Heading textAlign="center" fontSize={{base:"0.8rem",sm:"1rem",md:"1.35rem"}} as="h1">Nothing To See Here.</Heading>
+        <Image w={{base:"100%",sm:"80%",md:"30%"}} height={{base:"100%",sm:"80%",md:"30%"}} m="auto" textAlign="center" src="https://ii3.pepperfry.com/assets/w22-checkout-empty-cart1.png"/>
+        <Heading as="h3" textAlign="center" fontSize={{base:"0.8rem",sm:"1rem",md:"1.35rem"}}>Can I Take Your Order?</Heading>
+        <Button
+                backgroundImage="linear-gradient(180deg,rgba(246,77,24,.99) 0%,#FF7035 100%);"
+                colorScheme="white" 
+                fontSize={{base:"0.5rem",sm:"0.8rem",md:"1rem"}}
+                width={{base:"65%",sm:"50%",md:"20%"}}
+                m="auto"
+                textAlign="center"
+                onClick={() => {router.push("/")}}
+              >
+                Continue Shopping
+              </Button>
       </Flex>
+    }
+      
     </div>
   );
 };

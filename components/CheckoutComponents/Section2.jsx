@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { MdNavigateNext } from "react-icons/md";
 import { useToast } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 const SfontSize = {
   fontSize: "12px",
 };
@@ -40,6 +41,7 @@ const Section2 = ({ val1, flagg, total, data, MakePayment }) => {
   const router = useRouter();
   const [local, setLocal] = useState(null);
   const toast = useToast();
+  const loginStore = useSelector((store) => store.loginManager);
 
   useEffect(() => {
     if (getNameintolocalStorage().length > 0) {
@@ -188,7 +190,9 @@ const Section2 = ({ val1, flagg, total, data, MakePayment }) => {
         <Spacer />
         <MdNavigateNext />
       </Flex>
-      <Flex
+     
+     {
+      loginStore && loginStore.login?<Flex
         _hover={{ cursor: "pointer", color: "green" }}
         backgroundColor="#FF7035"
         color="white"
@@ -198,7 +202,19 @@ const Section2 = ({ val1, flagg, total, data, MakePayment }) => {
         alignItems="center"
       >
         {flag}
+      </Flex>:<Flex
+        _hover={{ cursor: "pointer", color: "green" }}
+        backgroundColor="#FF7035"
+        color="white"
+        // onClick={}
+        justifyContent="center"
+        height="2.5rem"
+        alignItems="center"
+      >
+        Proceed to login
       </Flex>
+     }
+      
     </Flex>
   );
 };

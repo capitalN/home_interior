@@ -152,8 +152,9 @@ const AuthModals = () => {
     }
     setPassIsEmpty(false);
     setEmailIsEmpty(false);
-
+    let flag = false;
     signupStore.details.map((el) => {
+      
       if (
         el.email == loginDetails.details.userId ||
         el.mobile == loginDetails.details.userId
@@ -164,14 +165,31 @@ const AuthModals = () => {
           toast({
             title: "Login Successfull",
             status: "success",
-            duration: 9000,
+            position:"top",
+            duration: 3000,
             isClosable: true,
           });
-          location.reload();
-          return;
+          flag = false;
+          setTimeout(()=>{
+             location.reload();
+             return;
+          },2000)
+         
         }
       }
+      else{
+        flag = true;
+      }
     });
+    if(flag){
+      toast({
+        title: "Wrong credentials",
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+      });
+    }
+   return
   };
 
   const swapToSignup = () => {
