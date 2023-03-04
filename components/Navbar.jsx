@@ -88,9 +88,6 @@ export default function Navbar() {
             <Flex alignItems={"center"}>
               <HStack spacing={"5px"}>
                 <AuthModals size={10} />
-                {/* <Link href="#">
-                  <BsHeart size={20} />
-                </Link> */}
                 <Button
                   onClick={() => {
                     setDrawer((val) => !val);
