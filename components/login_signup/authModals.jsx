@@ -73,7 +73,48 @@ const AuthModals = () => {
     setInsecurePassword(false);
   };
 
+  const handleSignupFormSubmit = () => {
+    let isValid = true;
+    Object.keys(signupDetails).forEach((key) => {
+      const value = signupDetails[key];
 
+      if (!value) {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      window.alert("Please fill the form!");
+      return;
+    } else if (
+      signupDetails.email == "" ||
+      (signupDetails.email &&
+        (!signupDetails.email.includes("@") ||
+          !signupDetails.email.includes("@gmail.com")))
+    ) {
+      setInvalidEmail(true);
+      return;
+    } else if (
+      signupDetails.password.length >= 8 &&
+      signupDetails.password.match(/[!\@\#\$\%\^\&\*\+\-]/)
+    ) {
+    } else if (
+      signupDetails.password.length < 8 &&
+      signupDetails.password.match(/[!\@\#\$\%\^\&\*\+\-]/)
+    ) {
+      setInsecurePassword(true);
+      return;
+    } else if (!signupDetails.password.match(/[!\@\#\$\%\^\&\*\+\-]/)) {
+      setInsecurePassword(true);
+      return;
+    }
+
+    setInvalidEmail(false);
+    setInsecurePassword(false);
+    dispatch(signupSuccess(signupDetails));
+    onSignupClose();
+    onLoginOpen();
+  };
 
   const swapToLogin = () => {
     onSignupClose();
