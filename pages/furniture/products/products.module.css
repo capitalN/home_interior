@@ -8,19 +8,24 @@
 }
 .headtext{
     font-size: 35px;
-    color: #666463;
-    font-family: 'Times New Roman', Times, serif;
+    color: #050505;
+    font-family: serif;
+    background-color: orangered;
+    padding: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 .header a img {
     width: 150px;
     height:150px;
+    border: 2px solid white;
     border-radius: 45%;
-    transition: 0.5s;
+    transition: 0.1s;
+
 }
 .header img:hover {
-    border: 2px solid gray;
+    border: 3px solid rgb(243, 121, 8);
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-    transition: 0.6s;
 }
 .sidebar{
     width: 30%;
@@ -37,9 +42,6 @@
     color: #2e2c2c;
     line-height: 22px;
 }
-.price{
-
-}
 .cardimg{
     position: relative;
 }
@@ -47,10 +49,13 @@
     padding-bottom: 20px;
    border-bottom: 1px solid gray;
 }
-
-/* .addToCart:hover{
-
-} */
+.headerBox{
+    background :linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.4)),url("https://amazingspaces.com/wp-content/uploads/2017/05/How-to-Properly-Store-Furniture.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    padding: 25px;
+    height: 350px;
+}
 
 
 
@@ -76,5 +81,9 @@
     width: 10%;
     height:10% ;
     border-radius: 10%;
+}
+.headerBox{
+    padding: 5px;
+    height: fit-content;
 }
 }
