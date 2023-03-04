@@ -298,31 +298,33 @@ const Page = () => {
                             as="b"
                             color="orange"
                             fontSize={{ base: "sm", md: "xl" }}
-                          >
-                            ₹ {ele.price}
-                          </Text>
-                          <Text color="#2e2c2c" as="del">
-                            ₹{" "}
-                            {Math.floor(ele.price * (ele.discount * 0.01)) +
-                              ele.price}
-                          </Text>
-                        </Flex>
-                        <Text
-                          fontSize={{ base: "sm", md: "xl" }}
-                          color="#6cb061"
-                          as="b"
-                        >
-                          {ele.discount}% off
-                        </Text>
-                        <Flex alignItems="center" gap="5px">
-                          <Text fontSize="sm">Earn Cashback</Text>
-                          <Text>
-                            {Math.floor(ele.price * (ele.discount * 0.01))}
-                          </Text>
-                        </Flex>
-                      </Box>
-                    </Box>
-                  ))}
+
+                              >
+                                ₹ {ele.price}
+                              </Text>
+                              <Text color="#2e2c2c" as="del">
+                                ₹{" "}
+                                {Math.floor(ele.price * (ele.discount * 0.01)) +
+                                  ele.price}
+                              </Text>
+                            </Flex>
+                            <Text
+                              fontSize={{ base: "sm", md: "xl" }}
+                              color="#6cb061"
+                              as="b"
+                            >
+                              {ele.discount}% off
+                            </Text>
+                            <Flex alignItems="center" gap="5px">
+                              <Text fontSize="sm">Earn Cashback</Text>
+                              <Text>
+                                {Math.floor(ele.price * (ele.discount * 0.01))}
+                              </Text>
+                            </Flex>
+                          </Box>
+                        </Box>
+                      )
+                  )}
             </SimpleGrid>
           </Box>
         </Flex>

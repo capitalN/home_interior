@@ -7,7 +7,6 @@ export const getProduct_by_API = async () => {
 
 export const getProductbyAPI = async (str, page = 1) => {
   let res = await axios.get("https://home-interior.onrender.com/furniture");
-  console.log(res.data);
   let data = res.data.filter((ele) => ele.type === str);
 
   let myData = [];

@@ -35,7 +35,7 @@ export default function WinterEdit() {
       <Heading>Winter Edit</Heading>
       <Flex flexWrap={"wrap"} gap="5" align={"center"} justify="center">
         {WINTER_EDIT.map((el) => (
-          <Link href="#" key={el.name}>
+          <Link href="/furniture" key={el.name}>
             <Image src={el.img} width={360} height={360} alt="" />
           </Link>
         ))}

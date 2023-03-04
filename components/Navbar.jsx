@@ -30,7 +30,6 @@ import AuthModals from "./login_signup/authModals";
 import Link from "next/link";
 
 const NavLink = ({ children }) => (
-
   <Link
     px={2}
     py={1}
@@ -49,10 +48,9 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [drawer, setDrawer] = useState(false);
 
-
   return (
     <>
-      <Box px={4} >
+      <Box px={4}>
         <Flex
           h={20}
           alignItems={"center"}
@@ -71,13 +69,12 @@ export default function Navbar() {
             <Link href="/">
               <Image src="/home_interior_logo.png" w="100%" alt="" />
             </Link>
-
           </Box>
-    {/* search ....................imported ................here.......... */}
-         <Box>
-         <Search/>
-         </Box>
- {/* search .............................................. */}
+          {/* search ....................imported ................here.......... */}
+          <Box>
+            <Search />
+          </Box>
+          {/* search .............................................. */}
 
           <Box
             spacing={20}
@@ -85,19 +82,13 @@ export default function Navbar() {
             justifyItems="center"
             border="0px solid"
             bgColor="gray.100"
-          >
-          
-          </Box>
+          ></Box>
 
-          <Box ml='15px'>
+          <Box ml="15px">
             <Flex alignItems={"center"}>
-              <HStack spacing={'5px'} >
-                <AuthModals size={10}/>
-                {/* <Link href="#">
-                  <BsHeart size={20} />
-                </Link> */}
+              <HStack spacing={"5px"}>
+                <AuthModals size={10} />
                 <Button
-                  
                   onClick={() => {
                     setDrawer((val) => !val);
                   }}
@@ -123,7 +114,7 @@ export default function Navbar() {
             <Menu>
               <MenuButton>FURNITURE</MenuButton>
               <MenuList>
-                <MenuItem as={Link} href="/furniture" >
+                <MenuItem as={Link} href="/furniture">
                   Furniture
                 </MenuItem>
                 <MenuItem as={Link} href="/furniture/products/sofa">
@@ -148,10 +139,9 @@ export default function Navbar() {
               WING CHAIRS
               </MenuButton>
             </Menu>
-
             <Menu>
-              <MenuButton as={Link} href="/furniture/products/beds">
-                BEDS
+              <MenuButton as={Link} href="/furniture/products/shoerack">
+                SHOE RACKS
               </MenuButton>
             </Menu>
 
@@ -160,8 +150,11 @@ export default function Navbar() {
             </Menu>
 
             <Menu>
-              <MenuButton>FURNISHING</MenuButton>
+              <MenuButton as={Link} href="/furniture/products/table">
+                FURNISHING
+              </MenuButton>
             </Menu>
+
 
             <Link fontSize={"16px"} fontWeight={600} href={'/mattresses'}>
              <Text > MATTRESSES</Text>

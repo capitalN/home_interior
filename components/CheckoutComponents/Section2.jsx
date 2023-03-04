@@ -34,7 +34,7 @@ const getNameintolocalStorage = () => {
   }
 };
 
-const Section2 = ({ val1, flagg, total, data,MakePayment }) => {
+const Section2 = ({ val1, flagg, total, data, MakePayment }) => {
   const val = val1 === "none" ? "none" : "flex";
   const flag = flagg === "true" ? "PAY NOW" : "PROCEED TO PAY";
   const router = useRouter();
@@ -50,22 +50,21 @@ const Section2 = ({ val1, flagg, total, data,MakePayment }) => {
   const handlePrice = () => {
     let sum = 0;
     for (let i = 0; i < data?.length; i++) {
-      const { price, discount,count } = data[i];
-      sum = sum + Math.floor((price - (price * discount) / 100)*count + 1836) ;
+      const { price, discount, count } = data[i];
+      sum = sum + Math.floor((price - (price * discount) / 100) * count + 1836);
     }
     return sum;
   };
-  const handlePay = () => {
+  const handlePay = async () => {
     if (flagg) {
-
-      for(let i=0; i<data.length; i++)
-      {
-        let id = data[i].id
-        axios.delete(`https://home-interior.onrender.com/cart/${id}`)
+      await localStorage.setItem("history", JSON.stringify(data));
+      for (let i = 0; i < data.length; i++) {
+        let id = data[i].id;
+        axios.delete(`https://home-interior.onrender.com/cart/${id}`);
       }
 
       MakePayment();
-      router.push("/")
+      router.push("/");
       setTimeout(() => {
         toast({
           title: "payment successfull",
