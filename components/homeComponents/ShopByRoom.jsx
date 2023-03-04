@@ -30,7 +30,7 @@ export default function ShopByRoom() {
         gap="5"
       >
         {SHOP_BY_ROOM.map((el) => (
-          <Link href={"#"} key={el.name}>
+          <Link href={"/furniture"} key={el.name}>
             <Stack>
               <Image
                 src={el.img}

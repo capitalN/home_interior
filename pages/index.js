@@ -26,7 +26,7 @@ export default function Home() {
     <>
       <Box p={{ base: "15px", md: "55px" }}>
         <Stack gap={10}>
-          <Flex gap={5}>
+          <Flex gap={5} as={Link} href="/furniture/products/table">
             <MainCarousel />
             <Hide below="sm">
               <Image

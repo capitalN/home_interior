@@ -42,7 +42,7 @@ export default function Help() {
         gap="5"
       >
         {HELP.map((el) => (
-          <Link href={"#"} key={el.name}>
+          <Link href={""} key={el.name}>
             <Stack>
               <Image
                 src={el.img}

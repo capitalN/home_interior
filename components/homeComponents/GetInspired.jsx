@@ -81,7 +81,11 @@ export default function GetInspired() {
 
       <Carousel responsive={responsive} infinite={true} autoPlay={true}>
         {GET_INSPIRED.map((el) => (
-          <Link href="#" key={el.name}>
+          <Link
+            href="https://www.instagram.com/pepperfry_official/?hl=en"
+            _target="blank"
+            key={el.name}
+          >
             <Stack m="2" bg="gray.100" borderRadius="20px">
               <Image
                 width={0}

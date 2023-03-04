@@ -11,6 +11,7 @@ import { adminReducer } from "./Admin/reducer";
 import { loginReducer } from "./AuthReducer/LoginAuth/loginReducer";
 import { signupReducer } from "./AuthReducer/SignupAuth/signupReducer";
 import { CartReducer } from "./Cart/Cart.reducer";
+import { UserReducer } from "./user/reducer";
 
 const rootReducer = combineReducers({
   cartManager: CartReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   signupManager: signupReducer,
   loginManager: loginReducer,
   adminManager: adminReducer,
+  userManager: UserReducer,
 });
 
 const composeEnhancers = compose;
