@@ -64,16 +64,16 @@ return (
 
  <Modal isOpen={isOpen} onClose={onClose}>
   <ModalOverlay />
-  <ModalContent>
+  <ModalContent >
     <ModalHeader as='b' color='orange' fontFamily='serif'>Home Interior</ModalHeader>
     <ModalCloseButton />
-    <ModalBody>
+    <ModalBody >
      {/* Body Here */}
      <Input  onChange={(e) => handelSearch(e.target.value)} placeholder='Search'  size='sm' />
 
       {searchData.length > 0 ? <Flex gap='10px' m='auto' mt='10px'>
         
-        <Box w='70%' h='350px' overflow='scroll' scrollBehavior='smooth'>
+        <Box  w='70%' h='350px' overflow='scroll' scrollBehavior='smooth'>
           {
             searchData && searchData.map((ele)=>(
                 <Link href={`/furniture/products/${ele.type}`}>

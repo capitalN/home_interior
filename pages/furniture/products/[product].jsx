@@ -5,7 +5,9 @@ import {
   Image,
   SimpleGrid,
   Divider,
+  RadioGroup,
   Checkbox,
+  Radio
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import style from "./products.module.css";
@@ -16,7 +18,6 @@ import {
   GetProduct,
   GetfilterProduct,
   GetSortProduct,
-  getfilterdata,
   GetfilterData,
   GetByType,
 } from "@/reducer/Product/Product.action.js";
@@ -31,7 +32,7 @@ const Page = () => {
   let products = useSelector((store) => store.ProductManager.Data);
   let { loading } = useSelector((store) => store.ProductManager);
 
-  let arr = Array(17).fill(1);
+  let arr = Array(18).fill(1);
 
   useEffect(() => {
     dispatch(GetProduct(router.query.product));
@@ -42,59 +43,66 @@ const Page = () => {
   };
 
   return (
-    <Box>
-      {/* <Text>{router.query.product}</Text> */}
-
-      <Box m={{ base: "10px", md: "50px" }} textAlign="center" bg="">
-        <Text className={style.headtext} as="b">
+    <Box pb='50px' bg='EFF7F7'>
+      <Box m={{ base: "1px", md: "1px" }} textAlign="center"  className={style.headerBox} >
+        <Text className={style.headtext} as="b" bg='orange'>
           Shopping for Living Room
         </Text>
         <Flex className={style.header} mt="20px" gap="20px">
           <Link href="/furniture/products/sofa">
             {" "}
-            <Box>
+            <Box w={{base:'80px',md:'120px'}}>
               <Image
                 src="https://ii1.pepperfry.com/media/catalog/product/b/a/494x544/bali-2-seater-sofa-in-blue-colour-by-trevi-furniture-bali-2-seater-sofa-in-blue-colour-by-trevi-furn-xnwtwh.jpg"
                 alt="Sofa"
               />
+              <Text as='b' color='white'>Sofa</Text>
             </Box>
           </Link>
           <Link href="/furniture/products/wingchair">
-            <Box>
+            <Box w={{base:'80px',md:'120px'}}>
               {" "}
               <Image
                 src="https://ii1.pepperfry.com/media/catalog/product/p/a/800x880/panas-wing-chair-in-sea-green-by-febonic-panas-wing-chair-in-sea-green-by-febonic-wbf32h.jpg"
                 alt="Chairs"
               ></Image>
+               <Text as='b' color='white'>wingchair</Text>
             </Box>
           </Link>
           <Link href="/furniture/products/table">
-            <Box>
+            <Box w={{base:'80px',md:'120px'}}>
               <Image
                 src="https://ii2.pepperfry.com/media/catalog/product/s/i/494x544/siramika-solid-wood-coffee-table-in-honey-oak-finish-by-mudramark-siramika-solid-wood-coffee-table-i-x7zyhj.jpg"
                 alt="table"
               />
+             <Text as='b' color='white'>Table</Text>
             </Box>
           </Link>
           <Link href="/furniture/products/wingchair">
-            <Box>
+            <Box w={{base:'80px',md:'120px'}}>
               <Image
                 src="https://ii1.pepperfry.com/media/catalog/product/r/o/800x880/royal-luxurious-high-back-wing-chair-in-blue-color-by-dreamzz-furniture-royal-luxurious-high-back-wi-j2qhwy.jpg"
                 alt="chairs"
               />
+               <Text as='b' color='white'>Sofachair</Text>
             </Box>
           </Link>
         </Flex>
       </Box>
+
       <Divider></Divider>
+
       <Box w={{ base: "99%", md: "90%" }} margin="auto">
+       
         <Flex gap="20px">
           <Box className={style.sidebar} w="25%" pt="30px">
             <Box className={style.filterbox}>
+            <Text bg='orange' fontWeight='bold' p='5px' fontSize='18px' fontFamily='serif' mb='15px'>Filter</Text>
               <Text as="b">Sort By</Text>
               <br />
               <Box m="5px">
-                <Checkbox
+               <RadioGroup>
+               <Radio
                   size="lg"
                   colorScheme="orange"
                   value={"desc"}
@@ -103,9 +111,9 @@ const Page = () => {
                   }
                 >
                   High Price First
-                </Checkbox>
-                <br />
-                <Checkbox
+                </Radio>
+               <br />
+                <Radio
                   size="lg"
                   colorScheme="orange"
                   value={"asc"}
@@ -114,15 +122,17 @@ const Page = () => {
                   }
                 >
                   Low Price First
-                </Checkbox>
+                </Radio>
                 <br />
+               </RadioGroup>
               </Box>
             </Box>
 
             <Box className={style.filterbox} pt="20px">
               <Text as="b">Material</Text>
               <br />
-              <Checkbox
+              <RadioGroup>
+              <Radio
                 size="lg"
                 colorScheme="orange"
                 value={"Solid"}
@@ -131,9 +141,9 @@ const Page = () => {
                 }
               >
                 Solid
-              </Checkbox>
+              </Radio>
               <br />
-              <Checkbox
+              <Radio
                 size="lg"
                 colorScheme="orange"
                 value={"Pattern"}
@@ -142,15 +152,18 @@ const Page = () => {
                 }
               >
                 Pattern
-              </Checkbox>
+              </Radio>
               <br />
+              </RadioGroup>
+             
             </Box>
 
             <Box className={style.filterbox} pt="20px">
               <Text as="b">Price</Text>
               <br />
 
-              <Checkbox
+              <Checkbox 
+                
                 size="lg"
                 colorScheme="orange"
                 value={200000}
@@ -250,9 +263,10 @@ const Page = () => {
             />
             <SimpleGrid
               columns={{ base: 2, md: 3 }}
-              spacing="12px"
+              spacing="5px"
               m="auto"
               mt="30px"
+              
             >
               {loading
                 ? arr.map((el, i) => (
@@ -268,7 +282,7 @@ const Page = () => {
                     </Box>
                   ))
                 : products.map((ele) => (
-                    <Box key={ele.id} className={style.productcard} p="3px">
+                    <Box key={ele.id} p="5px" border={'2px solid #c6b38e'} rounded='sm'>
                       <Link href={`/furniture/products/productid/${ele.id}`}>
                         <Box position="relative" className={style.cardimg}>
                           <Image w="100%" src={ele.image} />

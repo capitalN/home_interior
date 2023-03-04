@@ -144,8 +144,8 @@ export default function Navbar() {
               </MenuList>
             </Menu>
             <Menu>
-              <MenuButton as={Link} href="/furniture/products/shoerack">
-                SHOE RACKS
+              <MenuButton as={Link} href="/furniture/products/wingchair">
+              WING CHAIRS
               </MenuButton>
             </Menu>
 
@@ -163,12 +163,12 @@ export default function Navbar() {
               <MenuButton>FURNISHING</MenuButton>
             </Menu>
 
-            <Menu>
-              <MenuButton>MATTRESSES</MenuButton>
-            </Menu>
+            <Link fontSize={"16px"} fontWeight={600} href={'/mattresses'}>
+             <Text > MATTRESSES</Text>
+            </Link>
 
-            <Link fontSize={"16px"} fontWeight={600} href="#">
-              GIFT CARDS
+            <Link fontSize={"16px"} fontWeight={600} href={'/festiveoffer'}>
+             <Text as='b' color='red'> FESTIVE SALES</Text>
             </Link>
           </HStack>
         </Box>

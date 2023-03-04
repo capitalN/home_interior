@@ -5,7 +5,7 @@ import style from "./furniture.module.css";
 import Link from "next/link";
 
 let options = [
-  "Sofas",
+  "Sofa",
   "Recliners",
   "Sofa Chairs",
   "Office Chairs",
@@ -35,26 +35,32 @@ let Bestsellers = [
   {
     name: "2 Door Wardrobes",
     img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section3_large_1.jpg",
+     link:'sofa'
   },
   {
     name: "Modern Writing Ta...",
     img: "https://ii3.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section3_large_2.jpg",
+     link:'sofa'
   },
   {
     name: "Queen Size Stora...",
     img: "https://ii1.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section3_large_3.jpg",
+     link:'sofa'
   },
   {
     name: "Gaming Chairs",
     img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Furniture_section3_web_05122022_4.jpg",
+     link:'sofa'
   },
   {
     name: "Shoe Cabinets",
     img: "https://ii3.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section3_large_5.jpg",
+     link:'sofa'
   },
   {
     name: "Rectangular Coffee...",
     img: "https://ii1.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section3_large_6.jpg",
+     link:'sofa'
   },
 ];
 
@@ -63,21 +69,25 @@ let BestDelas = [
     name: "Family Mealtime",
     offer: "50+ Modern Dining Sets",
     img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Furniture_deal_web_20122022_1.jpg",
+    link:'sofa'
   },
   {
     name: "Comfy Bean Bags",
     offer: "50+ Bean Bags",
     img: "https://ii3.pepperfry.com/media/wysiwyg/banners/Furniture_section4_web_05122022_2.jpg",
+    link:'wingchair'
   },
   {
     name: "Budget Buys For Nerds",
     offer: "40+ Modern Book Shelves",
     img: "https://ii1.pepperfry.com/media/wysiwyg/banners/Furniture_deal_web_20122022_3.jpg",
+    link:'sofa'
   },
   {
     name: "Chic Dressers",
     offer: "50+ Dressers",
     img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Furniture_section4_web_05122022_4.jpg",
+    link:'sofa'
   },
 ];
 
@@ -263,9 +273,9 @@ const Page = () => {
           </Text>
           <Box p="10px" h="300px" fontWeight="bold" overflowY="scroll">
             {options.map((ele, i) => (
-              <Text mb="6px" key={i}>
-                {ele}
-              </Text>
+              <Link href={`/furniture/products/sofa`} mb="6px" key={i}>
+               <Text> {ele}</Text>
+              </Link>
             ))}
           </Box>
         </Box>
@@ -309,36 +319,19 @@ const Page = () => {
         <Flex gap="20px" mt="10px" className={style.scroll}>
           {Bestsellers.map((ele, i) => (
             <Box key={i} className={style.scrollcard}>
-              <Image w="100%" m="auto" src={ele.img} alt={ele.name} />
+              <Link href={`/furniture/products/${ele.link}`}>
+             <Image w="100%" m="auto" src={ele.img} alt={ele.name} />
               <Text fontSize={{ base: "md", md: "xl" }}>{ele.name}</Text>
               <Text color="gray" fontSize={{ base: "md", md: "lg" }}>
                 50+ Options
               </Text>
+             </Link>
             </Box>
           ))}
         </Flex>
       </Box>
 
-      <Box mt="50px">
-        <Text
-          as="b"
-          fontSize={{ base: "xl", md: "3xl" }}
-          className={style.heading}
-        >
-          It's A Big Deal
-        </Text>
-        <Flex gap="20px" mt="10px" className={style.scroll}>
-          {BestDelas.map((ele, i) => (
-            <Box key={i} className={style.scrollcard}>
-              <Image w="100%" m="auto" src={ele.img} alt={ele.name} />
-              <Text fontSize={{ base: "md", md: "xl" }}>{ele.name}</Text>
-              <Text color="gray" fontSize={{ base: "sm", md: "lg" }}>
-                {ele.offer}
-              </Text>
-            </Box>
-          ))}
-        </Flex>
-      </Box>
+    
 
       <Box mt="50px">
         <Text
@@ -359,6 +352,29 @@ const Page = () => {
                 </Text>
               </Box>
             </Link>
+          ))}
+        </Flex>
+      </Box>
+
+      <Box mt="50px">
+        <Text
+          as="b"
+          fontSize={{ base: "xl", md: "3xl" }}
+          className={style.heading}
+        >
+          It's A Big Deal
+        </Text>
+        <Flex gap="20px" mt="10px" className={style.scroll}>
+          {BestDelas.map((ele, i) => (
+            <Box key={i} className={style.scrollcard}>
+              <Link href={`/furniture/products/${ele.link}`}>
+              <Image w="100%" m="auto" src={ele.img} alt={ele.name} />
+              <Text fontSize={{ base: "md", md: "xl" }}>{ele.name}</Text>
+              <Text color="gray" fontSize={{ base: "sm", md: "lg" }}>
+                {ele.offer}
+              </Text>
+              </Link>
+            </Box>
           ))}
         </Flex>
       </Box>
