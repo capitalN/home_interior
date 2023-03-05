@@ -29,11 +29,16 @@
 }
 .sidebar{
     width: 30%;
-    height: 100vh;
-    border-right: 1px solid gray;
+    height: 99%;
+    position: sticky;
+    top:0px;
+    /* border-right: 1px solid gray; */
 }
 .productbar{
     width: 70%;
+    border-left: 1px solid gray;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
 }
 .name{
     /* as='b' fontSize={{base:'md',md:'xl'}} color:#aaaaaa, */
@@ -47,7 +52,7 @@
 }
 .filterbox{
     padding-bottom: 20px;
-   border-bottom: 1px solid gray;
+   border-bottom: 1px solid rgba(183, 181, 181,0.7);
 }
 .headerBox{
     background :linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.4)),url("https://amazingspaces.com/wp-content/uploads/2017/05/How-to-Properly-Store-Furniture.jpg");
