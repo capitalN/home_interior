@@ -90,13 +90,13 @@ const Page = () => {
         </Flex>
       </Box>
 
-      <Divider></Divider>
+      <Divider bgColor="grey"></Divider>
 
       <Box w={{ base: "99%", md: "90%" }} margin="auto">
        
-        <Flex gap="20px">
-          <Box className={style.sidebar} w="25%" pt="30px">
-            <Box className={style.filterbox}>
+        <Flex gap="20px" position="relative" >
+          <Box className={style.sidebar} w="25%" pt="30px" pb="4rem" >
+            <Box className={style.filterbox} >
             <Text bg='orange' fontWeight='bold' p='5px' fontSize='18px' fontFamily='serif' mb='15px'>Filter</Text>
               <Text as="b">Sort By</Text>
               <br />
@@ -256,7 +256,7 @@ const Page = () => {
               )}
             </Box>
           </Box>
-          <Box className={style.productbar} w={{ base: "99%", md: "75%" }}>
+          <Box pb="4rem" className={style.productbar} w={{ base: "99%", md: "75%" }}>
             <Pagination
               handlePagination={handlePagination}
               lastEl={products[products.length - 1]}
