@@ -144,12 +144,15 @@ let newLaunces = [
 let Choose = [
   {
     img: "https://ii2.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section7_large_1.jpg",
+    link:'furniture/products/kitchen'
   },
   {
     img: "https://ii3.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section7_large_2.jpg",
+    link:'furniture/products/kitchen'
   },
   {
     img: "https://ii1.pepperfry.com/media/wysiwyg/banners/Furnitureclp_Section7_large_3.jpg",
+    link:'furniture/products/kitchen'
   },
 ];
 
@@ -301,8 +304,10 @@ const Page = () => {
         <SimpleGrid columns={2} spacing="20px" m="auto">
           {optimg.map((ele, i) => (
             <Box key={i}>
+             <Link href='furniture/products/sofa'>
               <Image w="100%" src={ele} alt={ele} />
               <Text color="#4f4e38">{options[i]}</Text>
+             </Link>
             </Box>
           ))}
         </SimpleGrid>
@@ -411,7 +416,7 @@ const Page = () => {
         <Flex gap="20px" mt="10px" className={style.scroll}>
           {Choose.map((ele, i) => (
             <Box minW="230px" key={i} className={style.scrollcard}>
-              <Image w="100%" m="auto" src={ele.img} alt={ele.name} />
+             <Link href={ele.link}> <Image w="100%" m="auto" src={ele.img} alt={ele.name} /></Link>
             </Box>
           ))}
         </Flex>

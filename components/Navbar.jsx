@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import Search from "./Search.function";
+import style from './Navbar.module.css'
 
 import {
   Box,
@@ -71,7 +72,7 @@ export default function Navbar() {
             </Link>
           </Box>
           {/* search ....................imported ................here.......... */}
-          <Box>
+          <Box display={{base:'none',md:'block'}}>
             <Search />
           </Box>
           {/* search .............................................. */}
@@ -107,12 +108,13 @@ export default function Navbar() {
         <hr />
         <Box
           spacing={4}
-          p={4}
+          p={2}
           display={{ base: "none", lg: "flex", md: "none" }}
+         fontWeight='bold'
         >
-          <HStack spacing={10} w="100%" justify="space-evenly">
+          <HStack spacing={10} w="100%" justify="space-evenly" >
             <Menu>
-              <MenuButton>FURNITURE</MenuButton>
+              <MenuButton  as={Text} >FURNITURE</MenuButton>
               <MenuList>
                 <MenuItem as={Link} href="/furniture">
                   Furniture
@@ -140,13 +142,13 @@ export default function Navbar() {
               </MenuButton>
             </Menu>
             <Menu>
-              <MenuButton as={Link} href="/furniture/products/shoerack">
-                SHOE RACKS
+              <MenuButton as={Link} href="/furniture/products/tvunit">
+               LIVING ROOM
               </MenuButton>
             </Menu>
 
             <Menu>
-              <MenuButton>KITCHEN & DINING</MenuButton>
+              <MenuButton  as={Link} href="/furniture/products/kitchen">KITCHEN & DINING</MenuButton>
             </Menu>
 
             <Menu>
@@ -161,24 +163,28 @@ export default function Navbar() {
             </Link>
 
             <Link fontSize={"16px"} fontWeight={600} href={'/festiveoffer'}>
-             <Text as='b' color='red'> FESTIVE SALES</Text>
+             <Text as='b' className={style.textStyle}>FESTIVE SALE</Text>
             </Link>
           </HStack>
         </Box>
         <hr />
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
-            <Stack onClick={onClose} as={"nav"} spacing={4}>
-              <Link href="/furniture">Furniture</Link>
-              <Link href="#">Home Decor</Link>
-              <Link href="#">Lamps & Lighting</Link>
-              <Link href="#">Kitchen & Dining</Link>
-              <Link href="#">Furnishings</Link>
-              <Link href="#">Mattresses</Link>
-              <Link href="#">Appliances</Link>
-              <Link href="#">Pets</Link>
-              <Link href="#">Modular</Link>
-              <Link href="#">Gift Cards</Link>
+            <Stack  as={"nav"} spacing={4}>
+             <Box mt='10px'>
+             <Search />
+             </Box>
+              <Link onClick={onClose} href="/furniture">Furniture</Link>
+              <Link onClick={onClose} href="/furniture/products/sofa">Sofa</Link>
+              <Link onClick={onClose} href="//furniture/products/table">Table</Link>
+              <Link onClick={onClose} href="/furniture/products/tvunit">Kitchen & Dining</Link>
+              <Link onClick={onClose} href="/furniture/products/wingchair">Furnishings</Link>
+              <Link onClick={onClose} href="/mattresses">Mattresses</Link>
+              <Link onClick={onClose} href="/festiveoffer">
+                <Text as='b' className={style.textStyle}>
+                Festive Sale
+              </Text>
+            </Link>
             </Stack>
           </Box>
         ) : null}
