@@ -1,12 +1,12 @@
 import { USER_LOGIN, USER_REGISTER } from "./actionTypes";
 
-let token = null;
+let user = null;
 if (typeof window !== "undefined") {
-  token = localStorage.getItem("token") || null;
+  user = localStorage.getItem("hiUser") || null;
 }
 
 const initialState = {
-  token,
+  user,
   payload: "",
 };
 
@@ -19,11 +19,10 @@ export const UserReducer = (state = initialState, { type, payload }) => {
       };
     }
     case USER_LOGIN: {
-      // window.location.reload()
       return {
         ...state,
         payload,
-        token:payload.token
+        user: payload.email,
       };
     }
     default:
