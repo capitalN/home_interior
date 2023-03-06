@@ -13,10 +13,7 @@ import React, { useEffect, useState ,useRef} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 
-import {
-  GetProduct,
-  GetSortProduct,
-} from "@/reducer/Product/Product.action.js";
+import {GetProduct} from "@/reducer/Product/Product.action.js";
 import Link from "next/link";
 import Loader from "@/components/Loader/Loader";
 import { Pagination } from "@/components/ProductsComponents/Pagination";
@@ -25,7 +22,7 @@ import { Pagination } from "@/components/ProductsComponents/Pagination";
 const Page = () => {
   const [page,setPage] = useState(1)
   const [category,setCategory] = useState([])
-  const ref = useRef()
+  
 
   let router = useRouter();
   let dispatch = useDispatch();
@@ -63,7 +60,6 @@ const Page = () => {
       query: query
     });
      
-    ref.current.focus()
   }
 
   const materialHandlear = (e) => {
@@ -348,8 +344,7 @@ const Page = () => {
                               </Text>
                               <Text color="#2e2c2c" as="del">
                                 ₹{" "}
-                                {Math.floor( ele && ele.price * (ele && ele.discount * 0.01)) +
-                                 ele &&  ele.price}
+                                {ele && Math.floor(  ele.price * ( ele.discount * 0.01)) + ele.price}
                               </Text>
                             </Flex>
                             <Text
@@ -362,7 +357,7 @@ const Page = () => {
                             <Flex alignItems="center" gap="5px">
                               <Text fontSize="sm">Earn Cashback</Text>
                               <Text>
-                                {Math.floor(ele && ele.price * (ele && ele.discount * 0.01))}
+                                {Math.floor(ele.price * ( ele.discount * 0.01))}
                               </Text>
                             </Flex>
                           </Box>

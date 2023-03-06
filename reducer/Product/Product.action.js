@@ -11,7 +11,7 @@ import { getProductbyAPI } from "./Product.API.js";
 
 export const GetProduct = (str, page) => async (dispatch) => {
   dispatch({ type: GET_PRODUCT_LOADING });
-  console.log("getProoo===>",str,page)
+ // console.log("getProoo===>",str,page)
   try {
     let data = await getProductbyAPI(str, page);
     dispatch({ type: GET_PRODUCT_SUCCESS, payload: data });

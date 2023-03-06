@@ -178,8 +178,8 @@ export default function Footer() {
             <ListHeader>We accept</ListHeader>
             <Flex flexWrap={"wrap"}>
               {/* <Image  w="300px" h="50px"  src="https://www.nicepng.com/png/detail/42-421696_visa-mastercard-amex-visa-mastercard-american-express-png.png" /> */}
-              {Links.map((link) => (
-                <Stack cursor={"pointer"} w="60px" alignItems={"center"}>
+              {Links.map((link,i) => (
+                <Stack key={i} cursor={"pointer"} w="60px" alignItems={"center"}>
                   <Image key={link} src={link} w="95%" />
                 </Stack>
               ))}

@@ -65,9 +65,9 @@ export const ProductReducer = (state = initialData, { type, payload }) => {
     }
 
     case GET_PRODUCT_BYFILTER: {
-      console.log(payload.data, 1111);
+     
       let newdata = payload.data.filter((ele) => ele.prints === payload.value);
-      console.log(newdata, 69);
+    
       return {
         ...state,
         loading: false,
