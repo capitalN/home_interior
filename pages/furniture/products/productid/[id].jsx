@@ -257,14 +257,7 @@ const Page = ({ product }) => {
                     let count1 = 1;
                     let obj = { ...product, count: count, count1: count1 };
                     dispatch(add_to_cart(obj));
-                    toast({
-                      title: "Product Added Successfully",
-                      status: "success",
-                      duration: 9000,
-                      isClosable: true,
-                    });
                     let valdata = setData()
-                    console.log(valdata)
                      valdata.push(product)
                     localStorage.setItem("history",JSON.stringify(valdata))
                   }}

@@ -1,12 +1,12 @@
 import { USER_LOGIN, USER_REGISTER } from "./actionTypes";
 
-let user = null;
+let details = {};
 if (typeof window !== "undefined") {
-  user = localStorage.getItem("hiUser") || null;
+  details = JSON.parse(localStorage.getItem("hiUser")) || {};
 }
 
 const initialState = {
-  user,
+  details,
   payload: "",
 };
 
@@ -16,13 +16,17 @@ export const UserReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         payload,
+        details: {
+          name: "",
+          email: "",
+        },
       };
     }
     case USER_LOGIN: {
       return {
         ...state,
         payload,
-        user: payload.email,
+        details: payload,
       };
     }
     default:

@@ -35,6 +35,10 @@ export const add_to_cart = (data) => async (dispatch) => {
       url: `cart`,
       data: { ...data, id: email + data.id + data.category, email },
     });
+    if (!email) {
+      alert("WARNING, please login first");
+      return;
+    }
     alert("SUCCESS, product added");
     dispatch({ type: ADD_TO_CART, payload: res.data });
   } catch (err) {

@@ -27,7 +27,7 @@ export default function Login() {
   const [inputData, setInputData] = useState(initialData);
   const Router = useRouter();
 
-  const { token } = useSelector((store) => store.userManager);
+  const { details } = useSelector((store) => store.userManager);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,8 +38,8 @@ export default function Login() {
     e.preventDefault();
     await dispatch(user_login(inputData));
   };
-  
-  if (token) {
+
+  if (details) {
     Router.push("/");
     return;
   }

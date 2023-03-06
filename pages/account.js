@@ -73,25 +73,18 @@ const takeVal = (val) => {
   }
 };
 
-
 const AddressData = {
-  pincode:"938472",
-  address1 : "Mg Road",
-  address2:"BinduChowk",
-  city:"Kolhapur",
-  state:"Maharashta",
-  country:"India"
-}
-
-
-
-
-
+  pincode: "938472",
+  address1: "Mg Road",
+  address2: "BinduChowk",
+  city: "Kolhapur",
+  state: "Maharashta",
+  country: "India",
+};
 
 const userAccount = () => {
-
   const dispatch = useDispatch();
-  const loginStore = useSelector((store) => store.loginManager);
+  const loginStore = useSelector((store) => store.userManager);
   const route = useRouter();
   const [isOpen1, onOpen1, onClose1] = useDrawerHook();
   const [isOpen2, onOpen2, onClose2] = useDrawerHook();
@@ -99,7 +92,7 @@ const userAccount = () => {
   const btnRef = React.useRef();
   const [formdata, setFormdata] = useState({});
   const toast = useToast();
-  const [addressform, setAddressform] = useState(AddressData)
+  const [addressform, setAddressform] = useState(AddressData);
 
   useEffect(() => {
     dispatch(loginSuccess());
@@ -113,9 +106,9 @@ const userAccount = () => {
     setAddressform({ ...addressform, [e.target.name]: e.target.value });
   };
 
-  const handleClickDelete = ()=>{
-    setAddressform(()=>AddressData)
-  }
+  const handleClickDelete = () => {
+    setAddressform(() => AddressData);
+  };
 
   const handleClick = () => {
     if (formdata.name && formdata.mobile) {
@@ -138,7 +131,6 @@ const userAccount = () => {
     }
   };
 
-
   const handleClick1 = () => {
     alert("Data has been updated");
   };
@@ -147,15 +139,6 @@ const userAccount = () => {
   try {
     user = JSON.parse(localStorage.getItem("hiUser"));
   } catch (error) {}
-
-  if (!loginStore.login) {
-    try {
-      localStorage.removeItem("hiUser");
-      route.push("/");
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   return (
     <Flex
@@ -206,19 +189,19 @@ const userAccount = () => {
             <Flex justifyContent="space-between">
               <Text style={styleForInfo}>Name</Text>
               <Text style={styleForInfoo} textAlign="right">
-                {loginStore.details.name}
+                {loginStore?.details.name}
               </Text>
             </Flex>
             <Flex justifyContent="space-between">
               <Text style={styleForInfo}>Mobile Number</Text>
               <Text style={styleForInfoo} textAlign="right">
-                {loginStore.details.mobile}
+                {loginStore?.details.mobile}
               </Text>
             </Flex>
             <Flex justifyContent="space-between">
               <Text style={styleForInfo}>Email ID</Text>
               <Text style={styleForInfoo} textAlign="right">
-                {loginStore.details.email}
+                {loginStore?.details.email}
               </Text>
             </Flex>
             <Flex justifyContent="space-between">
@@ -254,20 +237,20 @@ const userAccount = () => {
           >
             <Flex gap="0.2rem">
               <Text fontSize={15} color="#121212">
-                {loginStore.details.name}
+                {loginStore?.details.name}
               </Text>
               <Text fontSize={15} color="#848484">
                 HOME
               </Text>
             </Flex>
             <Text fontSize={15} color="#121212">
-             {addressform.address1}
+              {addressform.address1}
             </Text>
             <Text fontSize={15} color="#121212">
-            {addressform.address2}
+              {addressform.address2}
             </Text>
             <Text fontSize={15} color="#121212">
-            {addressform.city + " " + "-" + " " + addressform.pincode }
+              {addressform.city + " " + "-" + " " + addressform.pincode}
             </Text>
             <Text fontSize={15} color="#121212">
               89765
@@ -278,7 +261,7 @@ const userAccount = () => {
               border="1px solid rgba(190, 190, 190,0.9)"
               colorScheme="rgba(213, 210, 210,0.5)"
               variant="outline"
-              visibility={{base:"hidden",md:"visible"}}
+              visibility={{ base: "hidden", md: "visible" }}
               onClick={onOpen2}
             >
               Edit
@@ -319,10 +302,7 @@ const userAccount = () => {
         </Box>
       </Box>
 
-
-
-
-{/* ////////////// This is user drawer section //////////// */}
+      {/* ////////////// This is user drawer section //////////// */}
 
       <Box>
         <Drawer
@@ -351,7 +331,7 @@ const userAccount = () => {
                       type="text"
                       border="1px solid #FF7035"
                       name="name"
-                      placeholder={loginStore.details.name}
+                      placeholder={loginStore?.details.name}
                       onChange={handleChange}
                       value={formdata.name}
                       borderRadius="0.2rem"
@@ -380,7 +360,7 @@ const userAccount = () => {
                       type="number"
                       name="mobile"
                       onChange={handleChange}
-                      placeholder={loginStore.details.mobile}
+                      placeholder={loginStore?.details.mobile}
                       value={formdata.mobile}
                       border="1px solid #FF7035"
                       borderRadius="0.2rem"
@@ -393,7 +373,7 @@ const userAccount = () => {
                   {!formdata.mobile && (
                     <Text
                       fontSize={14}
-                      placeholder={loginStore.details.mobile}
+                      placeholder={loginStore?.details.mobile}
                       fontFamily="Manrope, sans-serif"
                       color="#D8232A"
                     >
@@ -407,7 +387,7 @@ const userAccount = () => {
                 <InputGroup>
                   <Input
                     isDisabled
-                    placeholder={loginStore.details.email}
+                    placeholder={loginStore?.details.email}
                     border="1px solid #FF7035"
                     borderRadius="0.2rem"
                   />
@@ -452,11 +432,9 @@ const userAccount = () => {
         </Drawer>
       </Box>
 
+      {/* ////////////////  This is user address drawer section ///////////// */}
 
-
-{/* ////////////////  This is user address drawer section ///////////// */}
-
-<Box>
+      <Box>
         <Drawer
           size={{ base: "sm", sm: "sm", md: "sm" }}
           isOpen={isOpen2}
@@ -478,195 +456,187 @@ const userAccount = () => {
               <Flex gap="0.3rem" direction="column" mb="1.5rem">
                 <Text>Name</Text>
                 <Box>
-                    <Input
-                      type="text"
-                      border="1px solid black"
-                      _placeholder={{ color: 'black' }}
-
-                      name="name"
-                      placeholder={loginStore.details.name}
-                      onChange={handleChange}
-                      value={formdata.name}
-                      borderRadius="0.2rem"
-                    />
+                  <Input
+                    type="text"
+                    border="1px solid black"
+                    _placeholder={{ color: "black" }}
+                    name="name"
+                    placeholder={loginStore?.details.name}
+                    onChange={handleChange}
+                    value={formdata.name}
+                    borderRadius="0.2rem"
+                  />
                 </Box>
               </Flex>
-              <Flex  gap="0.3rem" direction="column" mb="1.5rem">
+              <Flex gap="0.3rem" direction="column" mb="1.5rem">
                 <Text>Mobile Number</Text>
                 <Box>
-                    <Input
-                      type="number"
-                      name="mobile"
-                      border="1px solid black"
-                      _placeholder={{ color: 'black' }}
-
-                      onChange={handleChange}
-                      placeholder={loginStore.details.mobile}
-                      value={formdata.mobile}
-                      borderRadius="0.2rem"
-                    />
-                </Box>
-              </Flex>
-              <Flex  gap="0.3rem" direction="column" mb="1.5rem">
-                <Text>PIN CODE</Text>
                   <Input
                     type="number"
-                    name="pincode"
-                    placeholder={addressform.pincode}
-                    value={addressform.pincode}
-                    onChange={handleChangeforAdress}
+                    name="mobile"
                     border="1px solid black"
-                    _placeholder={{ color: 'black' }}
+                    _placeholder={{ color: "black" }}
+                    onChange={handleChange}
+                    placeholder={loginStore?.details.mobile}
+                    value={formdata.mobile}
                     borderRadius="0.2rem"
                   />
+                </Box>
               </Flex>
-              <Flex  gap="0.3rem" direction="column" mb="1.5rem">
+              <Flex gap="0.3rem" direction="column" mb="1.5rem">
+                <Text>PIN CODE</Text>
+                <Input
+                  type="number"
+                  name="pincode"
+                  placeholder={addressform.pincode}
+                  value={addressform.pincode}
+                  onChange={handleChangeforAdress}
+                  border="1px solid black"
+                  _placeholder={{ color: "black" }}
+                  borderRadius="0.2rem"
+                />
+              </Flex>
+              <Flex gap="0.3rem" direction="column" mb="1.5rem">
                 <Text>Address No 1.</Text>
-                  <Input
-                    name="address1"
-                    value={addressform.address1}
-                    onChange={handleChangeforAdress}
-                    border="1px solid black"
-                    _placeholder={{ color: 'black' }}
-                    borderRadius="0.2rem"
-                  />
+                <Input
+                  name="address1"
+                  value={addressform.address1}
+                  onChange={handleChangeforAdress}
+                  border="1px solid black"
+                  _placeholder={{ color: "black" }}
+                  borderRadius="0.2rem"
+                />
               </Flex>
-              <Flex  gap="0.3rem" direction="column" mb="1.5rem">
+              <Flex gap="0.3rem" direction="column" mb="1.5rem">
                 <Text>Address No 2.</Text>
-                  <Input
-                    name="address2"
-                    value={addressform.address2}
-                    onChange={handleChangeforAdress}
-                    border="1px solid black"
-                    _placeholder={{ color: 'black' }}
-                    borderRadius="0.2rem"
-                  />
+                <Input
+                  name="address2"
+                  value={addressform.address2}
+                  onChange={handleChangeforAdress}
+                  border="1px solid black"
+                  _placeholder={{ color: "black" }}
+                  borderRadius="0.2rem"
+                />
               </Flex>
-              <Flex  gap="0.3rem" direction="column" mb="1.5rem">
+              <Flex gap="0.3rem" direction="column" mb="1.5rem">
                 <Text>City</Text>
-                  <Input
-                    name="city"
-                    value={addressform.city}
-                    onChange={handleChangeforAdress}
-                    border="1px solid black"
-                    _placeholder={{ color: 'black' }}
-                    borderRadius="0.2rem"
-                  />
+                <Input
+                  name="city"
+                  value={addressform.city}
+                  onChange={handleChangeforAdress}
+                  border="1px solid black"
+                  _placeholder={{ color: "black" }}
+                  borderRadius="0.2rem"
+                />
               </Flex>
-              <Flex  gap="0.3rem" direction="column" mb="1.5rem">
+              <Flex gap="0.3rem" direction="column" mb="1.5rem">
                 <Text>State</Text>
-                  <Input
-                    name="state"
-                    value={addressform.state}
-                    onChange={handleChangeforAdress}
-                    border="1px solid black"
-                    _placeholder={{ color: 'black' }}
-                    borderRadius="0.2rem"
-                  />
+                <Input
+                  name="state"
+                  value={addressform.state}
+                  onChange={handleChangeforAdress}
+                  border="1px solid black"
+                  _placeholder={{ color: "black" }}
+                  borderRadius="0.2rem"
+                />
               </Flex>
-              <Flex  gap="0.3rem" direction="column" mb="1.5rem">
+              <Flex gap="0.3rem" direction="column" mb="1.5rem">
                 <Text>Country</Text>
-                  <Input
-                    name="country"
-                    value={addressform.country}
-                    onChange={handleChangeforAdress}
-                    border="1px solid black"
-                    _placeholder={{ color: 'black' }}
-                    borderRadius="0.2rem"
-                  />
+                <Input
+                  name="country"
+                  value={addressform.country}
+                  onChange={handleChangeforAdress}
+                  border="1px solid black"
+                  _placeholder={{ color: "black" }}
+                  borderRadius="0.2rem"
+                />
               </Flex>
-              
             </DrawerBody>
 
             <DrawerFooter>
-           <Flex width="100%" gap="5rem" justifyContent="space-between">
-           <Button
-                flex="1"
-                backgroundImage="linear-gradient(180deg,rgba(246,77,24,.99) 0%,#FF7035 100%);"
-                colorScheme="white"
-                textAlign="center"
-                onClick={handleClickDelete}
-              >
-                CANCEL
-              </Button>
-              <Button
-                flex="1"
-                backgroundImage="linear-gradient(180deg,rgba(246,77,24,.99) 0%,#FF7035 100%);"
-                colorScheme="white"
-                textAlign="center"
-                onClick={handleClick1}
-              >
-                SAVE
-              </Button>
-           </Flex>
+              <Flex width="100%" gap="5rem" justifyContent="space-between">
+                <Button
+                  flex="1"
+                  backgroundImage="linear-gradient(180deg,rgba(246,77,24,.99) 0%,#FF7035 100%);"
+                  colorScheme="white"
+                  textAlign="center"
+                  onClick={handleClickDelete}
+                >
+                  CANCEL
+                </Button>
+                <Button
+                  flex="1"
+                  backgroundImage="linear-gradient(180deg,rgba(246,77,24,.99) 0%,#FF7035 100%);"
+                  colorScheme="white"
+                  textAlign="center"
+                  onClick={handleClick1}
+                >
+                  SAVE
+                </Button>
+              </Flex>
             </DrawerFooter>
           </DrawerContent>
         </Drawer>
       </Box>
 
-
-
-
       {/* ///////////////   This is view all address data   //////////// */}
       <Drawer
-          size={{ base: "sm", sm: "sm", md: "sm" }}
-          isOpen={isOpen3}
-          placement="right"
-          onClose={onClose3}
-          finalFocusRef={btnRef}
-          position="relative"
-        >
-          <DrawerOverlay />
-          <DrawerContent>
-            <Box position="absolute" top="0px" left="0px">
-              <DrawerCloseButton background="rgb(200,200,200)" p="0.3rem" />
-            </Box>
-            <DrawerHeader borderBottom="3px solid rgb(220,220,220)">
-              Edit Details
-            </DrawerHeader>
+        size={{ base: "sm", sm: "sm", md: "sm" }}
+        isOpen={isOpen3}
+        placement="right"
+        onClose={onClose3}
+        finalFocusRef={btnRef}
+        position="relative"
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <Box position="absolute" top="0px" left="0px">
+            <DrawerCloseButton background="rgb(200,200,200)" p="0.3rem" />
+          </Box>
+          <DrawerHeader borderBottom="3px solid rgb(220,220,220)">
+            Edit Details
+          </DrawerHeader>
 
-            <DrawerBody>
-            <Flex
-            mt="1rem"
-            direction="column"
-            gap="0.8rem"
-          >
-            <Flex gap="0.2rem">
+          <DrawerBody>
+            <Flex mt="1rem" direction="column" gap="0.8rem">
+              <Flex gap="0.2rem">
+                <Text fontSize={15} color="#121212">
+                  {loginStore?.details.name}
+                </Text>
+                <Text fontSize={15} color="#848484">
+                  HOME
+                </Text>
+              </Flex>
               <Text fontSize={15} color="#121212">
-                {loginStore.details.name}
+                {addressform.address1}
               </Text>
-              <Text fontSize={15} color="#848484">
-                HOME
+              <Text fontSize={15} color="#121212">
+                {addressform.address2}
               </Text>
+              <Text fontSize={15} color="#121212">
+                {addressform.city + " " + "-" + " " + addressform.pincode}
+              </Text>
+              <Text fontSize={15} color="#121212">
+                89765
+              </Text>
+              <Button
+                width="5rem"
+                leftIcon={<BiEditAlt />}
+                border="1px solid rgba(190, 190, 190,0.9)"
+                colorScheme="rgba(213, 210, 210,0.5)"
+                variant="outline"
+                visibility={{ base: "hidden", md: "visible" }}
+                onClick={() => {
+                  onOpen2();
+                  onClose3();
+                }}
+              >
+                Edit
+              </Button>
             </Flex>
-            <Text fontSize={15} color="#121212">
-             {addressform.address1}
-            </Text>
-            <Text fontSize={15} color="#121212">
-            {addressform.address2}
-            </Text>
-            <Text fontSize={15} color="#121212">
-            {addressform.city + " " + "-" + " " + addressform.pincode }
-            </Text>
-            <Text fontSize={15} color="#121212">
-              89765
-            </Text>
-            <Button
-              width="5rem"
-              leftIcon={<BiEditAlt />}
-              border="1px solid rgba(190, 190, 190,0.9)"
-              colorScheme="rgba(213, 210, 210,0.5)"
-              variant="outline"
-              visibility={{base:"hidden",md:"visible"}}
-              onClick={()=>{onOpen2();onClose3()}}
-            >
-              Edit
-            </Button>
-          </Flex>
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
-
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </Flex>
   );
 };

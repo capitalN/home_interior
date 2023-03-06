@@ -41,7 +41,7 @@ const Section2 = ({ val1, flagg, total, data, MakePayment }) => {
   const router = useRouter();
   const [local, setLocal] = useState(null);
   const toast = useToast();
-  const loginStore = useSelector((store) => store.loginManager);
+  const loginStore = useSelector((store) => store.userManager);
 
   useEffect(() => {
     if (getNameintolocalStorage().length > 0) {
@@ -190,31 +190,32 @@ const Section2 = ({ val1, flagg, total, data, MakePayment }) => {
         <Spacer />
         <MdNavigateNext />
       </Flex>
-     
-     {
-      loginStore && loginStore.login?<Flex
-        _hover={{ cursor: "pointer", color: "green" }}
-        backgroundColor="#FF7035"
-        color="white"
-        onClick={handlePay}
-        justifyContent="center"
-        height="2.5rem"
-        alignItems="center"
-      >
-        {flag}
-      </Flex>:<Flex
-        _hover={{ cursor: "pointer", color: "green" }}
-        backgroundColor="#FF7035"
-        color="white"
-        // onClick={}
-        justifyContent="center"
-        height="2.5rem"
-        alignItems="center"
-      >
-        Proceed to login
-      </Flex>
-     }
-      
+
+      {loginStore && loginStore.details.email ? (
+        <Flex
+          _hover={{ cursor: "pointer", color: "green" }}
+          backgroundColor="#FF7035"
+          color="white"
+          onClick={handlePay}
+          justifyContent="center"
+          height="2.5rem"
+          alignItems="center"
+        >
+          {flag}
+        </Flex>
+      ) : (
+        <Flex
+          _hover={{ cursor: "pointer", color: "green" }}
+          backgroundColor="#FF7035"
+          color="white"
+          // onClick={}
+          justifyContent="center"
+          height="2.5rem"
+          alignItems="center"
+        >
+          Proceed to login
+        </Flex>
+      )}
     </Flex>
   );
 };
