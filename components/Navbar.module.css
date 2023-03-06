@@ -1,0 +1,12 @@
+.textStyle{
+    color: red;
+    animation: color-change 1s infinite;
+}
+
+@keyframes color-change {
+    0% { color: red; }
+    25% { color: blue; }
+    50% { color: rgb(30, 255, 0); }
+    75% {color: blueviolet;}
+    100% {color: red;}
+  }
