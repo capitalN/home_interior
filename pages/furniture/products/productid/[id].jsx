@@ -25,6 +25,20 @@ import { add_to_cart } from "@/reducer/Cart/Cart.action";
 import { useDispatch } from "react-redux";
 import { useToast } from "@chakra-ui/react";
 
+
+const setData = ()=>{
+  try{
+    let arrayData = JSON.parse(localStorage.getItem("history")) || [];
+
+    return arrayData
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+
+
 const Page = ({ product }) => {
   const dispatch = useDispatch();
 
@@ -249,6 +263,10 @@ const Page = ({ product }) => {
                       duration: 9000,
                       isClosable: true,
                     });
+                    let valdata = setData()
+                    console.log(valdata)
+                     valdata.push(product)
+                    localStorage.setItem("history",JSON.stringify(valdata))
                   }}
                 >
                   ADD TO CART

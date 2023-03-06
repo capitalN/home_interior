@@ -46,7 +46,7 @@ const Sidebar = ({ linkEndPoint }) => {
          <Heading
            fontSize="17px"
            fontFamily="Manrope, sans-serif"
-           color={linkEndPoint == "/account" ? "brand.600" : "black"}
+           color={route.pathname==="/account"? "brand.600" : "black"}
          >
            My Profile <ChevronRightIcon />
          </Heading>
@@ -69,23 +69,6 @@ const Sidebar = ({ linkEndPoint }) => {
          </Heading>
          <Text fontSize="sm" fontFamily="Manrope, sans-serif" color="#5B5B5B" >
            Edit Your Account Details
-         </Text>
-       </Box>
-       <Box
-          pb="1rem"
-          borderBottom={route.pathname==="/wallet"?"2px solid #FF7035":"0px solid #FFFFFF"}
-          onClick={() => handlePageChange("/wallet")}
-         _hover={{ cursor: "pointer" }}
-       >
-         <Heading
-           fontSize="17px"
-           fontFamily="Manrope, sans-serif"
-           color={linkEndPoint == "/wallet" ? "brand.600" : "black"}
-         >
-           My Wallet <ChevronRightIcon />
-         </Heading>
-         <Text fontSize="sm" fontFamily="Manrope, sans-serif" color="#5B5B5B" >
-           5000 Credits
          </Text>
        </Box>
        <Box

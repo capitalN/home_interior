@@ -21,9 +21,22 @@ const Wishlist = () => {
 
 
   return (
-    <Flex width={"90%"} py={10} m="auto">
+    <Flex
+    gap="0.5rem"
+    width={"75%"}
+    m="auto"
+    p="0.5rem 1.5rem"
+    mb="7rem"
+    mt="4rem"
+    // border="1px solid red"
+  >
+    <Box flex="1.37" position="sticky" top="0rem" height="40%">
       <Sidebar linkEndPoint={route} />
-      <Box width={{base: "100%", md: "900px"}}>
+    </Box>
+      <Box flex="4">
+      <br />
+      <Heading textAlign="center">My Cart</Heading>
+      <br />
       {data?.map((item) => <Section1 {...item} />) && (
               <Grid gap={"30px"} templateColumns="repeat(2, 1fr)">
                 {data.map((product) => (

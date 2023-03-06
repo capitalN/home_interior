@@ -16,7 +16,7 @@ export function Pagination({ handlePagination, lastEl }) {
   }, [Router.query]);
 
   return (
-    <HStack gap={"20px"} fontSize="20px" p="20px" align={"center"}>
+    <HStack height="4rem" width="100%" zIndex="2" bgColor="white" position="sticky" top="0px" gap={"20px"} fontSize="20px" p="20px" align={"center"}>
       <Button
         onClick={() => setPage((prev) => prev - 1)}
         isDisabled={page === 1}

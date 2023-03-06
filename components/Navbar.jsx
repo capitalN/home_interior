@@ -51,7 +51,7 @@ export default function Navbar() {
 
   return (
     <>
-      <Box px={4}>
+      <Box px={4} position="sticky" top={0} zIndex="1001" bgColor={"white"}>
         <Flex
           h={20}
           alignItems={"center"}
@@ -138,7 +138,7 @@ export default function Navbar() {
             </Menu>
             <Menu>
               <MenuButton as={Link} href="/furniture/products/wingchair">
-              WING CHAIRS
+                WING CHAIRS
               </MenuButton>
             </Menu>
             <Menu>
@@ -157,10 +157,10 @@ export default function Navbar() {
               </MenuButton>
             </Menu>
 
-
-            <Link fontSize={"16px"} fontWeight={600} href={'/mattresses'}>
-             <Text > MATTRESSES</Text>
+            <Link fontSize={"16px"} fontWeight={600} href={"/mattresses"}>
+              <Text> MATTRESSES</Text>
             </Link>
+
 
             <Link fontSize={"16px"} fontWeight={600} href={'/festiveoffer'}>
              <Text as='b' className={style.textStyle}>FESTIVE SALE</Text>
