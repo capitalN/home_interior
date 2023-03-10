@@ -1,21 +1,20 @@
 # DESCRIPTION
-- this is the clone of pepperfry.com which is a e-comerce website for home decor and furniture.
-- tech-stacks:- html, css, javascript, next.js, redux & chakraUI.
+- this is the clone of pepperfry.com which is an e-comerce website for home decor and furniture.
 - link:- https://home-interior-capitaln.vercel.app/
 
 # OUR TEAM
- - Nikhil Angolkar (Home Page & Admin Section)
- - Shakil Pendhari (Cart, Checkout & Payment Section)
- - Vikesh Hinge (Products, Product Details & Product Filters)
- - Suraj Yadav (Navbar & Footer)
- - Arun Kumar Rana (SignUp, LogIn, Account Section
+ - Nikhil Angolkar
+ - Shakil Pendhari
+ - Vikesh Hinge
+ - Suraj Yadav
+ - Arun Kumar Rana
  
  # TECH STACK
  - HTML 
  - CSS
  - Next.js
- - Chakra- 
- - Reduxn
+ - Chakra-UI
+ - Redux-Store
 
 # SCREEN-SHOTS
 <div>
