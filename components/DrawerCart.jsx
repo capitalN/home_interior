@@ -200,7 +200,7 @@ const Cart = ({ setDrawer, drawer }) => {
           </DrawerHeader>
 
           <DrawerBody>
-            {!cartflag.one && data?.map((item) => <Section1 {...item} />) && (
+            {!cartflag.one && data?.map((item,i) => <Section1 key={i} {...item} />) && (
               <VStack gap={"5px"}>
                 {data.map((product) => (
                   <Box key={product.id}>

@@ -6,7 +6,7 @@ export const getProduct_by_API = async () => {
 };
 
 export const getProductbyAPI = async (param, page = 1) => {
-  console.log("ByAPI==>",param)
+  //console.log("ByAPI==>",param)
 
   let res = await axios.get(`https://home-interior.onrender.com/furniture/`,
   {params:{
@@ -20,7 +20,7 @@ export const getProductbyAPI = async (param, page = 1) => {
 
   if(param.price){
     let limit =  param.price.split('-').map(Number)
-    console.log(limit[0],limit[1])
+   // console.log(limit[0],limit[1])
     if(limit[1] === undefined){
       data = data.filter((ele) => (ele.price >= limit[0]))
     }else{
@@ -31,10 +31,10 @@ export const getProductbyAPI = async (param, page = 1) => {
   }
 
   
-  console.log(data)
+  //console.log(data)
   let myData = [];
   if (data.length) {
-    for (let i = 0; i <6; i++) {
+    for (let i = page; i <=6; i++) {
       myData.push(data[i]);
     }
   }
