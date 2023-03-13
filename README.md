@@ -1,6 +1,5 @@
 # DESCRIPTION
 - this is the clone of pepperfry.com which is an e-comerce website for home decor and furniture.
-- link:- https://home-interior-capitaln.vercel.app/
 
 # OUR TEAM
  - Nikhil Angolkar
