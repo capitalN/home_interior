@@ -1,5 +1,6 @@
 # DESCRIPTION
-- this is the clone of pepperfry.com which is an e-comerce website for home decor and furniture.
+- Pepperfry.com is an Indian online furniture and home decor marketplace. It offers a wide range of products across categories like furniture, home decor, lamps and lighting, furnishings, kitchen and dining, appliances and more.
+- This project was a collaborative effort and was completed within 5 days during Masai Construct Week.
 
 # OUR TEAM
  - Nikhil Angolkar
