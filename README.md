@@ -1,5 +1,6 @@
 # DESCRIPTION
 - HOME INTERIOR is a clone of Pepperfry.com. It is an Indian online furniture and home decor marketplace. It offers a wide range of products across categories like furniture, home decor, lamps and lighting, furnishings, kitchen and dining, appliances and more.
+- for frontend deployment we used vercel & for deploying database we used render.com
 - This project was a collaborative effort and was completed within 5 days during Masai Construct Week.
 
 # OUR TEAM
